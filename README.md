@@ -98,7 +98,8 @@ Labs of DigitalSystems course
    ```
 
    To explain your source code you can add text to the `REPORT.md` file or add comments directly in the source file, as you wish.
-   The reports and source codes are due in your branch the day **before** the written exam at 23:59 sharp.
+
+1. The reports and source codes are due in your branch the day **before** the written exam at 23:59 sharp.
    After this deadline the repository will become read-only and there will be no way to add or modify anything.
    Please do not ask for extension, do not ask if you could send your work by email after the deadline, or any similar exception.
 
