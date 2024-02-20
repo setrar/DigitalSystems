@@ -113,12 +113,11 @@ Labs of DigitalSystems course
 
 1. If you discover a bug, a broken link, a spelling error, a missing explanation, an explanation that should be improved, etc. please inform an adviser.
 
-## Carefully check the synthesis results
-
-The semantics of the VHDL language for simulation and synthesis are not the same.
-As a consequence, it can perfectly be that your design simulates apparently as expected but that the synthesis result does not behave as expected on the target hardware.
-When synthesizing with Xilinx Vivado it is thus strongly advised to carefully check the synthesis results.
-The [Examining synthesis results] part of the documentation explains what should be checked and how.
+1. Carefully check the synthesis results.
+   The semantics of the VHDL language for simulation and synthesis are not the same.
+   As a consequence, it can perfectly be that your design simulates apparently as expected but that the synthesis result does not behave as expected on the target hardware.
+   When synthesizing with Xilinx Vivado it is thus strongly advised to carefully check the synthesis results.
+   The [Examining synthesis results] part of the documentation explains what should be checked and how.
 
 ## GitLab and `git` set-up
 
