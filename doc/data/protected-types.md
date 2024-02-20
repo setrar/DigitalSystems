@@ -9,7 +9,13 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Protected types
+Protected types
+
+---
+
+[TOC]
+
+---
 
 Prior VHDL 1993, two concurrent processes could communicate only with signals.
 Thanks to the simulation semantics of the language that updates signals only between simulation steps, the result of a simulation was deterministic: it did not depend on the order chosen by the simulation scheduler to execute the processes.[^1]
@@ -38,14 +44,14 @@ Notes:
 But the VHDL patterns advised by several EDA vendors to model the memory plane of multi-ports Random Access Memories (RAM) use shared variables.
 So, yes, shared variables can be synthesizable in certain circumstances.
 
-## A pseudo-random generator
+# A pseudo-random generator
 
 Peudo-random generators are frequently useful when designing simulation environments.
 The following VHDL package shows how to use protected types to design a pseudo-random generator of `boolean`, `bit` and `bit_vector`.
 It can easily be extended to also generate random `std_ulogic_vector`, `signed`, `unsigned`.
 Extending it to generate random integers with arbitrary bounds and a uniform distribution is a bit more tricky but doable.
 
-### The package declaration
+## The package declaration
 
 A protected type has a declaration where all public subprogram accessors are declared.
 For our random generator we will make public one seed initialization procedure and three impure functions returning a random `boolean`, `bit` or `bit_vector`.
@@ -63,7 +69,7 @@ package rnd_pkg is
 end package rnd_pkg;
 ```
 
-### The package body
+## The package body
 
 The protected type body defines the inner data structures (members) and the subprogram bodies.
 Our random generator is based on a 128-bits Linear Feedback Shift Register (LFSR) with four taps.

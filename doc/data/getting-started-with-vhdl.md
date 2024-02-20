@@ -9,6 +9,14 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
+Getting started with VHDL
+
+---
+
+[TOC]
+
+---
+
 VHDL is a compound acronym for VHSIC (Very High Speed Integrated Circuit) HDL (Hardware Description Language).
 As a Hardware Description Language, it is primarily used to describe or model circuits.
 VHDL is an ideal language for describing circuits since it offers language constructs that easily describe both concurrent and sequential behavior along with an execution model that removes ambiguity introduced when modeling concurrent behavior.
@@ -696,7 +704,8 @@ The 3 last columns indicate the condition to resume the suspended processes (nam
 -- File counter.vhd
 -- The entity is the interface part. It has a name and a set of input / output
 -- ports. Ports have a name, a direction and a type. The bit type has only two
--- values: '0' and '1'. It is one of the standard types.
+-- values: '0' and '1'. It is one of the standard types. Natural is another
+-- standard type.
 entity counter is
   port(
     clock: in  bit;    -- We are using the rising edge of CLOCK
@@ -708,8 +717,7 @@ end entity counter;
 -- The architecture describes the internals. It is always associated
 -- to an entity.
 architecture sync of counter is
-  -- The internal signals we use to count. Natural is another standard
-  -- type. VHDL is not case sensitive.
+  -- The internal signals we use to count. VHDL is not case sensitive.
   signal current_value: natural;
   signal NEXT_VALUE:    natural;
 begin
@@ -744,6 +752,25 @@ begin
   data <= current_value;
 end architecture sync;
 ```
+
+Note: this is purposely verbose, to illustrate some VHDL characteristics.
+A simpler equivalent version of the architecture, with less intermediate signals, could be:
+
+```vhdl
+architecture sync of counter is
+begin
+  process
+  begin
+    wait until clock = '1';
+    if reset = '1' then
+      data <= 0;
+    else
+      data <= data + 1;
+    end if;
+  end process;
+end architecture sync;
+```
+
 # A simulation environment for the synchronous counter
 
 ## Simulation environments

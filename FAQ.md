@@ -357,131 +357,28 @@ See the [`PATH` environment variable](#what-is-the-path-environment-variable-and
 
 # The VHDL language
 
-## How can I initialize a vector?
-
-See the [Aggregate notation] part of the documentation.
-
-## What types shall I use for arithmetic?
-
-See the [Arithmetic: which types to use?] part of the documentation.
-
-## What is the syntax for comments?
-
-See the [Comments] part of the documentation.
-
-## What are D flip flops (DFF) and latches?
-
-See the [D-flip-flops (DFF) and latches] part of the documentation.
-
-## I don't know where to start from to design my hardware device with VHDL
-
-See the [Digital hardware design using VHDL in a nutshell] part of the documentation.
-
-## Can I reuse hardware models to create a new hardware device?
-
-See the [Entity instantiations] part of the documentation.
-
-## The synthesis reports are verbose; what shall I look at?
-
-See the [Examining synthesis results] part of the documentation.
-
-## Is there a way to design a generic hardware device, say a N-bits adder?
-
-See the [Generics] part of the documentation.
-
-## What are the most important things I should know about VHDL before I start coding?
-
-See the [Getting started with VHDL] part of the documentation.
-
-## I have a boolean function but it is not defined by an equation, all I have is its truth table; how can I model it in VHDL?
-
-See the [How to implement a boolean function defined as a Look Up Table?] part of the documentation.
-
-## I have the inputs and expected outputs in text files; can I use them to drive my simulation?
-
-See the [How to use text files to drive simulations?] part of the documentation.
-
-## What are the constraints for the VHDL user identifiers?
-
-See the [Identifiers] part of the documentation.
-
-## Is there a way to initialize variables or signals when declaring them; is it a good practice?
-
-See the [Initial value declarations] part of the documentation.
-
-## Are there any object-oriented features in VHDL?
-
-See the [Protected types] part of the documentation.
-
-## How can I generate random inputs for my simulation?
-
-See the [Random numbers generation] part of the documentation.
-
-## Does VHDL support recursivity?
-
-See the [Recursivity] part of the documentation.
-
-## What are the differences between `std_ulogic` and `std_logic` and which one shall I use?
-
-See the [Resolution functions, unresolved and resolved types] part of the documentation.
-
-## What is the `std_ulogic` type?
-
-See the [`std_logic_1164`] part of the documentation.
-
-## Can I declare an array type without specifying the dimensions?
-
-See the [Unconstrained types] part of the documentation.
-
-## What is VHDL simulation and what shall I do to simulate my design?
-
-See the [VHDL simulation] part of the documentation.
-
-## What is the `wait` statement?
-
-See the [Wait] part of the documentation.
-
-## I got a compilation error about wait statement and sensitivity list, what does it mean?
-
-If you get an error like:
-
-- Modelsim: `(vcom-1226) A wait statement is illegal for a process with a sensitivity list`
-- GHDL: `error: wait statement not allowed in a sensitized process`
-
-the reason is that you used a `wait` statement in a process with a sensitivity list.
-Example:
-
-```vhdl
-process(a, b)
-begin
-  wait on a, b;
-  s <= a xor b;
-end process;
-```
-
-This is not valid because a sensitivity list ((`(a, b)` in the example) is itself a short-hand for a **unique** `wait` statement at the end of the process.
-This valid process with a sensitivity list and no `wait` statement:
-
-```vhdl
-process(a, b)
-begin
-  s <= a xor b;
-end process;
-```
-
-is equivalent to this other valid process with a `wait` statement and no sensitivity list:
-
-```vhdl
-process
-begin
-  s <= a xor b;
-  wait on a, b;
-end process;
-```
-
-In summary, use a sensitivity list or `wait` statements but not both in the same process.
-
-Note: because most logic synthesizers have a limited support for wait statements, we usually use only sensitivity lists in synthesizable VHDL models, while a mixture of processes with wait statements and processes with sensitivity lists are frequently used in non-synthesizable models, like simulation environments.
+- [How can I initialize a vector?][Aggregate notation]
+- [What types shall I use for arithmetic?][Arithmetic: which types to use?]
+- [What is the syntax for comments?][Comments]
+- [What are D flip flops (DFF) and latches?][D-flip-flops (DFF) and latches]
+- [I don't know where to start from to design my hardware device with VHDL][Digital hardware design using VHDL in a nutshell]
+- [Can I reuse hardware models to create a new hardware device?][Entity instantiations]
+- [The synthesis reports are verbose; what shall I look at?][Examining synthesis results]
+- [Is there a way to design a generic hardware device, say a N-bits adder?][Generics]
+- [What are the most important things I should know about VHDL before I start coding?][Getting started with VHDL]
+- [I have a boolean function but it is not defined by an equation, all I have is its truth table; how can I model it in VHDL?][How to implement a boolean function defined as a Look Up Table?]
+- [I have the inputs and expected outputs in text files; can I use them to drive my simulation?][How to use text files to drive simulations?]
+- [What are the constraints for the VHDL user identifiers?][Identifiers]
+- [Is there a way to initialize variables or signals when declaring them; is it a good practice?][Initial value declarations]
+- [Are there any object-oriented features in VHDL?][Protected types]
+- [How can I generate random inputs for my simulation?][Random numbers generation]
+- [Does VHDL support recursivity?][Recursivity]
+- [What are the differences between `std_ulogic` and `std_logic` and which one shall I use?][Resolution functions, unresolved and resolved types]
+- [What is the `std_ulogic` type?][`std_logic_1164`]
+- [Can I declare an array type without specifying the dimensions?][Unconstrained types]
+- [What is VHDL simulation and what shall I do to simulate my design?][VHDL simulation]
+- [What is the `wait` statement?][Wait]
+- [I got a compilation error about wait statement and sensitivity list, what does it mean?][Wait statement in a process with sensitivity list]
 
 # Terminal emulators
 
@@ -826,5 +723,6 @@ However, there is an experimental VHDL synthesis feature in GHDL based on Yosys.
 [Unconstrained types]: doc/data/unconstrained-types.md
 [VHDL simulation]: doc/data/vhdl-simulation.md
 [Wait]: doc/data/wait.md
+[Wait statement in a process with sensitivity list]: doc/data/wait-statement-in-a-process-with-sensitivity-list.md
 
 <!-- vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=0: -->

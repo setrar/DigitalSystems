@@ -9,7 +9,9 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Recursivity
+Recursivity
+
+---
 
 Recursivity is a programming method where sub-programs call themselves.
 It is convenient to solve some kinds of problems in an elegant and generic way.
@@ -17,7 +19,7 @@ VHDL supports recursion.
 Most logic synthesizers also support it.
 In some cases the inferred hardware is even better (faster, same size) than with the equivalent loop-based description.
 
-## Computing the Hamming weight of a vector
+Example: compute the Hamming weight of a vector.
 
 ```vhdl
   -- loop-based version

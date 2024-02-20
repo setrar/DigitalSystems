@@ -9,7 +9,13 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# D flip flops (DFF) and latches
+D flip flops (DFF) and latches
+
+---
+
+[TOC]
+
+---
 
 D-Flip-Flops (DFF) and latches are memory elements.
 A DFF samples its input on one or the other edge of its clock (not both) while a latch is transparent on one level of its enable and memorizing on the other.
@@ -24,7 +30,7 @@ Modelling DFFs or latches in VHDL is easy but there are a few important aspects 
 - How to describe synchronous or asynchronous set or resets.
 
 
-## D-flip-flops (DFF)
+# D-flip-flops (DFF)
 
 In all examples:
 - `clk` is the clock,
@@ -43,7 +49,7 @@ All signals are of type `ieee.std_logic_1164.std_ulogic`.
 The syntax used is the one that leads to correct synthesis results with all logic synthesizers.
 Please see the [Clock edge detection](#clock-edge-detection) section for a discussion about alternate syntax.
 
-### Rising edge clock
+## Rising edge clock
 
 ```vhdl
   process(clk)
@@ -54,7 +60,7 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-### Falling edge clock
+## Falling edge clock
 
 ```vhdl
   process(clk)
@@ -65,7 +71,7 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-### Rising edge clock, synchronous active high reset
+## Rising edge clock, synchronous active high reset
 
 ```vhdl
   process(clk)
@@ -80,7 +86,7 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-### Rising edge clock, asynchronous active high reset
+## Rising edge clock, asynchronous active high reset
 
 ```vhdl
   process(clk, arst)
@@ -93,7 +99,7 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-### Falling edge clock, asynchronous active low reset, synchronous active high set
+## Falling edge clock, asynchronous active low reset, synchronous active high set
 
 ```vhdl
   process(clk, arstn)
@@ -110,7 +116,7 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-### Rising edge clock, asynchronous active high reset, asynchronous active low set
+## Rising edge clock, asynchronous active high reset, asynchronous active low set
 
 > Note: set has higher priority than reset
 
@@ -127,7 +133,7 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-## Latches
+# Latches
 
 In all examples:
 - `en` is the enable signal,
@@ -146,7 +152,7 @@ All signals are of type `ieee.std_logic_1164.std_ulogic`.
 The syntax used is the one that leads to correct synthesis results with all logic synthesizers.
 Please see the [Clock edge detection](#clock-edge-detection) section for a discussion about alternate syntax.
 
-### Active high enable
+## Active high enable
 
 ```vhdl
   process(en, d)
@@ -157,7 +163,7 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-### Active low enable
+## Active low enable
 
 ```vhdl
   process(en, d)
@@ -168,7 +174,7 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-### Active high enable, synchronous active high reset
+## Active high enable, synchronous active high reset
 
 ```vhdl
   process(en, d)
@@ -183,7 +189,7 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-### Active high enable, asynchronous active high reset
+## Active high enable, asynchronous active high reset
 
 ```vhdl
   process(en, d, arst)
@@ -196,7 +202,7 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-### Active low enable, asynchronous active low reset, synchronous active high set
+## Active low enable, asynchronous active low reset, synchronous active high set
 
 ```vhdl
   process(en, d, arstn)
@@ -213,7 +219,7 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-### Active high enable, asynchronous active high reset, asynchronous active low set
+## Active high enable, asynchronous active high reset, asynchronous active low set
 
 > Note: set has higher priority than reset
 
@@ -230,9 +236,9 @@ Please see the [Clock edge detection](#clock-edge-detection) section for a discu
   end process;
 ```
 
-## Clock edge detection
+# Clock edge detection
 
-### The short story
+## The short story
 
 If the type of the clock is `bit`, `boolean`, `ieee.std_logic_1164.std_ulogic` or `ieee.std_logic_1164.std_logic`, a rising clock edge detection can be coded as:
 - `if rising_edge(clock) then`
@@ -256,7 +262,7 @@ The use of the `rising_edge` and `falling_edge` standard functions is strongly e
 > Some synthesizers could conclude that the signal is a clock.
 > Hint: detecting an edge on a non-clock signal can frequently be done by sampling the signal in a shift register and comparing the sampled values at different stages of the shift register.
 
-### The long story
+## The long story
 
 Properly describing the detection of the edges of a clock signal is essential when modelling D-Flip-Flops (DFF).
 An edge is, by definition, a transition from one particular value to another.
@@ -288,7 +294,7 @@ When discussing the various ways to detect edges, it is thus important to consid
 It is also important to take the modeling goal into account: simulation only or logic synthesis?
 Let us illustrate this on a few examples:
 
-#### Rising edge DFF with type bit
+### Rising edge DFF with type bit
 
 ```vhdl
   signal clock, d, q: bit;
@@ -311,7 +317,7 @@ Any simulator will handle this model as we expect.
 
 > Note: For logic synthesizers, things are a bit more complex, as we will see later.
 
-#### Rising edge DFF with asynchronous active high reset and type bit
+### Rising edge DFF with asynchronous active high reset and type bit
 
 In order to add an asynchronous active high reset to our DFF, one could try something like:
 
@@ -354,7 +360,7 @@ The `clock'event` is the signal attribute `event` applied to signal `clock`.
 It evaluates as a `boolean` and it is `true` if and only if signal `clock` changed during the signal update phase that just preceded the current execution phase.
 Thanks to this, process `P2_OK` now perfectly models what we want in simulation (and synthesis).
 
-#### Synthesis semantics
+### Synthesis semantics
 
 Many logic synthesizers identify signal edge detections based on syntactic patterns, not on the semantics of the VHDL model.
 In other words, they consider what the VHDL code looks like, not what behavior it models.
@@ -379,7 +385,7 @@ So, even in the example of process `P1` we should use it if we want our model to
 
 The `and clock'event` part of the condition is completely redundant with the sensitivity list but as some synthesizers need it…
 
-#### Rising edge DFF with asynchronous active high reset and type `std_ulogic`
+### Rising edge DFF with asynchronous active high reset and type `std_ulogic`
 
 In this case, expressing the rising edge of the clock and the reset condition can become complicated.
 If we retain the definition of a rising edge that we proposed above and if we consider that the reset is active if it is `'1'` or `'H'`, the model becomes:
@@ -404,7 +410,7 @@ use ieee.std_logic_1164.all;
 
 > Note: `'last_value` is another signal attribute that returns the value the signal had before the last value change.
 
-#### Helper functions
+### Helper functions
 
 The VHDL standard offers several helper functions to simplify the detection of signal edges, especially with multi-valued enumerated types like `std_ulogic`.
 The `std.standard` package defines the `rising_edge` and `falling_edge` functions on types `bit` and `boolean` and the `ieee.std_logic_1164` package defines them on types `std_ulogic` and `std_logic`.

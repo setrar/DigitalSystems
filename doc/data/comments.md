@@ -9,14 +9,20 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Comments
+Comments
 
-## Introduction
+---
+
+[TOC]
+
+---
+
+# Introduction
 
 Any decent programming language supports comments.
 In VHDL they are especially important because understanding a VHDL code, even moderately sophisticated, is frequently challenging.
 
-## Single line comments
+# Single line comments
 
 A single line comment starts with two hyphens (`--`) and extends up to the end of the line.
 Example :
@@ -32,7 +38,7 @@ Example :
     end if;
   end process;
 ```
-## Delimited comments
+# Delimited comments
 
 Starting with VHDL 2008, a comment can also extend on several lines.
 Multi-lines comments start with `/*` and end with `*/`.
@@ -67,7 +73,7 @@ Delimited comments can also be used on less than a line:
   end process;
 ```
 
-## Nested comments
+# Nested comments
 
 Starting a new comment (single line or delimited) inside a comment (single line or delimited) has no effect and is ignored.
 Examples:

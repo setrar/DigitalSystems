@@ -9,9 +9,15 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Identifiers
+Identifiers
 
-## Basic identifiers
+---
+
+[TOC]
+
+---
+
+# Basic identifiers
 
 Basic identifiers consist of letters, underscores and digits and must start with a letter.
 They are not case sensitive.
@@ -31,7 +37,7 @@ Examples of invalid basic identifiers:
     85MHz_clock  -- start with digit
     LooP         -- reserved word of the language
 
-## Extended identifiers
+# Extended identifiers
 
 VHDL extended identifiers are delimited by backslashes (`\`) and can contain letters, underscores, digits, spaces and other special characters (see the Language Reference Manual for a complete definition of special characters).
 The sequence of characters between backslashes can be reserved words of the VHDL language.

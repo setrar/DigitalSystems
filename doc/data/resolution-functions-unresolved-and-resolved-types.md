@@ -9,7 +9,13 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Resolution functions, unresolved and resolved types
+Resolution functions, unresolved and resolved types
+
+---
+
+[TOC]
+
+---
 
 VHDL types can be *unresolved* or *resolved*.
 The `bit` type declared by the `std.standard` package, for instance, is unresolved while the `std_logic` type declared by the `ieee.std_logic_1164` package is resolved.
@@ -21,7 +27,7 @@ A typical case where it is needed is the bi-directional data bus of a memory: wh
 
 Using resolved types in other situations, while a frequently encountered practice, is a bad idea because it suppresses very useful compilation errors when unwanted multiple drive situations are accidentally created.
 
-## Two processes driving the same signal of type bit
+# Two processes driving the same signal of type bit
 
 The following VHDL model drives signal `s` from two different processes.
 As the type of `s` is `bit`, an unresolved type, this is not allowed.
@@ -65,7 +71,7 @@ for signal: .md(arc).s
 
 Note that the error is raised even if, as in our example, all drivers agree on the driving value.
 
-## Resolution functions
+# Resolution functions
 
 A signal which type is resolved has an associated *resolution function*.
 It can be driven by more than one VHDL process.
@@ -135,7 +141,7 @@ md.vhd:39:5:@0ms:(report note): '0'
 md.vhd:39:5:@3ns:(report note): '1'
 ```
 
-## A one-bit communication protocol
+# A one-bit communication protocol
 
 Some very simple and low cost hardware devices, like sensors, use a one-bit communication protocol.
 A single bi-directional data line connects the device to a kind of controller.

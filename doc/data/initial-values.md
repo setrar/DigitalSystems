@@ -9,9 +9,15 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Initial values
+Initial values
 
-## For simulation
+---
+
+[TOC]
+
+---
+
+# For simulation
 
 At the beginning of a VHDL simulation, by default, a signal or variable takes the leftmost value of its type: `'0'` for the `bit` type, `'U'` for the `std_ulogic` type.
 `'U'` is the leftmost value in `std_ulogic` declaration and it means **U**ninitialized.
@@ -20,7 +26,7 @@ This `'U'` value of type `std_ulogic` is convenient in simulation because it cle
 This is one of the various advantages of type `std_ulogic` over type `bit`.
 With `bit` the default initial value being `'0'`, things may look correct while they will not necessarily be in the final hardware.
 
-## In real hardware
+# In real hardware
 
 In hardware, however, there is nothing like the `'U'` value.
 We can roughly distinguish two types of hardware target technologies:
@@ -58,7 +64,7 @@ We can roughly distinguish two types of hardware target technologies:
    end process;
    ```
 
-## Initial values declarations
+# Initial values declarations
 
 When declaring a signal or a variable, it is possible to also declare an initial value (note the `:=` assignment operator, even for signals):
 
@@ -85,7 +91,7 @@ signal foo: std_ulogic := 'X';
 is not synthesizable because the `X` value (unknown) does not make sense in hardware, it is useful only for simulation.
 Similarly, the signal or variable must correspond to a piece of hardware that can be initialized at power-up: it works only for signals or variable corresponding to the outputs of memory elements.
 
-## Conclusion
+# Conclusion
 
 This initial value declaration feature is apparently convenient but it is also dangerous and should be used with precautions:
 

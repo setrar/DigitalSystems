@@ -9,7 +9,13 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# VHDL simulation
+VHDL simulation
+
+---
+
+[TOC]
+
+---
 
 VHDL simulation consists in exercising a VHDL model on a computer to analyze its behavior, discover bugs and fix them.
 It looks a lot like testing a program written in a classical programming language by compiling, linking and running it on a computer.
@@ -115,7 +121,7 @@ The other requirements will have to be verified by visual inspection of the wave
 To simulate this we must compile (analyze in VHDL parlance) and run (simulate).
 However, before compiling, we must first explore another VHDL concept: libraries.
 
-## VHDL libraries
+# VHDL libraries
 
 VHDL design units (entities, architectures, packages) are always compiled in a target library, a kind of abstract container used to partition large projects in consistent sub-groups.
 VHDL libraries are a bit like modules or packages in other programming languages.
@@ -200,7 +206,7 @@ The `work` logical library name (not to be confused with the `-work` compilation
    before any compilation unit.
    All other used libraries and packages (user or standard) must be declared before use.
 
-## Compilation
+# Compilation
 
 The VHDL compilation takes one or several VHDL source files and some options.
 We already met the `-work <logical name>` option that designates the target library (default `-work work` or `--work=work`).
@@ -240,7 +246,7 @@ VHDL93 = 2008
 
 For other options and tools see the documentation.
 
-## Simulation
+# Simulation
 
 With Modelsim (`vsim`) the simulation can be done either in Graphical User Interface (GUI) mode or in Command Line Interface (CLI) mode.
 GHDL (`ghdl -r`) does not have a GUI but it can generate a Value Change Dump (VCD) file in which it records all signal changes.

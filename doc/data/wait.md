@@ -9,9 +9,15 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Wait statement
+Wait statement
 
-## Syntax
+---
+
+[TOC]
+
+---
+
+# Syntax
 
 ```vhdl
 wait [on SIGNAL1[, SIGNAL2[...]]] [until CONDITION] [for TIMEOUT];
@@ -21,7 +27,7 @@ wait until s1 = 15; -- Wait until signal s1 changes and its new value is 15
 wait until s1 = 15 for 10 ns; -- Wait until signal s1 changes and its new value is 15 for at most 10 ns
 ```
 
-## Eternal wait
+# Eternal wait
 
 The simplest form of `wait` statement is simply:
 
@@ -48,7 +54,7 @@ Example:
   end process;
 ```
 
-## Wait until condition
+# Wait until condition
 
 It is possible to omit the `on <sensitivity_list>` and the `for <timeout>` clauses, like in:
 
@@ -92,7 +98,7 @@ A classical example of this is the famous:
 
 that does not do what one could think: as `now` is a function, not a signal, executing this statement suspends the process forever.
 
-## Wait for a specific duration
+# Wait for a specific duration
 
 Using only the `for <timeout>` clause, it is possible to get an unconditional wait that lasts for a specific duration.
 This is not synthesizable (no real hardware can perform this behaviour so simply), but is frequently used for scheduling events and generating clocks within a testbench.
@@ -135,7 +141,7 @@ This example demonstrates how one might use a literal duration wait to sequence 
   end process;
 ```
 
-## Sensitivity lists and wait statements
+# Sensitivity lists and wait statements
 
 A process with a sensitivity list cannot also contain wait statements.
 It is equivalent to the same process, without a sensitivity list and with one more last statement which is:

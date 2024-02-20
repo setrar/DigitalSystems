@@ -9,7 +9,9 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Generics
+Generics
+
+---
 
 Generics are a way to parametrize an entity/architecture pair.
 The generic parameters are declared in the entity and can be used as constants everywhere else in the entity and architecture code.

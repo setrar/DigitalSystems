@@ -9,9 +9,15 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Arithmetic: which types to use?
+Arithmetic: which types to use?
 
-## Integer types versus arithmetic vector types
+---
+
+[TOC]
+
+---
+
+# Integer types versus arithmetic vector types
 
 Integer types are synthesizable, so when modelling a synthesizable design with some arithmetic, they can perfectly be the right choice.
 Several standard packages (`ieee.numeric_bit_unsigned`, `ieee.numeric_bit`, `ieee.numeric_std_unsigned`, `ieee.numeric_std`) overload the arithmetic operators for vector types.
@@ -69,7 +75,7 @@ signal not_zero: std_ulogic;
   not_zero <= or v;
 ```
 
-## Conversion functions
+# Conversion functions
 
 The `ieee.numeric_std_unsigned` package defines conversion functions between vector types and integer types:
 

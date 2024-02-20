@@ -9,7 +9,9 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Random numbers generation
+Random numbers generation
+
+---
 
 Random numbers generation is frequently handy in simulation environments.
 In VHDL2008 the `ieee.math_real` package provides a uniform pseudo-random generator.

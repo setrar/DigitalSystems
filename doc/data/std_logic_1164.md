@@ -9,7 +9,9 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# The `ieee.std_logic_1164` package
+The `ieee.std_logic_1164` package
+
+---
 
 The `bit` type is a standard VHDL enumerated type defined in the `std.standard` package.
 It has two values:

@@ -9,9 +9,9 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Entity instantiations
+Entity instantiations
 
-## Principles of hierarchical descriptions with entity instantiations
+---
 
 The easiest way to model a design using a hierarchical (structural) approach is the entity instantiation.
 Any already designed entity/architecture pair can be used as a sub-circuit of another entity/architecture pair:

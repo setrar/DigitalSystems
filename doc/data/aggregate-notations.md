@@ -9,7 +9,9 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Aggregate notations
+Aggregate notations
+
+---
 
 Aggregate notations are a powerful way to express composite values (arrays, records).
 They associate expressions (values) with the elements of a composite type.

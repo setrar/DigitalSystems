@@ -9,7 +9,9 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# How to use text files to drive simulations?
+How to use text files to drive simulations?
+
+---
 
 It is sometimes convenient to generate the input stimulus and the expected outputs with a non-VHDL software reference implementation (e.g., a bash, python, C… application).
 One way to connect such a software reference implementation with the VHDL simulation is through text files.

@@ -9,7 +9,13 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Digital hardware design using VHDL in a nutshell
+Digital hardware design using VHDL in a nutshell
+
+---
+
+[TOC]
+
+---
 
 Digital hardware design using VHDL is simple, even for beginners, but there are a few important things to know and a small set of rules to obey.
 The tool used to transform a VHDL description in digital hardware is a logic synthesizer.
@@ -31,7 +37,7 @@ The [Coding](#coding) section explains the translation from a block diagram to V
 Finally, the [John Cooley’s design contest](#john-cooleys-design-contest) section shows how to apply the proposed method on a more complex example of digital circuit.
 It also elaborates on the introduced limitations and relaxes some of them.
 
-## Introduction
+# Introduction
 
 In this chapter we propose a simple method to correctly design simple digital circuits with VHDL.
 The method is based on graphical block diagrams and an easy-to-remember principle:
@@ -40,7 +46,7 @@ __Think hardware first, code VHDL next__
 
 It is intended for beginners in digital hardware design using VHDL, with a limited understanding of the synthesis semantics of the language.
 
-## Block diagram
+# Block diagram
 
 Digital hardware is built from two types of hardware primitives:
 
@@ -137,22 +143,22 @@ Applying the 10 rules to our example of a sequential circuit would lead to a blo
 [![Reworked block diagram of the sequential circuit][3]][3]
 
 1. The large rectangle around the diagram is crossed by 3 arrows, representing the input and output ports of the VHDL entity.
-2. The block diagram has two round (combinatorial) blocks - the adder and the output renaming block - and one square (synchronous) block - the register.
+2. The block diagram has one round (combinatorial) block - the adder - and one square (synchronous) block - the register.
 3. It uses only edge-triggered registers.
 4. There is only one clock, named `clock` and we use only its rising edge.
-5. The block diagram has five arrows, one with a fork.
-   They correspond to two internal signals, two input ports and one output port.
-6. All arrows have one origin and one destination except the arrow named `Data_out` that has two destinations.
-7. The `Data_in` and `Clock` arrows are our two input ports.
+5. The block diagram has four arrows, one with a fork.
+   They correspond to one internal signal, two input ports and one output port.
+6. All arrows have one origin and one destination except the arrow named `DataOut` that has two destinations.
+7. The `DataIn` and `Clock` arrows are our two input ports.
    They are not output of our own blocks.
-8. The `Data_out` arrow is our output port.
-9. `Next_sum` is our internal signal.
+8. The `DataOut` arrow is our output port.
+9. `NextSum` is our internal signal.
 10. There is exactly one cycle in the graph and it comprises one square block.
 
 Our block diagram complies with the 10 rules.
 The [Coding](#coding) section will detail how to translate this type of block diagrams in VHDL.
 
-## Coding
+# Coding
 
 With a block diagram that complies with the 10 rules (see the [Block diagram](#block-diagram) section), the VHDL coding becomes straightforward:
 
@@ -161,9 +167,7 @@ With a block diagram that complies with the 10 rules (see the [Block diagram](#b
 - every square block becomes a synchronous process in the architecture body,
 - every round block becomes a combinatorial process in the architecture body.
 
-Let us illustrate this on the block diagram of a sequential circuit:
-
-[![A sequential circuit][1]][1]
+Let us illustrate this on the block diagram of our example sequential circuit.
 
 The VHDL model of a circuit comprises two compilation units:
 
@@ -174,9 +178,9 @@ The VHDL model of a circuit comprises two compilation units:
    ```vhdl
    entity sequential_circuit is
      port(
-       Data_in:  in  integer;
-       Clock:    in  bit;
-       Data_out: out integer
+       DataIn:  in  integer;
+       Clock:   in  bit;
+       DataOut: out integer
      );
    end entity sequential_circuit;
    ```
@@ -187,7 +191,7 @@ The VHDL model of a circuit comprises two compilation units:
 
    ```vhdl
    architecture ten_rules of sequential_circuit is
-     signal Next_sum: integer;
+     signal NextSum: integer;
    begin
      <...processes...>
    end architecture ten_rules;
@@ -219,12 +223,12 @@ The synchronous process of our example is thus:
   process(clock)
   begin
     if rising_edge(clock) then
-      Data_out <= Next_sum;
+      DataOut <= NextSum;
     end if;
   end process;
 ```
 
-Which can be informally translated into: if `clock` changes, and only then, if the change is a rising edge (`'0'` to `'1'`), assign the value of signal `Next_sum` to signal `Data_out`.
+Which can be informally translated into: if `clock` changes, and only then, if the change is a rising edge (`'0'` to `'1'`), assign the value of signal `NextSum` to signal `DataOut`.
 
 A combinatorial process looks like this:
 
@@ -259,7 +263,7 @@ If not, if they are expressions, we could accidentally use variables in the expr
 `o1, ..., oz` are __all__ arrows that output the corresponding round block of your diagram.
 __all__ and no more.
 They must absolutely be all assigned at least once during the process execution.
-As the VHDL control structures (`if`, `case`…) can easily prevent an output signal from being assign, we strongly advice to assign each of them, unconditionally, with a constant value `<default_value_for_oi>` at the beginning of the process.
+As the VHDL control structures (`if`, `case`…) can easily prevent an output signal from being assigned, we strongly advice to assign each of them, unconditionally, with a constant value `<default_value_for_oi>` at the beginning of the process.
 This way, even if an `if` statement masks a signal assignment, it will have received a value anyway.
 
 Absolutely nothing shall be changed to this VHDL skeleton, except the names of the variables, if any, the names of the inputs, the names of the outputs, the values of the `<default_value_for_..>` constants and `<statements>`.
@@ -268,21 +272,21 @@ Do __not__ forget a single default value assignment, if you do the synthesis wil
 In our example sequential circuit, the combinatorial adder process is:
 
 ```vhdl
-  process(Data_out, Data_in)
+  process(DataOut, DataIn)
   begin
-    Next_sum <= 0;
-    Next_sum <= Data_out + Data_in;
+    NextSum <= 0;
+    NextSum <= DataOut + DataIn;
   end process;
 ```
 
-Which can be informally translated into: if `Data_out` or `Data_in` (or both) change assign the value 0 to signal `Next_sum` and then assign it again value `Data_out + Data_in`.
+Which can be informally translated into: if `DataOut` or `DataIn` (or both) change assign the value 0 to signal `NextSum` and then assign it again value `DataOut + DataIn`.
 
 As the first assignment (with the constant default value `0`) is immediately followed by another assignment that overwrites it, we can simplify:
 
 ```vhdl
-  process(Data_out, Data_in)
+  process(DataOut, DataIn)
   begin
-    Next_sum <= Data_out + Data_in;
+    NextSum <= DataOut + DataIn;
   end process;
 ```
 
@@ -292,25 +296,25 @@ The complete code for the sequential circuit is:
 -- File sequential_circuit.vhd
 entity sequential_circuit is
   port(
-    Data_in:  in  integer;
-    Clock:    in  bit;
-    Data_out: out integer
+    DataIn:  in  integer;
+    Clock:   in  bit;
+    DataOut: out integer
   );
 end entity sequential_circuit;
 
 architecture ten_rules of sequential_circuit is
-  signal Next_sum: integer;
+  signal NextSum: integer;
 begin
   process(clock)
   begin
     if rising_edge(clock) then
-      Data_out <= Next_sum;
+      DataOut <= NextSum;
     end if;
   end process;
 
-  process(Data_out, Data_in)
+  process(DataOut, DataIn)
   begin
-    Next_sum <= Data_out + Data_in;
+    NextSum <= DataOut + DataIn;
   end process;
 end architecture ten_rules;
 ```
@@ -318,7 +322,7 @@ end architecture ten_rules;
 Note: we could write the processes in any order, it would not change anything to the final result in simulation or in synthesis.
 This is because processes are concurrent statements and VHDL treats them as if they were really parallel.
 
-## John Cooley’s design contest
+# John Cooley’s design contest
 
 This section is directly derived from John Cooley’s design contest at SNUG’95 (Synopsys Users Group meeting).
 The contest was intended to oppose VHDL and Verilog designers on the same design problem.
@@ -326,7 +330,7 @@ What John had in mind was probably to determine what language was the most effic
 The results were that 8 out of the 9 Verilog designers managed to complete the design contest yet none of the 5 VHDL designers could.
 Normally, using the proposed method, we will do a much better job.
 
-### Specifications
+## Specifications
 
 Our goal is to design in plain synthesizable VHDL (entity and architecture) a synchronous up-by-3, down-by-5, loadable, modulus 512 counter, with carry output, borrow output and parity output.
 The counter is a 9 bits unsigned counter so it ranges between 0 and 511.
@@ -360,7 +364,7 @@ When counting up beyond its maximum value or when counting down below its minimu
 | 1                     | 01      | 508                | 0       | 1       | 0             |   
 | 0                     | 01      | 507                | 0       | 1       | 1             |
 
-### Block diagram
+## Block diagram
 
 Based on these specifications we can start designing a block diagram.
 Let us first represent the interface:
@@ -387,11 +391,11 @@ Checking that the block diagram complies with our 10 design rules is quickly don
    Three have several destinations (`clock`, `ndo` and `do`).
 7. None of our 4 input arrows is an output of our internal blocks.
 8. We have 4 output arrows, they represent our 4 output ports.
-9. We have now exactly 4 internal signals (`nco`, `nbo`, `ndo` and `npo`).
+9. We have exactly 4 internal signals (`nco`, `nbo`, `ndo` and `npo`).
 10. There is only one cycle in the diagram, formed by `do` and `ndo`.
    There is a square block in the cycle.
 
-### VHDL coding
+## VHDL coding
 
 Translating our block diagram in VHDL is straightforward.
 The current value of the counter ranges from 0 to 511, so we will use a 9-bits `bit_vector` signal to represent it.
@@ -560,17 +564,17 @@ begin
 end architecture arc2;
 ```
 
-### Going a bit further
+## Going a bit further
 
 The proposed method is simple and safe but it relies on several constraints that can be relaxed.
 
-#### Skip the block diagram drawing
+### Skip the block diagram drawing
 
 Experienced designers can skip the drawing of a block diagram for simple designs.
 However they still think hardware first.
 They draw in their head instead of on a sheet of paper but they somehow continue drawing.
 
-#### Use asynchronous resets
+### Use asynchronous resets
 
 There are circumstances where asynchronous resets (or sets) can improve the quality of a design.
 The proposed method supports only synchronous resets (that is resets that are taken into account on rising edges of the clock):
@@ -601,7 +605,7 @@ The version with asynchronous reset modifies our template by adding the reset si
   end process;
 ```
 
-#### Merge several simple processes
+### Merge several simple processes
 
 We already used this in the final version of our example.
 Merging several synchronous processes, if they all have the same clock, is trivial.
@@ -631,7 +635,9 @@ The internal signal `npo` would become useless and the resulting process would b
 ```vhdl
   poreg: process(clock)
   begin
-    po <= xnor ndo;
+    if rising_edge(clock) then
+      po <= xnor ndo;
+    end if;
   end process poreg;
 ```
 
@@ -681,7 +687,7 @@ begin
 end architecture arc5;
 ```
 
-### Going even further
+## Going even further
 
 Level-triggered latches, falling clock edges, multiple clocks (and resynchronizers between clock domains), multiple drivers for the same signal, etc. are not evil.
 They are sometimes useful.

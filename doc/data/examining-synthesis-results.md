@@ -9,7 +9,13 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Examining synthesis results
+Examining synthesis results
+
+---
+
+[TOC]
+
+---
 
 Logic synthesis translates a HDL description into a network of interconnected logic gates and memory elements.
 It is different from simulation.
@@ -17,7 +23,7 @@ The error, warning and information messages issued by a logic synthesizer are ve
 It can be that the simulations run as expected but the logic synthesis fails or produces erroneous results.
 The opposite is also possible.
 
-## Synthesis errors
+# Synthesis errors
 
 Error messages are printed on the standard output during the synthesis and usually also stored in one or more log files.
 Sometimes a global but not very informative error message is printed on the standard output and detailed error messages are only stored in log files.
@@ -137,7 +143,7 @@ Here is a (non exhaustive) list of reasons why a logic synthesis can fail:
    end process;
    ```
 
-## Synthesis warnings
+# Synthesis warnings
 
 Most warnings can be ignored because they correspond to unused elements that are discarded by the synthesis but some must sometimes be considered seriously.
 They can indicate problems that must be solved.
@@ -145,7 +151,7 @@ Ignoring warnings without first checking that they can safely be ignored is usua
 The synthesis warnings can be found in the same log files as the synthesis errors.
 Two types of warnings are frequently encountered and deserve attention (but all of them shall be investigated).
 
-### Latch inference
+## Latch inference
 
 Very frequently, inferred latches are not intentional but due to errors in the HDL code.
 For this reason most synthesizers issue a warning.
@@ -202,7 +208,7 @@ If latches are inferred it is essential to check that this is not due to a wrong
 Else, there is a real risk that the behavior of the synthesized hardware is not the expected one.
 Debugging this kind of errors on the target hardware is extremely difficult, if not impossible.
 
-### Incomplete sensitivity lists
+## Incomplete sensitivity lists
 
 If the sensitivity list of a combinatorial process is incomplete there is a risk of mismatch between the simulation and the behavior of the synthesized hardware.
 This is why most synthesizers issue a warning.
@@ -229,7 +235,7 @@ Most synthesizers are capable of detecting and fixing this kind of errors automa
 However the simulations that were used to functionally validate the design do not necessarily reflect the behavior of the final hardware.
 It is essential to fix the incomplete sensitivity lists and re-simulate the design to verify that the observed behavior is really the expected one.
 
-## Resources utilization
+# Resources utilization
 
 Once all errors have been fixed, all warnings have been investigated and, when needed, also fixed, the resources utilization report shall be analyzed.
 It is frequently produced as one or several separate text files.
@@ -246,7 +252,7 @@ Three important aspects shall be studied:
 
 Warning: the resource utilization report may sometimes also report resources for elements that have been automatically added by the tools, not just for the user HDL code.
 
-## Timing
+# Timing
 
 The timing report is where information about the performance of the synthesized hardware can be found.
 It shall be analyzed to check that the target clock frequency and the other timing constraints are correctly specified are met.

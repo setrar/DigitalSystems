@@ -9,7 +9,9 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# Unconstrained types
+Unconstrained types
+
+---
 
 It is possible to define unconstrained array types, that is, array types which lengths are not defined.
 Several standard array types are unconstrained (`bit_vector`, `string`, `std_ulogic_vector`…) This feature is extremely convenient to write generic, highly reusable, code.

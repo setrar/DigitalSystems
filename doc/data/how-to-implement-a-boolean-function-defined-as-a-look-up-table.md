@@ -10,7 +10,9 @@ available at:
 https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 -->
 
-# How to implement a boolean function defined as a Look Up Table?
+How to implement a boolean function defined as a Look Up Table?
+
+---
 
 Sometimes boolean functions are defined as a Look Up Table (LUT) where the index is the input and the table content is the output.
 Example: the AES block cipher uses a substitution box named SubBytes used to non-linearly transform bytes.
