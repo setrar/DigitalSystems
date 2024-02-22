@@ -97,11 +97,5 @@ All other libraries (except `work` which is also implicitly declared) and packag
 * [The AXI protocol specification](./data/axi.pdf)
 * [The AXI stream protocol specification](./data/axi-stream.pdf)
 * [The ProGit book](./data/ProGitScottChacon.pdf)
-* [The ASCON specification](./data/ascon-spec-final.pdf)
-* [The Elephant specification](./data/elephant-spec-final.pdf)
-* [The Grain specification](./data/grain-128aead-spec-final.pdf)
-* [The PHOTON-Beetle specification](./data/photon-beetle-spec-final.pdf)
-* [The Sparkle specification](./data/sparkle-spec-final.pdf)
-* [The TinyJAMBU specification](./data/tinyjambu-spec-final.pdf)
 
 <!-- vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=0: -->
