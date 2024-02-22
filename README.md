@@ -46,7 +46,7 @@ Labs of DigitalSystems course
 
 1. **Warning:** plagiarism is not tolerated; please do not copy-paste others' work (not even ChatGPT's work) without proper citation and credit.
    Do not think that plagiarism can be smart enough to remain undetected.
-   Your source code and lab reports **must** be your **personal and original** work.
+   Your source code and your reports for the final project **must** be your **personal and original** work.
    Do the work yourself (typing, thinking, testing...), it is much more beneficial than letting somebody else do it on your behalf.
    Of course, you can exchange ideas with others during the labs, it is even strongly advised, helping others or asking others for help is highly beneficial.
 
@@ -209,6 +209,7 @@ $ mkdir -p ~/tmp
 $ cd ~/tmp
 $ echo 'entity foo is end;' > foo.vhd
 $ echo 'architecture arc of foo is begin end;' >> foo.vhd
+$ export PATH=$PATH:/packages/LabSoC/ghdl/bin
 $ ghdl -a foo.vhd
 $ ls
 foo.vhd   work-obj93.cf

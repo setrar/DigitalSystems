@@ -410,7 +410,7 @@ When looking at the rendering of your report on the GitLab web interface do not 
 [EURECOM GitLab web site]: https://gitlab.eurecom.fr/
 [Free Range Factory]: ../../doc/data/free_range_vhdl.pdf
 [Getting started with VHDL]: ../../doc/data/getting-started-with-vhdl.md
-[Digital hardware design using VHDL in a nutshell]: ../../doc/digital-hardware-design-using-vhdl-in-a-nutshell.md
+[Digital hardware design using VHDL in a nutshell]: ../../doc/data/digital-hardware-design-using-vhdl-in-a-nutshell.md
 [VHDL simulation]: ../../doc/data/vhdl-simulation.md
 [wait]: ../../doc/data/wait.md
 [TCL]: https://www.tcl.tk/about/language.html

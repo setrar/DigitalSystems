@@ -49,7 +49,7 @@ message was when reporting it.
 
 # Generate ssh key pair if needed
 printf '\nCheck ssh key pair for GitLab authentication...\n'
-if [[ -f "$ssh_key" ]] && [[ -f "$ssh_key.pub" ]]; then
+if [[ -f "$ssh_key.pub" ]]; then
     printf '...looks OK\n'
 else
     printf '...not found, let me generate one for you...\n'
@@ -110,28 +110,28 @@ else
         printf '\nERROR: Could not clone %s remote in %s\n' "$gitlab_project_url" "$where_to_clone"
         return 1
     fi
-    if ! cd "$clone_path"; then
-        printf 'ERROR: Could not cd to %s\n' "$clone_path"
-        return 1
-    fi
-    if ! git checkout "$user"; then
+    if ! git -C "$clone_path" checkout "$user"; then
         printf 'ERROR: Could not checkout branch %s\n' "$user"
         if ! init_yes_or_no 'You should ask for help. Do you want to continue anyway (Y/n)? '; then
             return 1
         fi
     fi
-    if ! git pull; then
+    if ! git -C "$clone_path" pull; then
         printf 'ERROR: Could not pull from remote\n'
         if ! init_yes_or_no 'You should ask for help. Do you want to continue anyway (Y/n)? '; then
             return 1
         fi
     fi
-    if ! git merge --no-edit origin/master; then
+    if ! git -C "$clone_path" merge --no-edit origin/master; then
         printf 'ERROR: Could not merge origin/master in branch %s\n' "$user"
         if ! init_yes_or_no 'You should ask for help. Do you want to continue anyway (Y/n)? '; then
             return 1
         fi
     fi
+fi
+if ! cd "$clone_path"; then
+    printf 'ERROR: Could not cd to %s\n' "$clone_path"
+    return 1
 fi
 
 # vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=0 syntax=bash:
