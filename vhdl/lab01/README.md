@@ -182,14 +182,14 @@ $ vcom -2008 +acc $ds/vhdl/lab01/ct.vhd
 
 # More about Hardware Description Languages (HDL) (discussion)
 
-- Understand the principles of event-driven simulation that underlies all Hardware Description Languages (HDL) ([Getting started with VHDL] part of the documentation)
+- The two semantics: simulation and logic synthesis.
+  The simulation and synthesis tools are different and they have a different _interpretation_ or _semantics_ of the VHDL code:
+  * Simulation consists in exercising the VHDL model to check its functional correctness.
+  * Synthesis consists in translating the VHDL model into a network of interconnected logic gates.
+- Understand the principles of event-driven simulation that underlies all Hardware Description Languages (HDL) ([Getting started with VHDL] part of the documentation), [VHDL lecture], [VHDL simulation exercise].
 - Signals (sections 3.4 and 10.4 of [Free Range Factory] book and [Getting started with VHDL] part of the documentation)
 - Processes (section 4.6 of [Free Range Factory] book and [Getting started with VHDL] part of the documentation)
 - The `wait` statement ([Getting started with VHDL] and [wait] parts of the documentation)
-- The two semantics: simulation and logic synthesis.
-The simulation and synthesis tools are different and they have a different _interpretation_ or _semantics_ of the VHDL code:
-  * Simulation consists in exercising the VHDL model to check its functional correctness.
-  * Synthesis consists in translating the VHDL model into a network of interconnected logic gates.
 
 # Write our second VHDL model: a simulation environment for our continuity tester
 
@@ -341,14 +341,26 @@ All log messages are printed on the standard output and stored in the `vivado.lo
 If there are errors during the synthesis of your design it is this `vivado.log` file that probably contains the most valuable error messages.
 
 A resource utilization report is available in `ct.utilization.rpt`.
-Open it and look at the first table of the `Slice Logic` section.
-Check that you have the expected number of "_Register as Flip Flop_" (registers used as Flip Flop) and that you do not have any unwanted "_Register as Latch_".
-Check also that the other resources ("_LUT as Logic_", "_LUT as Memory_", "_Block RAMs_", "_DSPs_"...) are about in line with the complexity of your design.
+Open it and look at the resource utilization table.
+
+Our design is purely combinatorial.
+It should thus not contain any memory element.
+Check that you do not have any "_LUTRAMs_", "_FF_", "_SRL_", "_RAMB36_" or "_RAMB18_" that are various forms of memory elements.
+When the synthesizer infers latches, because this is usually caused by errors in the VHDL code, it issues warnings in the log file.
+Check that you have no unwanted latches:
+
+```bash
+$ grep -i latch vivado.log
+```
+
+Our design is so simple that it should only be made of wires and one inverter logic gate.
+Wires are not reported as resources but the inverter should consume one Look-Up Table (LUT), the basic logic element in FPGAs.
+Check that you have exactly one "_Logic LUTs_" used.
 
 A timing report is available in `ct.timing.rpt`.
-Open it and check that you do not have critical warnings or errors in the first sections.
-Then, check that "_All user specified timing constraints are met_".
-As our design is full combinatorial there is not much more to check here.
+Open it and check that you do not have critical warnings or errors in the "_checking_" sections.
+Our design is full combinatorial with no specific performance goal, reason why we did not put any timing constraints on it.
+If we had put timing constraints, the last sections and tables would report whether they are met or not.
 
 The main synthesis result is in `ct.bit`.
 It is a binary file called a *bitstream* that is used by the Zynq core to configure the programmable logic.
@@ -415,5 +427,7 @@ When looking at the rendering of your report on the GitLab web interface do not 
 [wait]: ../../doc/data/wait.md
 [TCL]: https://www.tcl.tk/about/language.html
 [FAQ]: ../../FAQ.md
+[VHDL lecture]: ../../doc/data/vhdl_course.pdf
+[VHDL simulation exercise]: ../../doc/data/vhdl_simulator_exercise.pdf
 
 <!-- vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=0: -->
