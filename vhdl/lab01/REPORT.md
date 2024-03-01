@@ -1,5 +1,4 @@
 
-
 - [ ] Install [`ghdl`](https://ghdl.github.io/ghdl/)
 
 ```
@@ -154,4 +153,29 @@ Also see 'opts-help' for analyzer options.
 
 Please, refer to the GHDL manual for more information.
 Report issues on https://github.com/ghdl/ghdl
+```
+
+```
+brew install gtkwave
+```
+> Returns
+```powershell
+==> Downloading https://formulae.brew.sh/api/formula.jws.json
+
+Warning: Formula gtkwave was renamed to homebrew/cask/gtkwave.
+==> Downloading https://formulae.brew.sh/api/cask.jws.json
+################################################################################################################ 100.0%
+==> Caveats
+You may need to install Perl’s Switch module to run gtkwave’s command line
+tool, e.g. using `cpan install Switch`
+
+  https://ughe.github.io/2018/11/06/gtkwave-osx
+
+==> Downloading https://downloads.sourceforge.net/gtkwave/gtkwave-3.3.107-osx-app/gtkwave.zip
+==> Downloading from https://versaweb.dl.sourceforge.net/project/gtkwave/gtkwave-3.3.107-osx-app/gtkwave.zip
+################################################################################################################ 100.0%
+==> Installing Cask gtkwave
+==> Moving App 'gtkwave.app' to '/Applications/gtkwave.app'
+==> Linking Binary 'gtkwave' to '/opt/homebrew/bin/gtkwave'
+🍺  gtkwave was successfully installed!
 ```
