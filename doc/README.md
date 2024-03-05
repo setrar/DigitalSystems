@@ -55,6 +55,7 @@ This folder contains documentation resources for the Digital Systems course.
 - [Unconstrained types](./data/unconstrained-types.md)
 - [VHDL simulation](./data/vhdl-simulation.md)
 - [Wait](./data/wait.md)
+- [Wait statements and sensitivity lists](./doc/data/wait-statement-in-a-process-with-sensitivity-list.md)
 
 ### The standard VHDL packages
 
