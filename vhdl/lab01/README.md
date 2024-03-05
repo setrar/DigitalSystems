@@ -255,21 +255,12 @@ Assign its absolute path to another shell variable.
 Example of set-up (adapt the suggested path to your own preferences):
 
 ```bash
-$ syn=/tmp/$USER/ds/foo
+$ syn=/tmp/$USER/ds/ct
 $ mkdir -p $syn
 ```
 
 Synthesis is a complex process for which there is no real default set-up.
-This is why all options, parameters, the various VHDL source files, the chaining of the elementary synthesis steps, etc.
-are defined in a script written in the [TCL] programming language (the language supported by many CAD tools, including Vivado, Modelsim and many others).
-To synthesize according the instructions of a `$ds/vhdl/labX/foo.syn.tcl` script:
-
-```bash
-$ cd $syn
-$ vivado -mode batch -source $ds/vhdl/labX/foo.syn.tcl -notrace
-```
-
-The `-notrace` option suppresses the (annoying) echo of each TCL command.
+This is why all options, parameters, the various VHDL source files, the chaining of the elementary synthesis steps, etc. are defined in a script written in the [TCL] programming language (the language supported by many CAD tools, including Vivado, Modelsim and many others).
 
 Note: when synthesizing it is always better to avoid collisions with old synthesis results by using a fresh and clean temporary working directory.
 Either delete and recreate it, or, if you want to keep the previous synthesis results, create several temporary working directories with different names.
@@ -330,22 +321,23 @@ Cross-check your findings with your neighbours.
 
 ## Synthesize the continuity tester
 
-If the I/O mapping looks correct, synthesize:
+If the I/O mapping looks correct, synthesize with the provided TCL script:
 
 ```bash
 $ cd $syn
 $ vivado -mode batch -source $ds/vhdl/lab01/ct.syn.tcl -notrace
 ```
 
+The `-notrace` option suppresses the (annoying) echo of each TCL command.
 All log messages are printed on the standard output and stored in the `vivado.log` log file.
 If there are errors during the synthesis of your design it is this `vivado.log` file that probably contains the most valuable error messages.
 
-A resource utilization report is available in `ct.utilization.rpt`.
-Open it and look at the resource utilization table.
+A flat resource utilization report is available in `ct.utilization.rpt`, and a hierarchical report is available in `ct.utilization.hierarchical.rpt`.
+Open the hierarchical report and look at the resource utilization table.
 
 Our design is purely combinatorial.
 It should thus not contain any memory element.
-Check that you do not have any "_LUTRAMs_", "_FF_", "_SRL_", "_RAMB36_" or "_RAMB18_" that are various forms of memory elements.
+Check that you do not have any "_LUTRAMs_", "_SRL_", "_FF_", "_RAMB36_" or "_RAMB18_" that are various forms of memory elements.
 When the synthesizer infers latches, because this is usually caused by errors in the VHDL code, it issues warnings in the log file.
 Check that you have no unwanted latches:
 
@@ -359,7 +351,7 @@ Check that you have exactly one "_Logic LUTs_" used.
 
 A timing report is available in `ct.timing.rpt`.
 Open it and check that you do not have critical warnings or errors in the "_checking_" sections.
-Our design is full combinatorial with no specific performance goal, reason why we did not put any timing constraints on it.
+Our design is purely combinatorial with no specific performance goal, reason why we did not put any timing constraints on it.
 If we had put timing constraints, the last sections and tables would report whether they are met or not.
 
 The main synthesis result is in `ct.bit`.

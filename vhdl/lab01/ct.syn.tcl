@@ -10,6 +10,17 @@
 # https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
 #
 
+set_msg_config -id {[Board 49-26]} -severity WARNING -suppress
+set_msg_config -id {[Designutils 20-3303]} -severity WARNING -suppress
+set_msg_config -id {[IP_Flow 19-240]} -severity WARNING -suppress
+set_msg_config -id {[IP_Flow 19-5098]} -severity {CRITICAL WARNING} -new_severity WARNING
+set_msg_config -id {[IP_Flow 19-5655]} -severity {CRITICAL WARNING} -new_severity WARNING
+set_msg_config -id {[IP_Flow 19-11770]} -severity WARNING -suppress
+set_msg_config -id {[Opt 31-1131]} -severity WARNING -suppress
+set_msg_config -id {[PSU-} -severity {CRITICAL WARNING} -string "PS DDR interfaces might fail when entering negative DQS skew values" -suppress
+set_msg_config -id {[Synth 8-7080]} -severity WARNING -suppress
+set_msg_config -id {[Vivado_Tcl 4-921]} -severity WARNING -suppress
+
 set board [get_board_parts digilentinc.com:zybo:part0:1.0]
 set part xc7z010clg400-1
 
@@ -50,15 +61,17 @@ puts "*********************************************"
 #############
 # Create IP #
 #############
-set_part $part
+create_project -part $part $design $design
 set_property board_part $board [current_project]
-read_vhdl -vhdl2008 $vhdl/lab01/ct.vhd
+foreach {du lib} [array get dus] {
+    read_vhdl -vhdl2008 -library $lib $vhdl/$du
+}
 ipx::package_project -force_update_compile_order -import_files -root_dir $design -vendor www.telecom-paris.fr -library DS -force $design
 close_project
 
-############################
-## Create top level design #
-############################
+###########################
+# Create top level design #
+###########################
 set top ${design}_top
 set_part $part
 set_property board_part $board [current_project]
@@ -82,6 +95,7 @@ connect_bd_net [get_bd_pins $ip/led] [get_bd_ports led]
 validate_bd_design
 save_bd_design
 generate_target all [get_files $top.bd]
+make_wrapper -top [get_files $top.bd] -import -force
 synth_design -top $top
 
 # IOs
@@ -98,7 +112,8 @@ place_design
 route_design
 
 # Reports
-report_utilization -hierarchical -force -file $design.utilization.rpt
+report_utilization -force -file $design.utilization.rpt
+report_utilization -hierarchical -force -file $design.utilization.hierarchical.rpt
 report_timing_summary -file $design.timing.rpt
 
 # Bitstream
@@ -117,7 +132,8 @@ puts "Root directory: $vhdl"
 puts "Design name: $design"
 puts "*********************************************"
 puts "  bitstream in $design.bit"
-puts "  resource utilization report in $design.utilization.rpt"
+puts "  flat resource utilization report in $design.utilization.rpt"
+puts "  hierarchical resource utilization report in $design.utilization.hierarchical.rpt"
 puts "  timing report in $design.timing.rpt"
 puts "*********************************************"
 
