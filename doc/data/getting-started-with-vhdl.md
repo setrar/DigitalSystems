@@ -90,8 +90,11 @@ Note that this architecture cannot be synthesized because it does not describe a
 
 Analyse and run the program with GHDL:
 ```bash
-$ ghdl -a hello_world.vhd
-$ ghdl -r hello_world
+ghdl -a hello_world.vhd
+ghdl -r hello_world
+```
+
+```
 hello_world.vhd:6:8:@0ms:(assertion note): Hello world!
 ```
 
@@ -106,8 +109,11 @@ As it has only one `architecture` associated, there is no need to specify which 
 
 With Modelsim:
 ```bash
-$ vcom hello_world.vhd
-$ vsim -c hello_world -do 'run -all; quit'
+vcom hello_world.vhd
+vsim -c hello_world -do 'run -all; quit'
+```
+
+```
 ...
 # ** Note: Hello world!
 #    Time: 0 ns  Iteration: 0  Instance: /hello_world
@@ -855,7 +861,10 @@ end architecture sim;
 Let us compile and simulate this with GHDL:
 
 ```bash
-$ ghdl -a counter_sim.vhd
+ghdl -a counter_sim.vhd
+```
+
+```
 counter_sim.vhd:18:19:error: unit "counter" not found in library "work"
 counter_sim.vhd:41:18:error: no declaration for "rising_edge"
 ```
@@ -870,8 +879,8 @@ Then error messages tell us two important things:
 Let us fix the two errors and launch the simulation:
 
 ```bash
-$ ghdl -a --std=08 counter.vhd counter_sim.vhd
-$ ghdl -r --std=08 counter_sim sim
+ghdl -a --std=08 counter.vhd counter_sim.vhd
+ghdl -r --std=08 counter_sim sim
 ^C
 ```
 
@@ -882,7 +891,10 @@ As our simulation environment has a never ending process (the process that gener
 Instead, we can specify a stop time with the `--stop-time` option:
 
 ```bash
-$ ghdl -r --std=08 counter_sim sim --stop-time=60ns
+ghdl -r --std=08 counter_sim sim --stop-time=60ns
+```
+
+```
 ghdl:info: simulation stopped by --stop-time
 ```
 
@@ -890,7 +902,10 @@ As is, the simulation does not tell us much about the behavior of our DUT.
 Let's dump the value changes of the signals in a file:
 
 ```bash
-$ ghdl -r --std=08 counter_sim sim --stop-time=60ns --vcd=counter_sim.vcd
+ghdl -r --std=08 counter_sim sim --stop-time=60ns --vcd=counter_sim.vcd
+```
+
+```
 ghdl:info: simulation stopped by --stop-time
 ```
 
@@ -899,7 +914,7 @@ It contains in VCD (ASCII) format all signal changes during the simulation.
 GTKWave can show us the corresponding graphical waveforms:
 
 ```bash
-$ gtkwave counter_sim.vcd
+gtkwave counter_sim.vcd
 ```
 
 where we can see that the counter works as expected.
@@ -911,8 +926,8 @@ where we can see that the counter works as expected.
 The principle is exactly the same with Modelsim:
 
 ```bash
-$ vcom -2008 +acc counter.vhd counter_sim.vhd
-$ vsim -voptargs="+acc" counter_sim
+vcom -2008 +acc counter.vhd counter_sim.vhd
+vsim -voptargs="+acc" counter_sim
 ```
 
 Then, use the various menus to open a waveform viewer, add the signals you want to observe to it, and run.
@@ -953,8 +968,11 @@ end architecture sim;
 ```
 
 ```bash
-$ ghdl -a --std=08 counter_sim.vhd
-$ ghdl -r --std=08 counter_sim sim
+ghdl -a --std=08 counter_sim.vhd
+ghdl -r --std=08 counter_sim sim
+```
+
+```
 simulation finished @51ns
 ```
 
