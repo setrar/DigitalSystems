@@ -856,8 +856,8 @@ Let us compile and simulate this with GHDL:
 
 ```bash
 $ ghdl -a counter_sim.vhd
-counter_sim.vhd:27:24: unit "counter" not found in 'library "work"'
-counter_sim.vhd:50:35: no declaration for "rising_edge"
+counter_sim.vhd:18:19:error: unit "counter" not found in library "work"
+counter_sim.vhd:41:18:error: no declaration for "rising_edge"
 ```
 
 Then error messages tell us two important things:
@@ -891,11 +891,9 @@ Let's dump the value changes of the signals in a file:
 
 ```bash
 $ ghdl -r --std=08 counter_sim sim --stop-time=60ns --vcd=counter_sim.vcd
-Vcd.Avhpi_Error!
 ghdl:info: simulation stopped by --stop-time
 ```
 
-(ignore the error message, this is something that needs to be fixed in GHDL and that has no consequence).
 A `counter_sim.vcd` file has been created.
 It contains in VCD (ASCII) format all signal changes during the simulation.
 GTKWave can show us the corresponding graphical waveforms:
@@ -933,6 +931,11 @@ This can be achieved with the standard package `env` (introduced in VHDL 2008) a
 
 ```vhdl
 use std.env.all;
+
+entity counter_sim is
+end entity counter_sim;
+
+architecture sim of counter_sim is
 ...
   process
   begin
@@ -941,17 +944,18 @@ use std.env.all;
       wait until rising_edge(clk);
     end loop;
     rst    <= '0';
-    for i in 1 to 20 loop
-      wait until rising_edge(clk);
-    end loop;
+    wait until data = 20; -- Eternal wait. Stops the process forever.
+    wait until rising_edge(clk);
     finish;
   end process;
+...
+end architecture sim;
 ```
 
 ```bash
 $ ghdl -a --std=08 counter_sim.vhd
 $ ghdl -r --std=08 counter_sim sim
-simulation finished @49ns
+simulation finished @51ns
 ```
 
 Note that we re-compiled only the simulation environment: it is the only design that changed and it is the top level.
