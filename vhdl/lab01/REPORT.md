@@ -182,4 +182,6 @@ tool, e.g. using `cpan install Switch`
 # &#x1F4DA; References
 
 - [ ] [Developing FPGAs on a Raspberry Pi 400 with Cocotb](https://www.hackster.io/adam-taylor/developing-fpgas-on-a-raspberry-pi-400-with-cocotb-fd4b7e)
-- [ ] [nstalls Vivado on M1/M2 macs](https://github.com/ichi4096/vivado-on-silicon-mac)
+- [ ] [Installs Vivado on M1/M2 macs](https://github.com/ichi4096/vivado-on-silicon-mac)
+- [ ] [Unable to launch GTKWave on macOS Sonoma](https://github.com/gtkwave/gtkwave/issues/250)
+- [ ] [GTKWave on MacOS Sonoma](https://www.reddit.com/r/FPGA/comments/16tqja3/gtkwave_on_macos_sonoma/)
