@@ -29,7 +29,7 @@ git branch
 ```
 
 ```
-* shelley
+|- * shelley
 ```
 
 Use your favourite editor to edit the [zybo.md] file:

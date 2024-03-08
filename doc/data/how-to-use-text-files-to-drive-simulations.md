@@ -35,10 +35,9 @@ begin
 end architecture rtl;
 ```
 
-Of course with such a simple design it would be easy to randomly generate the inputs and compute the expected outputs in VHDL, but in order to demonstrate the use of a stimulus text file we will instead use a small bash script:
+Of course with such a simple design it would be easy to randomly generate the inputs and compute the expected outputs in VHDL, but in order to demonstrate the use of a stimulus text file we will instead use a small bash script, `stim`:
 
 ```bash
-$ cat stim
 #!/usr/bin/env bash
 
 rand() {
@@ -50,13 +49,18 @@ for (( i = 1; i <= 100; i++ )); do
     (( r = n ^ 0xFFFFFFFF ))
     printf "%08X %08X\n" "$n" "$r"
 done
+```
 
-$ ./stim > stim.txt
-$ cat stim.txt
-A9A190A6 565E6F59
-5FD269EC A02D9613
-E6A9F3EE 19560C11
-...
+```bash
+./stim > stim.txt
+cat stim.txt
+```
+
+```
+-| A9A190A6 565E6F59
+-| 5FD269EC A02D9613
+-| E6A9F3EE 19560C11
+-| ...
 ```
 
 The generated `stim.txt` text file contains one test vector per line, each composed of the 32-bits input and expected 32-bits output in hexadecimal.
@@ -114,9 +118,9 @@ end architecture sim;
 And then, to simulate with, e.g., `ghdl`:
 
 ```bash
-$ ghdl -a --std=08 stim.vhd stim_sim.vhd
-$ ghdl -r --std=08 stim_sim --vcd=stim_sim.vcd
-$ open stim_sim.vcd
+ghdl -a --std=08 stim.vhd stim_sim.vhd
+ghdl -r --std=08 stim_sim --vcd=stim_sim.vcd
+open stim_sim.vcd
 ```
 
 ![Simulation waveforms](/images/stim.png)

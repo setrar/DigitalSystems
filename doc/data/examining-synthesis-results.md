@@ -36,15 +36,18 @@ With Xilinx Vivado two modes of operation are supported:
   In the following we can see that the secondary log file for the synthesis of a design named `top` is `/tmp/top.runs/synth_1/runme.log` and that two sub-modules named `lb` and `ps7` have their respective synthesis log files named `/tmp/top.runs/top_lb_0_synth_1/runme.log` and `/tmp/top.runs/top_ps7_0_synth_1/runme.log`:
 
    ```bash
-   $ cat vivado.log
-   ...
-   [Wed Mar 20 09:32:21 2019] Launched top_lb_0_synth_1, top_ps7_0_synth_1...
-   Run output will be captured here:
-   top_lb_0_synth_1: /tmp/top.runs/top_lb_0_synth_1/runme.log
-   top_ps7_0_synth_1: /tmp/top.runs/top_ps7_0_synth_1/runme.log
-   [Wed Mar 20 09:32:22 2019] Launched synth_1...
-   Run output will be captured here: /tmp/top.runs/synth_1/runme.log
-   ...
+   cat vivado.log
+   ```
+
+   ```
+   -| ...
+   -| [Wed Mar 20 09:32:21 2019] Launched top_lb_0_synth_1, top_ps7_0_synth_1...
+   -| Run output will be captured here:
+   -| top_lb_0_synth_1: /tmp/top.runs/top_lb_0_synth_1/runme.log
+   -| top_ps7_0_synth_1: /tmp/top.runs/top_ps7_0_synth_1/runme.log
+   -| [Wed Mar 20 09:32:22 2019] Launched synth_1...
+   -| Run output will be captured here: /tmp/top.runs/synth_1/runme.log
+   -| ...
    ```
 
    If a synthesis error occurs, it is probably these secondary log files that must be analyzed.
@@ -174,34 +177,40 @@ A logic synthesizer considers that, in this case, the previous value must be pre
 If fed with such a VHDL code Xilinx Vivado will issue warnings like:
 
 ```bash
-$ grep -i warning vivado.log
-...
-WARNING: [Synth 8-327] inferring latch for variable 'c_reg' [.../foobar.vhd:14]
-...
-WARNING: [DRC PDRC-153] Gated clock check: Net foobar/U0/c_reg_i_2_n_0 is a gated
-clock net sourced by a combinational pin foobar/U0/c_reg_i_2/O, cell
-foobar/U0/c_reg_i_2. This is not good design practice and will likely impact
-performance. For SLICE registers, for example, use the CE pin to control the
-loading of data.
-...
+grep -i warning vivado.log
+```
+
+```
+-| ...
+-| WARNING: [Synth 8-327] inferring latch for variable 'c_reg' [.../foobar.vhd:14]
+-| ...
+-| WARNING: [DRC PDRC-153] Gated clock check: Net foobar/U0/c_reg_i_2_n_0 is a gated
+-| clock net sourced by a combinational pin foobar/U0/c_reg_i_2/O, cell
+-| foobar/U0/c_reg_i_2. This is not good design practice and will likely impact
+-| performance. For SLICE registers, for example, use the CE pin to control the
+-| loading of data.
+-| ...
 ```
 
 Moreover, it will report this in the resources utilization report (see below):
 
 ```bash
-$ cat foobar.utilization.rpt
-...
-1. Slice Logic
---------------
+cat foobar.utilization.rpt
+```
 
-+-------------------------+------+-------+-----------+-------+
-|        Site Type        | Used | Fixed | Available | Util% |
-+-------------------------+------+-------+-----------+-------+
-...
-|   Register as Latch     |    1 |     0 |     35200 | <0.01 |
-...
-+-------------------------+------+-------+-----------+-------+
-...
+```
+-| ...
+-| 1. Slice Logic
+-| --------------
+
+-| +-------------------------+------+-------+-----------+-------+
+-| |        Site Type        | Used | Fixed | Available | Util% |
+-| +-------------------------+------+-------+-----------+-------+
+-| ...
+-| |   Register as Latch     |    1 |     0 |     35200 | <0.01 |
+-| ...
+-| +-------------------------+------+-------+-----------+-------+
+-| ...
 ```
 
 If latches are inferred it is essential to check that this is not due to a wrongly designed HDL description.
@@ -225,10 +234,13 @@ The process should also be sensitive to `b` because the value of signal `b` is r
 If fed with such a process Xilinx Vivado will issue a warning like:
 
 ```bash
-$ grep -i warning vivado.log
-...
-WARNING: [Synth 8-614] signal 'b' is read in the process but is not in the sensitivity list [.../foobar.vhd:11]
-...
+grep -i warning vivado.log
+```
+
+```
+-| ...
+-| WARNING: [Synth 8-614] signal 'b' is read in the process but is not in the sensitivity list [.../foobar.vhd:11]
+-| ...
 ```
 
 Most synthesizers are capable of detecting and fixing this kind of errors automatically: they will probably do what the designer wanted.

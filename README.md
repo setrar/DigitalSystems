@@ -109,8 +109,10 @@ Labs of DigitalSystems course
    Try to run simulations and syntheses out of your local copy of the repository; the generated files will be kept out of the source tree and this will reduce the risk of accidental commits of unwanted files.
 
 1. In the lab instructions you are asked to type commands.
-   These commands are frequently preceded by a `$` sign representing the prompt of the current shell.
+   Some of these commands are preceded by a prompt (`$ `, `> `...) representing the prompt of the current shell.
    It is not a part of the command, do not type it.
+   When the expected outputs of commands are provided they appear in a different code block, preceded with a `-| ` sign to distinguish them from commands.
+   Do not copy-paste and run lines of code block preceded with a `-| ` sign.
 
 1. If you discover a bug, a broken link, a spelling error, a missing explanation, an explanation that should be improved, etc. please inform an adviser.
 

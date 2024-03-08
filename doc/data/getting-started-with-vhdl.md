@@ -95,7 +95,7 @@ ghdl -r hello_world
 ```
 
 ```
-hello_world.vhd:6:8:@0ms:(assertion note): Hello world!
+-| hello_world.vhd:6:8:@0ms:(assertion note): Hello world!
 ```
 
 The analysis phase checks the syntax correctness and produces a text file describing the compilation units found in the source file.
@@ -114,10 +114,10 @@ vsim -c hello_world -do 'run -all; quit'
 ```
 
 ```
-...
-# ** Note: Hello world!
-#    Time: 0 ns  Iteration: 0  Instance: /hello_world
-...
+-| ...
+-| # ** Note: Hello world!
+-| #    Time: 0 ns  Iteration: 0  Instance: /hello_world
+-| ...
 ```
 
 `vcom` and `vsim` are commands that Modelsim provides.
@@ -865,8 +865,8 @@ ghdl -a counter_sim.vhd
 ```
 
 ```
-counter_sim.vhd:18:19:error: unit "counter" not found in library "work"
-counter_sim.vhd:41:18:error: no declaration for "rising_edge"
+-| counter_sim.vhd:18:19:error: unit "counter" not found in library "work"
+-| counter_sim.vhd:41:18:error: no declaration for "rising_edge"
 ```
 
 Then error messages tell us two important things:
@@ -895,7 +895,7 @@ ghdl -r --std=08 counter_sim sim --stop-time=60ns
 ```
 
 ```
-ghdl:info: simulation stopped by --stop-time
+-| ghdl:info: simulation stopped by --stop-time
 ```
 
 As is, the simulation does not tell us much about the behavior of our DUT.
@@ -906,7 +906,7 @@ ghdl -r --std=08 counter_sim sim --stop-time=60ns --vcd=counter_sim.vcd
 ```
 
 ```
-ghdl:info: simulation stopped by --stop-time
+-| ghdl:info: simulation stopped by --stop-time
 ```
 
 A `counter_sim.vcd` file has been created.
@@ -973,7 +973,7 @@ ghdl -r --std=08 counter_sim sim
 ```
 
 ```
-simulation finished @51ns
+-| simulation finished @51ns
 ```
 
 Note that we re-compiled only the simulation environment: it is the only design that changed and it is the top level.

@@ -172,20 +172,23 @@ end architecture sim;
 <!-- -->
 
 ```bash
-    $ mkdir gh_work
-    $ ghdl -a --std=08 --workdir=gh_work rnd_pkg.vhd rnd_sim.vhd
-    $ ghdl -r --std=08 --workdir=gh_work rnd_sim
-    TRUE    1    0001000101
-    FALSE   0    1111111100
-    TRUE    1    0010110010
-    TRUE    1    0010010101
-    FALSE   0    0111110100
-    FALSE   1    1101110010
-    TRUE    1    1011010110
-    TRUE    1    0010010010
-    TRUE    1    1101100111
-    TRUE    1    0011100100
-    simulation finished @0ms
+mkdir gh_work
+ghdl -a --std=08 --workdir=gh_work rnd_pkg.vhd rnd_sim.vhd
+ghdl -r --std=08 --workdir=gh_work rnd_sim
+```
+
+```
+-| TRUE    1    0001000101
+-| FALSE   0    1111111100
+-| TRUE    1    0010110010
+-| TRUE    1    0010010101
+-| FALSE   0    0111110100
+-| FALSE   1    1101110010
+-| TRUE    1    1011010110
+-| TRUE    1    0010010010
+-| TRUE    1    1101100111
+-| TRUE    1    0011100100
+-| simulation finished @0ms
 ```
 
 [^1]: In fact, this is not 100% true.

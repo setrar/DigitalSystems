@@ -238,7 +238,7 @@ With the [ModelSim-Intel FPGA Starter Edition Software], for instance, the `-200
 VHDL93 = 2002
 ```
 
-by:
+with:
 
 ```
 VHDL93 = 2008
