@@ -158,13 +158,13 @@ As these situations are avoided in this course, the GHDL default is also fine.
 When compiling a VHDL source file, the _working_ library, that is, the library in which the compilation results will be stored, is specified with an option:
 
 ```bash
-$ ghdl -a --work=common rnd_pkg.vhd
+ghdl -a --work=common rnd_pkg.vhd
 ```
 
 or:
 
 ```bash
-$ vcom -work common rnd_pkg.vhd
+vcom -work common rnd_pkg.vhd
 ```
 
 The `work` logical library name (not to be confused with the `-work` compilation option) is special for 3 main reasons:
@@ -215,20 +215,20 @@ The other useful options are:
 - `-2008` (Modelsim) or `--std=08` (GHDL), to set the version of the VHDL standard,
 - `+acc` (Modelsim only) to avoid some optimizations and retain access to variables, constants... during debugging.
 
-Example of compilation with GHDL:
+Example of compilation with GHDL (replace `ds` with the actual path to your clone of the `ds` repository):
 
 ```bash
-$ ghdl -a --std=08 -work common ds/common/rnd_pkg.vhd
-$ ghdl -a --std=08 ds/tests/cooley.vhd
-$ ghdl -a --std=08 ds/tests/cooley_sim.vhd
+ghdl -a --std=08 --work=common ds/vhdl/common/rnd_pkg.vhd
+ghdl -a --std=08 ds/vhdl/tests/cooley.vhd
+ghdl -a --std=08 ds/vhdl/tests/cooley_sim.vhd
 ```
 
 Example of compilation with Modelsim:
 
 ```bash
-$ vcom -2008 +acc -work common ds/common/rnd_pkg.vhd
-$ vcom -2008 +acc ds/tests/cooley.vhd
-$ vcom -2008 +acc ds/tests/cooley_sim.vhd
+vcom -2008 +acc -work common ds/vhdl/common/rnd_pkg.vhd
+vcom -2008 +acc ds/vhdl/tests/cooley.vhd
+vcom -2008 +acc ds/vhdl/tests/cooley_sim.vhd
 ```
 
 Some compilation options can be set as the default once for all by modifying a configuration file in the installation.
@@ -238,7 +238,7 @@ With the [ModelSim-Intel FPGA Starter Edition Software], for instance, the `-200
 VHDL93 = 2002
 ```
 
-by:
+with:
 
 ```
 VHDL93 = 2008
@@ -263,13 +263,13 @@ An important `vsim` option is `-voptargs="+acc"` that avoids some optimizations 
 Example with `ghdl`:
 
 ```bash
-$ ghdl -r --std=08 cooley_sim
+ghdl -r --std=08 cooley_sim
 ```
 
 Example with `vsim`:
 
 ```bash
-$ vsim -c -voptargs="+acc" cooley_sim -do 'run -all; quit'
+vsim -c -voptargs="+acc" cooley_sim -do 'run -all; quit'
 ```
 
 The GUI mode is especially useful during the design-verification cycle.
@@ -277,15 +277,15 @@ Modelsim has many useful debugging features: waveforms, breakpoints, step-by-ste
 See the documentation for complete descriptions.
 
 ```bash
-$ ghdl -r --std=08 cooley_sim --vcd=wave.vcd
-$ gtkwave wave.vcd # GNU/Linux
-$ open wave.vcd    # macOS
+ghdl -r --std=08 cooley_sim --vcd=wave.vcd
+gtkwave wave.vcd # GNU/Linux
+open wave.vcd    # macOS
 ```
 
 The GUI mode is the default with `vsim`:
 
 ```bash
-$ vsim -voptargs="+acc" cooley_sim
+vsim -voptargs="+acc" cooley_sim
 ```
 
 [Getting started with VHDL]: getting-started-with-vhdl.md
