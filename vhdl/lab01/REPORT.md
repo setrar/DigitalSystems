@@ -182,3 +182,4 @@ tool, e.g. using `cpan install Switch`
 # &#x1F4DA; References
 
 - [ ] [Developing FPGAs on a Raspberry Pi 400 with Cocotb](https://www.hackster.io/adam-taylor/developing-fpgas-on-a-raspberry-pi-400-with-cocotb-fd4b7e)
+- [ ] [nstalls Vivado on M1/M2 macs](https://github.com/ichi4096/vivado-on-silicon-mac)
