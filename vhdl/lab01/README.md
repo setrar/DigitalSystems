@@ -25,14 +25,17 @@ The following assumes a student named Mary Shelley, with username `shelley`; rep
 Once you received a Zybo kit, open a terminal, change from current directory to the clone of the git repository and check that you are really on your own personal branch:
 
 ```bash
-$ git branch
+git branch
+```
+
+```
 * shelley
 ```
 
 Use your favourite editor to edit the [zybo.md] file:
 
 ```bash
-$ vim zybo.md
+vim zybo.md
 ```
 
 Indicate on the first line the ID of your Zybo kit (the number on the blue case and on the sticker on the Zybo board):
@@ -53,9 +56,9 @@ Example: if there is a blue case **and** it contains a protection foam block:
 Add-commit-push the modified `zybo.md` file:
 
 ```bash
-$ git add zybo.md
-$ git commit -m 'Edited zybo.md'
-$ git push
+git add zybo.md
+git commit -m 'Edited zybo.md'
+git push
 ```
 
 Visit the web page of the GitLab project (<https://gitlab.eurecom.fr/renaud.pacalet/ds/>), select your own branch and then click on the `zybo.md` file to see how this markdown file is rendered by the GitLab rendering engine.
@@ -80,7 +83,7 @@ Your shell uses an environment variable named `PATH` that lists all directories 
 If the tool you want to use is in `/opt/MyTool/bin`, and this directory is not already in your `PATH`, you must add it:
 
 ```bash
-$ export PATH=$PATH:/opt/MyTool/bin
+export PATH=$PATH:/opt/MyTool/bin
 ```
 
 Be careful when typing these commands because if you get it wrong it could be that your shell does not find any command any more.
@@ -96,7 +99,7 @@ Their respective paths are:
 To check the current value of your `PATH`:
 
 ```bash
-$ printenv PATH
+printenv PATH
 ```
 
 Note: you must run these `export` commands in each new interactive shell you launch and from which you want to run the simulation and/or synthesis tools.
@@ -109,8 +112,8 @@ In order to simplify the typing of the various commands, we will use shell varia
 First define a `ds` shell variable pointing to the clone of the `ds` repository:
 
 ```bash
-$ ds=~/Documents/ds
-$ ls $ds/zybo.md
+ds=~/Documents/ds
+ls $ds/zybo.md
 ```
 
 ## Simulating out of source tree
@@ -125,8 +128,8 @@ Assign its absolute path to another shell variable.
 Example of set-up if you use Modelsim (adapt the suggested path to your own preferences, replace `vsim` by `ghdl` if you use GHDL):
 
 ```bash
-$ sim=/tmp/$USER/ds/vsim
-$ mkdir -p $sim
+sim=/tmp/$USER/ds/vsim
+mkdir -p $sim
 ```
 
 Then, if you never simulated with GHDL or Modelsim, it is time to read the [VHDL simulation] chapter of the documentation.
@@ -169,15 +172,15 @@ Note: if you get a `command not found` error when trying to compile/simulate/syn
 Check that your design compiles with GHDL or Modelsim:
 
 ```bash
-$ cd $sim
-$ ghdl -a --std=08 $ds/vhdl/lab01/ct.vhd
+cd $sim
+ghdl -a --std=08 $ds/vhdl/lab01/ct.vhd
 ```
 
 Or:
 
 ```bash
-$ cd $sim
-$ vcom -2008 +acc $ds/vhdl/lab01/ct.vhd
+cd $sim
+vcom -2008 +acc $ds/vhdl/lab01/ct.vhd
 ```
 
 # More about Hardware Description Languages (HDL) (discussion)
@@ -213,18 +216,18 @@ It is time to learn how to use GHDL or Siemens Modelsim to compile, simulate and
 Compile and simulate your design with GHDL or Modelsim:
 
 ```bash
-$ cd $sim
-$ ghdl -a --std=08 $ds/vhdl/lab01/ct_sim.vhd
-$ ghdl -r --std=08 ct_sim --vcd=ct.vcd
-<and use GTKWave to open the VCD file ct.vcd>
+cd $sim
+ghdl -a --std=08 $ds/vhdl/lab01/ct_sim.vhd
+ghdl -r --std=08 ct_sim --vcd=ct.vcd
+gtkwave ct.vcd
 ```
 
 Or:
 
 ```bash
-$ cd $sim
-$ vcom -2008 +acc $ds/vhdl/lab01/ct_sim.vhd
-$ vsim -voptargs="+acc" ct_sim
+cd $sim
+vcom -2008 +acc $ds/vhdl/lab01/ct_sim.vhd
+vsim -voptargs="+acc" ct_sim
 ```
 
 # Automatic evaluation and peer review
@@ -255,8 +258,8 @@ Assign its absolute path to another shell variable.
 Example of set-up (adapt the suggested path to your own preferences):
 
 ```bash
-$ syn=/tmp/$USER/ds/ct
-$ mkdir -p $syn
+syn=/tmp/$USER/ds/ct
+mkdir -p $syn
 ```
 
 Synthesis is a complex process for which there is no real default set-up.
@@ -324,8 +327,8 @@ Cross-check your findings with your neighbours.
 If the I/O mapping looks correct, synthesize with the provided TCL script:
 
 ```bash
-$ cd $syn
-$ vivado -mode batch -source $ds/vhdl/lab01/ct.syn.tcl -notrace
+cd $syn
+vivado -mode batch -source $ds/vhdl/lab01/ct.syn.tcl -notrace
 ```
 
 The `-notrace` option suppresses the (annoying) echo of each TCL command.
@@ -342,7 +345,7 @@ When the synthesizer infers latches, because this is usually caused by errors in
 Check that you have no unwanted latches:
 
 ```bash
-$ grep -i latch vivado.log
+grep -i latch vivado.log
 ```
 
 Our design is so simple that it should only be made of wires and one inverter logic gate.
@@ -360,15 +363,15 @@ If there were no synthesis errors or serious warnings, if the resource utilizati
 Copy them in your working directory:
 
 ```bash
-$ cd $syn
-$ cp /packages/LabSoC/ds-files/fsbl.elf .
-$ cp /packages/LabSoC/ds-files/u-boot.elf .
+cd $syn
+cp /packages/LabSoC/ds-files/fsbl.elf .
+cp /packages/LabSoC/ds-files/u-boot.elf .
 ```
 
 Use the `bootgen` utility and the `$ds/vhdl/lab01/boot.bif` provided configuration script:
 
 ```bash
-$ bootgen -w -image $ds/vhdl/lab01/boot.bif -o boot.bin
+bootgen -w -image $ds/vhdl/lab01/boot.bif -o boot.bin
 ```
 
 The result is a *boot image*: `boot.bin` that the Zynq core of the Zybo will use to initialize itself, including the FPGA part.
@@ -378,21 +381,21 @@ The result is a *boot image*: `boot.bin` that the Zynq core of the Zybo will use
 Mount the micro SD card on your computer and define a shell variable that points to it:
 
 ```bash
-$ SDCARD=<path-to-mounted-sd-card>
+SDCARD=<path-to-mounted-sd-card>
 ```
 
 If your micro SD card does not yet contain the software components of the DigitalSystems reference design, prepare it:
 
 ```bash
-$ cd /packages/LabSoC/ds-files
-$ cp uImage devicetree.dtb uramdisk.image.gz $SDCARD
+cd /packages/LabSoC/ds-files
+cp uImage devicetree.dtb uramdisk.image.gz $SDCARD
 ```
 
 Copy the new boot image to the micro SD card:
 
 ```bash
-$ cp $syn/boot.bin $SDCARD
-$ sync
+cp $syn/boot.bin $SDCARD
+sync
 ```
 
 Unmount the micro SD card, eject it, plug it on the Zybo but do not power up now.
