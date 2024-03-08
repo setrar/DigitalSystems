@@ -20,6 +20,18 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
+### For 2024-03-15
+
+- Complete [lab01](vhdl/lab01), coding, simulation, synthesis, test on the Zybo board.
+- Continue learning git and Markdown ([ProGit book], [Daring Fireball], [Markdown tutorial]).
+- Read chapter 4 of the [Free Range Factory] VHDL book
+- Read the following parts of the documentation:
+  * [Comments]
+  * [Identifiers]
+  * [Wait]
+  * [Initial values declarations]
+  * [D-flip-flops (DFF) and latches]
+
 ### For 2024-03-08
 
 - Learn a bit of `git` ([ProGit book]).
