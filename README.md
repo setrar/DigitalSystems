@@ -97,8 +97,8 @@ Labs of DigitalSystems course
    The report must be written in [Markdown] in the `REPORT.md` file at the root of the project's dedicated directory, in the project's dedicated branch.
    Clearly indicate in the project report the names and email addresses of the members of the team. Example of report header:
 
-   ```
-   # Project report: THE TIME MACHINE
+   ```escape
+   <!# Project report: THE TIME MACHINE
 
    The report and all source files can be found in the `time_travel` branch.
 
@@ -106,7 +106,7 @@ Labs of DigitalSystems course
 
    * H. G. Wells, h.g.wells@time-travel.org
    * Doctor Who, doc.who@bbc.uk
-   * Poul Anderson, p.anderson@time.patrol.us
+   * Poul Anderson, p.anderson@time.patrol.us!>
    ```
 
    To explain your source code you can add text to the `REPORT.md` file or add comments directly in the source file, as you wish.
@@ -121,10 +121,20 @@ Labs of DigitalSystems course
    Try to run simulations and syntheses out of your local copy of the repository; the generated files will be kept out of the source tree and this will reduce the risk of accidental commits of unwanted files.
 
 1. In the lab instructions you are asked to type commands.
-   Some of these commands are preceded by a prompt (`$ `, `> `...) representing the prompt of the current shell.
+   They are usually displayed as a code block:
+
+    ```bash
+    cd ~/Documents/ds
+    ls
+    ```
+
+   Sometimes the commands are preceded by a prompt (`$ `, `> `...) representing the prompt of the current shell.
    It is not a part of the command, do not type it.
-   When the expected outputs of commands are provided they appear in a different code block, preceded with a `-| ` sign to distinguish them from commands.
-   Do not copy-paste and run lines of code block preceded with a `-| ` sign.
+   When the expected outputs are shown they appear immediately below the code block, formatted as follows:
+
+    ```escape
+    <!FAQ.md  Makefile  README.md  doc  images  local.mk  scripts  solutions  vhdl  zybo  zybo.md!>
+    ```
 
 1. If you discover a bug, a broken link, a spelling error, a missing explanation, an explanation that should be improved, etc. please inform an adviser.
 
@@ -143,8 +153,7 @@ To help with the GitLab and `git` set-up a helper `bash` script is available on 
 Log on a EURECOM GNU/Linux desktop computer (in lab rooms 52 or 53), open a terminal, source the helper script (or your modified copy) and if you are asked questions answer them:
 
 ```bash
-$ source /packages/LabSoC/bin/labs-init ds
-...
+source /packages/LabSoC/bin/labs-init ds
 ```
 
 If there were errors please ask for help and indicate the error message.
@@ -159,57 +168,71 @@ The branch named `master` is protected and will be used to provide instructions 
 The branch named as your username is your personal branch in which you will work, it should already be the current branch of your local clone:
 
 ```bash
-$ cd ~/Documents/ds
-$ git status
-On branch shelley
-Your branch is up to date with 'origin/shelley'
+cd ~/Documents/ds
+git status
+```
+
+```escape
+<!On branch shelley
+Your branch is up to date with 'origin/shelley'!>
 ```
 
 From time to time, when new material will be added to the `master` branch, you will be asked to merge it in your personal branch:
 
 ```bash
-$ git pull
-$ git merge --no-edit origin/master
+git pull
+git merge --no-edit origin/master
 ```
 
 Do not forget to add, commit and push your own work in your personal branch.
 Example to add-commit-push your last modifications on `REPORT.md` and `my_code`:
 
 ```bash
-$ git add REPORT.md my_code
-$ git commit -m 'Add conclusion to report and fix 2 bugs in my_code'
-$ git push
+git add REPORT.md my_code
+git commit -m 'Add conclusion to report and fix 2 bugs in my_code'
+git push
 ```
 
 Check that everything is in order by adding an empty file named `got.it` to your personal branch.
 First check that you really are on your personal branch:
 
 ```bash
-$ cd ~/Documents/ds
-$ git branch
-master
-* shelley
+cd ~/Documents/ds
+git branch
+```
+
+```escape
+<!master
+* shelley!>
 ```
 
 If the leading star (`*`) is on front of your personal branch (like above), you are on your personal branch; else switch to your personal branch and check again:
 
 ```bash
-$ git checkout shelley
-Switched to branch 'shelley'
-Your branch is up to date with 'origin/shelley'
-$ git branch
-master
-* shelley
+git checkout shelley
+```
+
+```escape
+<!Switched to branch 'shelley'
+Your branch is up to date with 'origin/shelley'!>
+```
+
+```bash
+git branch
+```
+
+```escape
+<!master
+* shelley!>
 ```
 
 Then, create the empty file and add-commit-push:
 
 ```bash
-$ touch got.it
-$ git add got.it
-$ git commit -m 'add got.it empty file'
-$ git push
-...
+touch got.it
+git add got.it
+git commit -m 'add got.it empty file'
+git push
 ```
 
 If there are errors ask for help.
@@ -219,21 +242,24 @@ Later do the same to add, commit and push your work in your personal branch.
 Let's then try to create a simple example VHDL source file and to compile it with GHDL:
 
 ```bash
-$ mkdir -p ~/tmp
-$ cd ~/tmp
-$ echo 'entity foo is end;' > foo.vhd
-$ echo 'architecture arc of foo is begin end;' >> foo.vhd
-$ export PATH=$PATH:/packages/LabSoC/ghdl/bin
-$ ghdl -a foo.vhd
-$ ls
-foo.vhd   work-obj93.cf
+mkdir -p ~/tmp
+cd ~/tmp
+echo 'entity foo is end;' > foo.vhd
+echo 'architecture arc of foo is begin end;' >> foo.vhd
+export PATH=$PATH:/packages/LabSoC/ghdl/bin
+ghdl -a foo.vhd
+ls
+```
+
+```escape
+<!foo.vhd   work-obj93.cf!>
 ```
 
 If there were no errors the compiler works.
 Next, let's test the simulation:
 
 ```bash
-$ ghdl -r foo
+ghdl -r foo
 ```
 
 If there were no errors everything is fine.

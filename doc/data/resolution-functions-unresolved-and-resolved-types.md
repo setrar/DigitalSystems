@@ -66,10 +66,10 @@ ghdl -e md
 ./md
 ```
 
-```
--| for signal: .md(arc).s
--| ./md:error: several sources for unresolved signal
--| ./md:error: error during elaboration
+```escape
+<!for signal: .md(arc).s
+./md:error: several sources for unresolved signal
+./md:error: error during elaboration!>
 ```
 
 Note that the error is raised even if, as in our example, all drivers agree on the driving value.
@@ -142,9 +142,9 @@ ghdl -e md
 ./md
 ```
 
-```
--| md.vhd:39:5:@0ms:(report note): '0'
--| md.vhd:39:5:@3ns:(report note): '1'
+```escape
+<!md.vhd:39:5:@0ms:(report note): '0'
+md.vhd:39:5:@3ns:(report note): '1'!>
 ```
 
 # A one-bit communication protocol

@@ -28,8 +28,8 @@ It is installed by default on many GNU/Linux distributions like Ubuntu and under
 
 To edit a file simply open a terminal and type:
 
-```
-$ nano myFile.txt
+```bash
+nano myFile.txt
 ```
 
 Use the arrows to navigate, type some text, use the backspace or delete keys to delete text.
@@ -51,26 +51,32 @@ There are several possible reasons:
    Try again with the `ssh` protocol:
 
    ```bash
-   $ git clone git@gitlab.eurecom.fr:renaud.pacalet/ds.git
+   git clone git@gitlab.eurecom.fr:renaud.pacalet/ds.git
    ```
 
 1. You already successfully cloned the repository but you did it using the `https` protocol (`https://gitlab.eurecom.fr/renaud.pacalet/ds.git`) and your OS does not provide a `git` credential manager to handle the password for you.
    Check the protocol:
 
    ```bash
-   $ cd path/to/the/clone
-   $ git remote -v
-   origin   https://gitlab.eurecom.fr/renaud.pacalet/ds.git (fetch)
-   origin   https://gitlab.eurecom.fr/renaud.pacalet/ds.git (push)
+   cd path/to/the/clone
+   git remote -v
+   ```
+
+   ```escape
+   <!origin   https://gitlab.eurecom.fr/renaud.pacalet/ds.git (fetch)
+   origin   https://gitlab.eurecom.fr/renaud.pacalet/ds.git (push)!>
    ```
 
   If it is `https`, either set up a `git` credential manager or change the protocol for `ssh`:
 
    ```bash
-   $ git remote set-url origin git@gitlab.eurecom.fr:renaud.pacalet/ds.git
-   $ git remote -v
-   origin   git@gitlab.eurecom.fr:renaud.pacalet/ds.git (fetch)
-   origin   git@gitlab.eurecom.fr:renaud.pacalet/ds.git (push)
+   git remote set-url origin git@gitlab.eurecom.fr:renaud.pacalet/ds.git
+   git remote -v
+   ```
+
+   ```escape
+   <!origin   git@gitlab.eurecom.fr:renaud.pacalet/ds.git (fetch)
+   origin   git@gitlab.eurecom.fr:renaud.pacalet/ds.git (push)!>
    ```
 
 1. You used the `ssh` protocol but you did not add your `ssh` public key to your GitLab account.
@@ -81,21 +87,24 @@ There are several possible reasons:
    Check:
 
    ```bash
-   $ ssh-add -l
-   Could not open a connection to your authentication agent.
+   ssh-add -l
+   ```
+
+   ```escape
+   <!Could not open a connection to your authentication agent.!>
    ```
 
    If you do not have a running `ssh` agent, launch one:
 
    ```bash
-   $ eval $(ssh-agent -s)
+   eval $(ssh-agent -s)
    ```
 
 1. You have a running `ssh` agent but you did not add your private key to the agent.
    Do it:
 
    ```bash
-   $ ssh-add
+   ssh-add
    ```
 
   > Note: if your private key is protected you will have to enter your passphrase to unlock it.
@@ -107,9 +116,12 @@ Each key pair is stored in two files: `KEY.pub` for the public part and `KEY` fo
 To check what `ssh` keys you have simply list the content of this sub-directory:
 
 ```bash
-$ ls ~/.ssh
-authorized_keys  id_ed25519      id_rsa      known_hosts
-config           id_ed25519.pub  id_rsa.pub
+ls ~/.ssh
+```
+
+```escape
+<!authorized_keys  id_ed25519      id_rsa      known_hosts
+config           id_ed25519.pub  id_rsa.pub!>
 ```
 
 In this list we see 2 key pairs: `id_ed25519`/`id_ed25519.pub` and `id_rsa`/`id_rsa.pub`.
@@ -125,8 +137,11 @@ But if you are concerned about security, or intend to store valuable assets on y
 Example of key pair generation under GNU/Linux (`ed25519` is the kind of key pair currently recommended by security experts over the default `rsa`):
 
 ```bash
-$ ssh-keygen -t ed25519
-Generating public/private ed25519 key pair.
+ssh-keygen -t ed25519
+```
+
+```escape
+<!Generating public/private ed25519 key pair.
 Enter file in which to save the key (/homes/shelley/.ssh/id_ed25519):
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
@@ -145,7 +160,7 @@ The key's randomart image is:
 |      o .        |
 |       .         |
 |                 |
-+----[SHA256]-----+
++----[SHA256]-----+!>
 ```
 
 Your public key is in `~/.ssh/id_ed25519.pub` and your private key is in `~/.ssh/id_ed25519`.
@@ -174,13 +189,13 @@ Under any GNU/Linux OS, `bash`, the `ssh` client and the `git` client should be 
 Then, open a `bash` terminal and type the following commands.
 
 ```bash
-$ git clone git@gitlab.eurecom.fr:renaud.pacalet/ds.git ~/Documents/ds
-$ cd ~/Documents/ds
-$ git checkout shelley
-$ git pull
-$ git merge --no-edit origin/master
-$ git config user.name shelley
-$ git config user.email mary.shelley@eurecom.fr
+git clone git@gitlab.eurecom.fr:renaud.pacalet/ds.git ~/Documents/ds
+cd ~/Documents/ds
+git checkout shelley
+git pull
+git merge --no-edit origin/master
+git config user.name shelley
+git config user.email mary.shelley@eurecom.fr
 ```
 
 # The command-line interface: `bash`
@@ -196,32 +211,53 @@ A variable name contains only letters, digits and underscores and must start wit
 It is defined by a simple assignment with no spaces around the `=` sign:
 
 ```bash
-$ foo=42
+foo=42
 ```
 
 It is expanded by preceding its name with a `$` sign:
 
 ```bash
-$ echo foo
-foo
-$ echo $foo
-42
+echo foo
+```
+
+```escape
+<!foo!>
+```
+
+```bash
+echo $foo
+```
+
+```escape
+<!42!>
 ```
 
 Undefined variables expand as the empty string:
 
 ```bash
-$ echo X${bar}X
-XX
+echo X${bar}X
+```
+
+```escape
+<!XX!>
 ```
 
 If a variable expansion is immediately followed by alphanumeric characters or underscores it must be isolated with curly braces to avoid ambiguities:
 
 ```bash
-$ echo $foobar
+echo $foobar
+```
 
-$ echo ${foo}bar
-42bar
+```escape
+<!!>
+```
+
+```bash
+echo ${foo}bar
+```
+
+```escape
+<!42bar!>
 ```
 
 > Note: variable definitions are not persistent, they are valid only for the current `bash` session.
@@ -233,14 +269,14 @@ By default a variable definition is valid only for the current `bash` session, n
 The `export` built-in command of `bash` is used to pass variable definitions to subsequently executed commands:
 
 ```bash
-$ foo=42
-$ export foo
+foo=42
+export foo
 ```
 
 Or, all at once:
 
 ```bash
-$ export foo=42
+export foo=42
 ```
 
 When a sub-sessions or a command is launched it inherits all exported variables of the parent `bash`.
@@ -254,26 +290,24 @@ Suppose also we were asked to work out of the source tree to avoid accidental ad
 We could type:
 
 ```bash
-$ mkdir -p /tmp/shelley/labs   # create a temporary working directory under /tmp
-$ cd /tmp/shelley/labs         # change current directory
-$ /packages/LabSoC/bin/to_uc /homes/shelley/Documents/ds/FAQ.md FAQ.upper.md
-$ /packages/LabSoC/bin/to_uc /homes/shelley/Documents/ds/README.md README.upper.md
-$ /packages/LabSoC/bin/to_uc /homes/shelley/Documents/ds/foo/bar/baz baz.upper
-...
+mkdir -p /tmp/shelley/labs   # create a temporary working directory under /tmp
+cd /tmp/shelley/labs         # change current directory
+/packages/LabSoC/bin/to_uc /homes/shelley/Documents/ds/FAQ.md FAQ.upper.md
+/packages/LabSoC/bin/to_uc /homes/shelley/Documents/ds/README.md README.upper.md
+/packages/LabSoC/bin/to_uc /homes/shelley/Documents/ds/foo/bar/baz baz.upper
 ```
 
 We could also use _`bash` variables_ to simplify the typing.
 Once a variable was defined it can be used in commands:
 
 ```bash
-$ cln=/homes/shelley/Documents/ds     # absolute path of clone of git repository
-$ twd=/tmp/shelley/labs               # absolute path of temporary working directory
-$ mkdir -p "$twd"                     # create temporary working directory
-$ cd "$twd"                           # change current directory
-$ /packages/LabSoC/bin/to_uc "$cln"/FAQ.md FAQ.upper.md
-$ /packages/LabSoC/bin/to_uc "$cln"/README.md README.upper.md
-$ /packages/LabSoC/bin/to_uc "$cln"/foo/bar/baz baz.upper
-...
+cln=/homes/shelley/Documents/ds     # absolute path of clone of git repository
+twd=/tmp/shelley/labs               # absolute path of temporary working directory
+mkdir -p "$twd"                     # create temporary working directory
+cd "$twd"                           # change current directory
+/packages/LabSoC/bin/to_uc "$cln"/FAQ.md FAQ.upper.md
+/packages/LabSoC/bin/to_uc "$cln"/README.md README.upper.md
+/packages/LabSoC/bin/to_uc "$cln"/foo/bar/baz baz.upper
 ```
 
 > Note: as you can see we enclosed the variable expansions in double-quotes (`"$cln"`).
@@ -287,30 +321,39 @@ Some commands you type in the terminal are `bash` built-in commands, `bash` know
 To run these commands you just use their name:
 
 ```bash
-$ echo "Hello world!"
-Hello world!
+echo "Hello world!"
+```
+
+```escape
+<!Hello world!!>
 ```
 
 In order to run an external command, that is, not a built-in, like the `to_uc` toy command, you can type its absolute path:
 
 ```bash
-$ /packages/LabSoC/bin/to_uc /homes/shelley/Documents/ds/FAQ.md FAQ.upper.md
+/packages/LabSoC/bin/to_uc /homes/shelley/Documents/ds/FAQ.md FAQ.upper.md
 ```
 
 As this is not very convenient, `bash` provides and uses an environment variable named `PATH` which value is a colon-separated list of directories in which external commands are searched for.
 Let's print its current value:
 
 ```bash
-$ printenv PATH
-/bin:/usr/bin:/usr/local/bin
+printenv PATH
+```
+
+```escape
+<!/bin:/usr/bin:/usr/local/bin!>
 ```
 
 As it is not part of it yet let's add `/packages/LabSoC/bin` to the `PATH` definition:
 
 ```bash
-$ export PATH="$PATH":/packages/LabSoC/bin
-$ printenv PATH
-/bin:/usr/bin:/usr/local/bin:/packages/LabSoC/bin
+export PATH="$PATH":/packages/LabSoC/bin
+printenv PATH
+```
+
+```escape
+<!/bin:/usr/bin:/usr/local/bin:/packages/LabSoC/bin!>
 ```
 
 > Note how we use the current value of the variable (`$PATH`) in the new value.
@@ -320,7 +363,7 @@ $ printenv PATH
 The letter case conversion command can now be as simple as:
 
 ```bash
-$ to_uc /homes/shelley/Documents/ds/FAQ.md FAQ.upper.md
+to_uc /homes/shelley/Documents/ds/FAQ.md FAQ.upper.md
 ```
 
 > Note: this `PATH` definition is not persistent, it is valid only for the current `bash` session.
@@ -347,7 +390,7 @@ One first possible reason is that the command is not installed on the computer.
 If you know where the command is supposed to be you can verify if it is installed by listing the content of the directory where it is supposed to be:
 
 ```bash
-$ ls /packages/LabSoC/bin
+ls /packages/LabSoC/bin
 ```
 
 Note: do not rely on the auto-completion (e.g., `ls /packages/LabS`+<kbd>tab</kbd>) to conclude that a directory is not there; some are automatically mounted from a remote NFS server when needed and the completion can fail just because the auto-mounter did not mount the NFS share yet.
@@ -419,11 +462,14 @@ Once you found which logical device to use, launch your serial communication pro
 Example under macOS with `picocom` if the device is `/dev/cu.usbserial-210279A42E221`:
 
 ```bash
-$ picocom -b115200 /dev/cu.usbserial-210279A42E221
-...
+picocom -b115200 /dev/cu.usbserial-210279A42E221
+```
+
+```escape
+<!...
 Welcome to DS (c) Telecom Paris
 ds login: root
-root@ds> 
+root@ds> !>
 ```
 
 Note: the `-b115200` option of `picocom` specifies which baud rate to use (115200 symbols/s in our case).
@@ -432,11 +478,14 @@ There are other options that can be tuned but for our needs their default values
 Example under GNU/Linux with `picocom` if the device is `/dev/ttyUSB1`:
 
 ```bash
-$ picocom -b115200 /dev/ttyUSB1
-...
+picocom -b115200 /dev/ttyUSB1
+```
+
+```escape
+<!...
 Welcome to DS (c) Telecom Paris
 ds login: root
-root@ds> 
+root@ds> !>
 ```
 
 Note: under GNU/Linux if you get an error message about permissions you probably need to change the permissions of the device file which is, by default, mounted read/write for the root user only.
@@ -445,7 +494,7 @@ As the device disappears each time you disconnect the Zybo you will have to do t
 To make this permanent install a `udev` rule such that the device is always mounted with read/write permissions for all users (and in the same `udev` rule we can even create a convenient `/dev/zyboUSB` symbolic link, like on EURECOM computers):
 
    ```bash
-   $ cat <<! > /tmp/51-usb2uartFT2232H.rules
+   cat <<! > /tmp/51-usb2uartFT2232H.rules
    # USB2UART FT2232H
    ACTION=="add" \
    , ATTRS{interface}=="Digilent Adept USB Device" \
@@ -455,9 +504,9 @@ To make this permanent install a `udev` rule such that the device is always moun
    , ATTRS{bInterfaceNumber}=="01" \
    , SYMLINK+="zyboUSB"
    !
-   $ sudo cp /tmp/51-usb2uartFT2232H.rules /etc/udev/rules.d
-   $ sudo udevadm control --reload-rules
-   $ sudo udevadm trigger
+   sudo cp /tmp/51-usb2uartFT2232H.rules /etc/udev/rules.d
+   sudo udevadm control --reload-rules
+   sudo udevadm trigger
    ```
 
 # The DHT11 sensor
@@ -529,9 +578,9 @@ Important:
 The following has been tested on Debian Bookworm and should also work under recent Ubuntu distributions:
 
 ```bash
-$ sudo dpkg --add-architecture i386
-$ sudo apt-get update
-$ sudo apt-get install libxext6:i386 libxft2:i386 libstdc++6:i386
+sudo dpkg --add-architecture i386
+sudo apt-get update
+sudo apt-get install libxext6:i386 libxft2:i386 libstdc++6:i386
 ```
 
 1. Download the installer using the [direct link for Linux] or the [direct link for Windows].
@@ -545,8 +594,8 @@ Be patient, the file is quite large.
 Once it is downloaded double-click on the file's icon (Windows) or run the installer (Linux):
 
 ```bash
-$ chmod +x ModelSimSetup-xxx-linux.run
-$ ./ModelSimSetup-xxx-linux.run
+chmod +x ModelSimSetup-xxx-linux.run
+./ModelSimSetup-xxx-linux.run
 ```
 
 Select the _Modelsim - Intel FPGA Starter Edition_ and follow the instructions.
@@ -554,19 +603,19 @@ Once the installation is finished protect the installation from accidental remov
 Example under GNU/Linux (replace `/some/where` with your own install path):
 
 ```bash
-$ chmod -r a+rX-w /some/where
+chmod -r a+rX-w /some/where
 ```
 
 Finally, still under GNU/Linux, add the directory containing the installed executables to your `PATH` environment variable:
 
 ```bash
-$ export PATH=$PATH:/some/where/modelsim_ase/bin
+export PATH=$PATH:/some/where/modelsim_ase/bin
 ```
 
 For a permanent `PATH` definition add the same command to your shell initialization file (e.g. `~/.bashrc`):
 
 ```bash
-$ echo 'export PATH=$PATH:/some/where/modelsim_ase/bin' >> ~/.bashrc
+echo 'export PATH=$PATH:/some/where/modelsim_ase/bin' >> ~/.bashrc
 ```
 
 The tools should now work.
@@ -575,22 +624,22 @@ The tools should now work.
 
 At the beginning of simulations you will maybe see warnings like these:
 
-```
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
+```escape
+<!# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/librt.so.1 : module was loaded at an absolute address.
 # ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libdl.so.2 : module was loaded at an absolute address.
 # ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libm.so.6 : module was loaded at an absolute address.
 # ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libpthread.so.0 : module was loaded at an absolute address.
 # ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libc.so.6 : module was loaded at an absolute address.
 # ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/i386-linux-gnu/libnss_files.so.2 : module was loaded at an absolute address.!>
 ```
 
 They are apparently harmless.
 If you prefer suppressing them completely edit the `/some/where/modelsim_ase/modelsim.ini` configuration file and add the following lines at the beginning of the file:
 
-```
-[msg_system]
-suppress = 3116
+```escape
+<![msg_system]
+suppress = 3116!>
 ```
 
 ## How can I install GHDL and GTKWave under macOS, and use them to simulate my VHDL model?
@@ -635,6 +684,7 @@ Example:
 array set ios {
 	led[0]        { M14 LVCMOS33 }
 	...
+}
 ```
 
 ## Why do I get `ERROR: [DRC NSTD-1] Unspecified I/O Standard` when synthesizing my design with Vivado?
@@ -647,6 +697,7 @@ Example:
 array set ios {
 	led[0]        { M14 LVCMOS33 }
 	...
+}
 ```
 
 ## Can I install the Vivado synthesis tool on my personal computer?
@@ -668,8 +719,8 @@ If you install Vivado on your own laptop do not forget:
 - To install the Zybo board description files from Digilent:
 
     ```bash
-    $ cd ds
-    $ cp -r zybo /path/to/Vivado/2018.3/data/boards/board_files
+    cd ds
+    cp -r zybo /path/to/Vivado/2018.3/data/boards/board_files
     ```
 
 ## Are there free and open source hardware design tools?

@@ -18,8 +18,8 @@ Sometimes boolean functions are defined as a Look Up Table (LUT) where the index
 Example: the AES block cipher uses a substitution box named SubBytes used to non-linearly transform bytes.
 One of the definitions of SubBytes is in the form of a LUT:
 
-```
-                             y
+```escape
+<!                             y
        -----------------------------------------------
         0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
        -----------------------------------------------
@@ -40,7 +40,7 @@ x | 8 | cd 0c 13 ec 5f 97 44 17 c4 a7 7e 3d 64 5d 19 73
   | e | e1 f8 98 11 69 d9 8e 94 9b 1e 87 e9 ce 55 28 df 
   | f | 8c a1 89 0d bf e6 42 68 41 99 2d 0f b0 54 bb 16
 
-Figure 7. S-box: substitution values for the byte xy (in hexadecimal format).
+Figure 7. S-box: substitution values for the byte xy (in hexadecimal format).!>
 ```
 
 One easy way to implement this is to use the same tabular form in VHDL:

@@ -94,8 +94,8 @@ ghdl -a hello_world.vhd
 ghdl -r hello_world
 ```
 
-```
--| hello_world.vhd:6:8:@0ms:(assertion note): Hello world!
+```escape
+<!hello_world.vhd:6:8:@0ms:(assertion note): Hello world!!>
 ```
 
 The analysis phase checks the syntax correctness and produces a text file describing the compilation units found in the source file.
@@ -113,11 +113,11 @@ vcom hello_world.vhd
 vsim -c hello_world -do 'run -all; quit'
 ```
 
-```
--| ...
--| # ** Note: Hello world!
--| #    Time: 0 ns  Iteration: 0  Instance: /hello_world
--| ...
+```escape
+<!...
+# ** Note: Hello world!
+#    Time: 0 ns  Iteration: 0  Instance: /hello_world
+...!>
 ```
 
 `vcom` and `vsim` are commands that Modelsim provides.
@@ -199,8 +199,8 @@ If `a` is an integer variable and its current value is 15, executing:
 ```
 
 will print:
-```
-5
+```escape
+<!5!>
 ```
 
 If we execute this step by step in a debugger we can see the value of `a` changing from the initial 15 to 30, 25 and finally 5.
@@ -218,9 +218,9 @@ While, if `s` is an integer signal and its current value is 15, executing:
 
 will print:
 
-```
-15
-3
+```escape
+<!15
+3!>
 ```
 
 If we execute this step by step in a debugger we will not see any value change of `s` until after the `wait` instruction.
@@ -864,9 +864,9 @@ Let us compile and simulate this with GHDL:
 ghdl -a counter_sim.vhd
 ```
 
-```
--| counter_sim.vhd:18:19:error: unit "counter" not found in library "work"
--| counter_sim.vhd:41:18:error: no declaration for "rising_edge"
+```escape
+<!counter_sim.vhd:18:19:error: unit "counter" not found in library "work"
+counter_sim.vhd:41:18:error: no declaration for "rising_edge"!>
 ```
 
 Then error messages tell us two important things:
@@ -894,8 +894,8 @@ Instead, we can specify a stop time with the `--stop-time` option:
 ghdl -r --std=08 counter_sim sim --stop-time=60ns
 ```
 
-```
--| ghdl:info: simulation stopped by --stop-time
+```escape
+<!ghdl:info: simulation stopped by --stop-time!>
 ```
 
 As is, the simulation does not tell us much about the behavior of our DUT.
@@ -905,8 +905,8 @@ Let's dump the value changes of the signals in a file:
 ghdl -r --std=08 counter_sim sim --stop-time=60ns --vcd=counter_sim.vcd
 ```
 
-```
--| ghdl:info: simulation stopped by --stop-time
+```escape
+<!ghdl:info: simulation stopped by --stop-time!>
 ```
 
 A `counter_sim.vcd` file has been created.
@@ -972,8 +972,8 @@ ghdl -a --std=08 counter_sim.vhd
 ghdl -r --std=08 counter_sim sim
 ```
 
-```
--| simulation finished @51ns
+```escape
+<!simulation finished @51ns!>
 ```
 
 Note that we re-compiled only the simulation environment: it is the only design that changed and it is the top level.
