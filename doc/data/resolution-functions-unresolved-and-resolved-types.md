@@ -58,12 +58,11 @@ begin
 end architecture arc;
 ```
 
-Compiling, elaborating and trying to simulate, e.g. with GHDL, raise an error:
+Compiling and trying to simulate, e.g. with GHDL, raise an error:
 
 ```bash
 ghdl -a md.vhd
-ghdl -e md
-./md
+ghdl -r md
 ```
 
 ```escape
@@ -134,12 +133,11 @@ begin
 end architecture arc;
 ```
 
-Compiling, elaborating and simulating, e.g. with GHDL, does not raise an error:
+Compiling and simulating, e.g. with GHDL, does not raise an error:
 
 ```bash
 ghdl -a md.vhd
-ghdl -e md
-./md
+ghdl -r md
 ```
 
 ```escape
