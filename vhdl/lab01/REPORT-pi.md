@@ -1,4 +1,3 @@
-
 - [ ] GHDL
 
 ```
@@ -35,3 +34,7 @@ Creating default startup script /home/ubuntu/.vnc/xstartup
 Starting applications specified in /home/ubuntu/.vnc/xstartup
 Log file is /home/ubuntu/.vnc/ilakaka:2.log
 ```
+
+# References
+
+- [ ] [How to Install and Configure VNC on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04)
