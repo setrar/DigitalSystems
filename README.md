@@ -20,7 +20,7 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
-### For 2023-03-29
+### For 2024-03-29
 
 - Read chapter 5 of the [Free Range Factory] VHDL book
 - If you didn't already, read the following parts of the documentation:
