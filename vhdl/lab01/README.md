@@ -28,8 +28,8 @@ Once you received a Zybo kit, open a terminal, change from current directory to 
 git branch
 ```
 
-```
-|- * shelley
+```escape
+<!* shelley!>
 ```
 
 Use your favourite editor to edit the [zybo.md] file:
@@ -40,17 +40,16 @@ vim zybo.md
 
 Indicate on the first line the ID of your Zybo kit (the number on the blue case and on the sticker on the Zybo board):
 
-```
-Zybo board number: XX
-...
+```escape
+<!Zybo board number: XX!>
 ```
 
 For each item on the list check that it is present in your kit and corresponds to the description.
 If yes replace the space between the square brackets by a `x` character.
 Example: if there is a blue case **and** it contains a protection foam block:
 
-```
-* [x] one blue case with protection foam block
+```escape
+<!* [x] one blue case with protection foam block!>
 ```
 
 Add-commit-push the modified `zybo.md` file:

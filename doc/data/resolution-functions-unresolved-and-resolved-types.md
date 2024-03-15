@@ -58,18 +58,17 @@ begin
 end architecture arc;
 ```
 
-Compiling, elaborating and trying to simulate, e.g. with GHDL, raise an error:
+Compiling and trying to simulate, e.g. with GHDL, raise an error:
 
 ```bash
 ghdl -a md.vhd
-ghdl -e md
-./md
+ghdl -r md
 ```
 
-```
--| for signal: .md(arc).s
--| ./md:error: several sources for unresolved signal
--| ./md:error: error during elaboration
+```escape
+<!for signal: .md(arc).s
+./md:error: several sources for unresolved signal
+./md:error: error during elaboration!>
 ```
 
 Note that the error is raised even if, as in our example, all drivers agree on the driving value.
@@ -134,17 +133,16 @@ begin
 end architecture arc;
 ```
 
-Compiling, elaborating and simulating, e.g. with GHDL, does not raise an error:
+Compiling and simulating, e.g. with GHDL, does not raise an error:
 
 ```bash
 ghdl -a md.vhd
-ghdl -e md
-./md
+ghdl -r md
 ```
 
-```
--| md.vhd:39:5:@0ms:(report note): '0'
--| md.vhd:39:5:@3ns:(report note): '1'
+```escape
+<!md.vhd:39:5:@0ms:(report note): '0'
+md.vhd:39:5:@3ns:(report note): '1'!>
 ```
 
 # A one-bit communication protocol

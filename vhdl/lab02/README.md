@@ -97,10 +97,10 @@ In the same VHDL source file add an architecture named `rtl` and code it accordi
 * synchronize your design on the rising edge of `clk`
 * use `sresetn` as a **synchronous**, active **low** reset to force `dout` to all zeros
 * use one synchronous process only (do not forget the reset)
-* on rising edges of `clk`, `dout` is:
-   * forced to all zeros if `sresetn` is low,
-   * shifted by one position to the left if `shift='1'`; the rightmost entering bit is `din` and the leftmost leaving bit is lost,
-   * else unmodified.
+* on rising edges of `clk`:
+   * if `sresetn` is low `dout` is forced to all zeros,
+   * else, if `shift='1'`, `dout` is shifted by one position to the left; the bit entering on the right is `din` and the leaving biton the left is lost,
+   * else `dout` is unmodified.
 
 ![The shift register](../../images/sr-fig.png)
 
@@ -140,9 +140,9 @@ Remember that simulation "_deltas_" of the event-driven simulation algorithm are
 
 If you have Modelsim simulate again your shift register and while the waveform window is active click on the `Wave` menu and select:
 
-```
-Expanded Time / Deltas Mode
-Expanded Time / Expand all
+```escape
+<!Expanded Time / Deltas Mode
+Expanded Time / Expand all!>
 ```
 
 Zoom (enough) on some apparently simultaneous transitions to see the deltas and try to understand what you see.

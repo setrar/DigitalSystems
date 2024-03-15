@@ -56,11 +56,11 @@ done
 cat stim.txt
 ```
 
-```
--| A9A190A6 565E6F59
--| 5FD269EC A02D9613
--| E6A9F3EE 19560C11
--| ...
+```escape
+<!A9A190A6 565E6F59
+5FD269EC A02D9613
+E6A9F3EE 19560C11
+...!>
 ```
 
 The generated `stim.txt` text file contains one test vector per line, each composed of the 32-bits input and expected 32-bits output in hexadecimal.
@@ -123,7 +123,7 @@ ghdl -r --std=08 stim_sim --vcd=stim_sim.vcd
 open stim_sim.vcd
 ```
 
-![Simulation waveforms](/images/stim.png)
+![Simulation waveforms](../../images/stim.png)
 
 In this example we use only `hread` to read `std_ulogic_vector` in hex format but many other procedures exist (`read`, `oread`, `bread`…) for various data types.
 See the declaration of the [`std.textio`](/doc/data/textio.vhd) package for the list of all text input/output procedures and functions for the VHDL base types.

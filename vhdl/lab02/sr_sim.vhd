@@ -88,11 +88,7 @@ begin
         for i in 1 to d loop
             -- Since VHDL 2008 the conditional when signal assignment is usable
             -- in processes. This one asserts the reset with probability 1/10.
-            if r.get_integer(1, 10) = 1 then
-                sresetn <= '0';
-            else
-                sresetn <= '1';
-            end if;
+            sresetn <= '0' when r.get_integer(1, 10) = 1 else '1';
             -- Assign uniform random values to "shift" and "din". The aggregate
             -- notation can be used in the LHS of assignments.
             (shift, din) <= r.get_std_ulogic_vector(2);

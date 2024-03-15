@@ -234,14 +234,14 @@ vcom -2008 +acc ds/vhdl/tests/cooley_sim.vhd
 Some compilation options can be set as the default once for all by modifying a configuration file in the installation.
 With the [ModelSim-Intel FPGA Starter Edition Software], for instance, the `-2008` option of `vcom` can be set as the default by editing the `/some/where/modelsim_ase/modelsim.ini` file (where `/some/where` is the installation root directory) and, in the `[vcom]` section, replacing:
 
-```
-VHDL93 = 2002
+```escape
+<!VHDL93 = 2002!>
 ```
 
 with:
 
-```
-VHDL93 = 2008
+```escape
+<!VHDL93 = 2008!>
 ```
 
 For other options and tools see the documentation.
