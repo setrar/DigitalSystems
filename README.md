@@ -20,6 +20,18 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
+### For 2023-03-29
+
+- Read chapter 5 of the [Free Range Factory] VHDL book
+- If you didn't already, read the following parts of the documentation:
+  * [Generic parameters]
+  * [Aggregate notations]
+  * [Resolution functions, unresolved and resolved types]
+  * [Arithmetic: which types to use?]
+  * [Entity instantiations]
+- Complete the 4 first labs, including synthesis and test on the Zybo
+- Read the [DHT11 sensor datasheet]
+
 ### For 2024-03-15
 
 - Complete [lab01](vhdl/lab01), coding, simulation, synthesis, test on the Zybo board.
@@ -59,8 +71,12 @@ Labs of DigitalSystems course
 1. **Warning:** plagiarism is not tolerated; please do not copy-paste others' work (not even ChatGPT's work) without proper citation and credit.
    Do not think that plagiarism can be smart enough to remain undetected.
    Your source code and your reports for the final project **must** be your **personal and original** work.
-   Do the work yourself (typing, thinking, testing...), it is much more beneficial than letting somebody else do it on your behalf.
-   Of course, you can exchange ideas with others during the labs, it is even strongly advised, helping others or asking others for help is highly beneficial.
+
+1. Do the work yourself (typing, thinking, testing...).
+   It is much more beneficial than letting somebody else do it on your behalf.
+   Of course, you can exchange ideas with others during the labs.
+   It is even strongly advised.
+   Helping others or asking others for help is highly beneficial.
 
 1. There is a [FAQ]; if you don't know what text editor to use, if you encounter problems with the GitLab authentication or the command line, if you prefer working on your personal computer and want to install the tools, please visit the [FAQ].
 
@@ -90,6 +106,32 @@ Labs of DigitalSystems course
    If you cannot attend a lab session do your best to complete the lab anyway **before** the following session.
    If you do not you will fall behind and it will become more and more difficult to catch up.
 
+1. As we all share the same repository, it is important to keep it clean.
+   In particular, please do not `git add` directories; it is the best way to add files that we do not want in the repository; `git add` only files, and only files that make sense (source code, reports, carefully selected images used in reports...).
+   Try to use the right resolution for the (carefully selected) images you add.
+   Try to run simulations and syntheses out of your local copy of the repository; the generated files will be kept out of the source tree and this will reduce the risk of accidental commits of unwanted files.
+
+1. File or directory names with spaces (or tabs...) are a bad idea under GNU/Linux.
+   When choosing a name for a new file or directory use only alphanumeric characters, plus underscore (`_`), hyphen (`-`) and dot (`.`).
+
+1. In the lab instructions you are asked to type commands.
+   They are usually displayed as a code block:
+
+    ```bash
+    cd ~/Documents/ds
+    ls
+    ```
+
+   Sometimes the commands are preceded by a prompt (`$ `, `> `...) representing the prompt of the current shell.
+   It is not a part of the command, do not type it.
+   When the expected outputs are shown they appear immediately below the code block, formatted as follows:
+
+    ```escape
+    <!FAQ.md  Makefile  README.md  doc  images  local.mk  scripts  solutions  vhdl  zybo  zybo.md!>
+    ```
+
+1. If you discover a bug, a broken link, a spelling error, a missing explanation, an explanation that should be improved, etc. please inform an adviser.
+
 1. The final project accounts for 50% of the overall mark.
    You will work in teams.
    The same grade will be given to all members of a team.
@@ -114,29 +156,6 @@ Labs of DigitalSystems course
 1. The reports and source codes are due in your branch the day **before** the written exam at 23:59 sharp.
    After this deadline the repository will become read-only and there will be no way to add or modify anything.
    Please do not ask for extension, do not ask if you could send your work by email after the deadline, or any similar exception.
-
-1. As we all share the same repository, it is important to keep it clean.
-   In particular, please do not `git add` directories; it is the best way to add files that we do not want in the repository; `git add` only files, and only files that make sense (source code, reports, carefully selected images used in reports...).
-   Try to use the right resolution for the (carefully selected) images you add.
-   Try to run simulations and syntheses out of your local copy of the repository; the generated files will be kept out of the source tree and this will reduce the risk of accidental commits of unwanted files.
-
-1. In the lab instructions you are asked to type commands.
-   They are usually displayed as a code block:
-
-    ```bash
-    cd ~/Documents/ds
-    ls
-    ```
-
-   Sometimes the commands are preceded by a prompt (`$ `, `> `...) representing the prompt of the current shell.
-   It is not a part of the command, do not type it.
-   When the expected outputs are shown they appear immediately below the code block, formatted as follows:
-
-    ```escape
-    <!FAQ.md  Makefile  README.md  doc  images  local.mk  scripts  solutions  vhdl  zybo  zybo.md!>
-    ```
-
-1. If you discover a bug, a broken link, a spelling error, a missing explanation, an explanation that should be improved, etc. please inform an adviser.
 
 1. Carefully check the synthesis results.
    The semantics of the VHDL language for simulation and synthesis are not the same.

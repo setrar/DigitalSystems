@@ -788,7 +788,7 @@ A simulation environment for a VHDL design (the Design Under Test or DUT) is ano
 
 Optionally, a simulation environment can instantiate other designs than the DUT, like, for instance, traffic generators on interfaces, monitors to check communication protocols, automatic verifiers of the DUT outputs…
 
-The simulation environment is analyzed, elaborated and executed.
+The simulation environment is analyzed (compiled) and executed (simulated).
 Most simulators offer the possibility to select a set of signals to observe, plot their graphical waveforms, put breakpoints in the source code, step in the source code…
 
 Ideally, a simulation environment should be usable as a robust non-regression test, that is, it should automatically detect violations of the DUT specifications, report useful error messages and guarantee a reasonable coverage of the DUT functionalities.

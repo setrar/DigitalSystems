@@ -56,7 +56,7 @@ end architecture TARC;
 > Top-down approaches are possible using VHDL component declarations, component instantiations and configurations.
 > They are more powerful but significantly more verbose and difficult to understand.
 
-The generic parameters of the instantiated entity are associated to constant static expressions (that is, expressions that evaluate as a constant value during the elaboration of the design).
+The generic parameters of the instantiated entity are associated to constant static expressions (that is, expressions that evaluate as a constant value during the analysis of the design).
 The association can be omitted for generic parameters with a declared default value.
 
 The ports of the instantiated entity are associated to expressions or to the `open` keyword.
