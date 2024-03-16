@@ -1,3 +1,54 @@
+- [ ] Install openFPGA
+
+```
+brew install openfpgaloader
+```
+> Returns
+```powershell
+Running `brew update --auto-update`...
+==> Auto-updated Homebrew!
+Updated 1 tap (homebrew/cask).
+==> New Casks
+posture-pal                                                          proton-mail
+
+You have 29 outdated formulae and 10 outdated casks installed.
+
+==> Downloading https://ghcr.io/v2/homebrew/core/openfpgaloader/manifests/0.12.0
+################################################################################################################################## 100.0%
+==> Fetching dependencies for openfpgaloader: confuse and libftdi
+==> Downloading https://ghcr.io/v2/homebrew/core/confuse/manifests/3.3
+################################################################################################################################## 100.0%
+==> Fetching confuse
+==> Downloading https://ghcr.io/v2/homebrew/core/confuse/blobs/sha256:6d46500c283c20fcf41348fc34293d30a85e0fac9955ea849369deeaf84b3a2b
+################################################################################################################################## 100.0%
+==> Downloading https://ghcr.io/v2/homebrew/core/libftdi/manifests/1.5_2
+################################################################################################################################## 100.0%
+==> Fetching libftdi
+==> Downloading https://ghcr.io/v2/homebrew/core/libftdi/blobs/sha256:63ffb0285cabb32fb40e7f609ba8e63da9c0452e30400bd9261218bd3e393b9f
+################################################################################################################################## 100.0%
+==> Fetching openfpgaloader
+==> Downloading https://ghcr.io/v2/homebrew/core/openfpgaloader/blobs/sha256:e01a215c16c41140fcbda7940a95cefdcdd7fdc941390238fbaf6f842c8a
+################################################################################################################################## 100.0%
+==> Installing dependencies for openfpgaloader: confuse and libftdi
+==> Installing openfpgaloader dependency: confuse
+==> Downloading https://ghcr.io/v2/homebrew/core/confuse/manifests/3.3
+Already downloaded: /Users/valiha/Library/Caches/Homebrew/downloads/a09f514665c87141e6f2fd437ab609993f206ef00910cea28201e52a918329bf--confuse-3.3.bottle_manifest.json
+==> Pouring confuse--3.3.arm64_sonoma.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/confuse/3.3: 15 files, 243.4KB
+==> Installing openfpgaloader dependency: libftdi
+==> Downloading https://ghcr.io/v2/homebrew/core/libftdi/manifests/1.5_2
+Already downloaded: /Users/valiha/Library/Caches/Homebrew/downloads/d7dd754a416715375d46e69a69b46cf756740bfd46a279c9d32b8abc20008e0a--libftdi-1.5_2.bottle_manifest.json
+==> Pouring libftdi--1.5_2.arm64_sonoma.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/libftdi/1.5_2: 58 files, 1.1MB
+==> Installing openfpgaloader
+==> Pouring openfpgaloader--0.12.0.arm64_sonoma.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/openfpgaloader/0.12.0: 56 files, 5.5MB
+==> Running `brew cleanup openfpgaloader`...
+Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
+Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
+```
+
+
 - [ ] Install [`ghdl`](https://ghdl.github.io/ghdl/)
 
 ```
