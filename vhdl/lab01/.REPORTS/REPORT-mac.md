@@ -48,11 +48,15 @@ Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
 Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
 ```
 
+* [References openFPGA](https://trabucayre.github.io/openFPGALoader/guide/first-steps.html)
 
-- [ ] Install [`ghdl`](https://ghdl.github.io/ghdl/)
+- [ ] Install [`ghdl`](https://ghdl.github.io/ghdl/) :warning: Not working 
 
 ```
 brew install ghdl
+```
+> Returns
+```powershell
 ==> Downloading https://github.com/ghdl/ghdl/releases/download/v3.0.0/ghdl-macos-11-llvm.tgz
 ==> Downloading from https://objects.githubusercontent.com/github-production-release-asset-2e65be/46439446/6de5fb33-49d
 ################################################################################################################ 100.0%
