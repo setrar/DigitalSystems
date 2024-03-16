@@ -50,6 +50,16 @@ Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
 
 * [References openFPGA](https://trabucayre.github.io/openFPGALoader/guide/first-steps.html)
 
+
+```
+ openFPGALoader --list-boards | grep zybo
+ ```
+ > Returns
+ ```powershell
+zybo_z7_10               digilent
+zybo_z7_20               digilent
+```
+
 - [ ] Install [`ghdl`](https://ghdl.github.io/ghdl/) :warning: Not working 
 
 ```
