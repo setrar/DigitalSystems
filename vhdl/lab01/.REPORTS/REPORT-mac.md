@@ -49,6 +49,7 @@ Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
 ```
 
 * [References openFPGA](https://trabucayre.github.io/openFPGALoader/guide/first-steps.html)
+* [Vivado workflow (macOS/Apple Silicon)](https://www.reddit.com/r/FPGA/comments/18vrtrf/vivado_workflow_macosapple_silicon/)
 
 
 ```
