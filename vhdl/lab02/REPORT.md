@@ -44,3 +44,17 @@ GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
 
 # References
 
+```
+ghdl --version
+```
+> Returns
+```powershell
+GHDL 2.0.0-dev (1.0.0.r1017.ge58709ae) [Dunoon edition]
+ Compiled with GNAT Version: Community 2021 (20210519-103)
+ mcode code generator
+Written by Tristan Gingold.
+
+Copyright (C) 2003 - 2021 Tristan Gingold.
+GHDL is free software, covered by the GNU General Public License.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
