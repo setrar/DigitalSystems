@@ -4,40 +4,53 @@ use ieee.numeric_std.all; -- For using unsigned arithmetic
 
 entity counter is
     generic(
-        max_count: natural := 10 -- Maximum counter value
+        cmax: natural := 5 -- Maximum counter value
     );
     port(
-        clk:      in  std_ulogic;       -- Clock signal
-        sresetn:  in  std_ulogic;       -- Synchronous reset, active low
-        tz:       in  std_ulogic;       -- Force-to-zero (clear) control signal
-        increment: in  std_ulogic;      -- Increment control signal
-        count:    out unsigned(3 downto 0) -- 4-bit counter output (modify as needed for max_count)
+        clk:      in  std_ulogic;      -- Clock signal
+        sresetn:  in  std_ulogic;      -- Synchronous reset, active low
+        cz:       in  std_ulogic;      -- Force-to-zero (clear) control signal
+        inc:      in  std_ulogic;      -- Increment control signal
+        c:        out natural          -- Counter output
     );
 end entity counter;
 
 architecture rtl of counter is
-    signal counter_value: unsigned(3 downto 0) := (others => '0'); -- Internal counter (adjust bit width as needed)
+    -- Internal signal for counter
+    signal int_c: unsigned(log2ceil(cmax)-1 downto 0) := (others => '0');
+    
+    -- Function to calculate ceiling of log2, used for determining signal width
+    function log2ceil(n: in natural) return natural is
+    variable i: natural := 0;
+    begin
+        while (2**i < n) loop
+            i := i + 1;
+        end loop;
+        return i;
+    end function log2ceil;
 begin
     process(clk)
     begin
         if rising_edge(clk) then
             if sresetn = '0' then
-                -- Synchronous reset to 0
-                counter_value <= (others => '0');
-            elsif tz = '1' then
-                -- Force-to-zero (clear) control
-                counter_value <= (others => '0');
-            elsif increment = '1' then
+                -- Reset counter to 0
+                int_c <= (others => '0');
+            elsif cz = '1' then
+                -- Force counter to zero
+                int_c <= (others => '0');
+            elsif inc = '1' then
                 -- Increment counter
-                if counter_value = to_unsigned(max_count, counter_value'length) then
-                    counter_value <= (others => '0'); -- Roll over
+                if int_c = to_unsigned(cmax - 1, int_c'length) then
+                    -- Reset to 0 if max value is reached
+                    int_c <= (others => '0');
                 else
-                    counter_value <= counter_value + 1;
+                    int_c <= int_c + 1;
                 end if;
             end if;
         end if;
     end process;
 
-    count <= counter_value; -- Output the current counter value
+    -- Assign internal counter to output, converting from unsigned to natural
+    c <= to_integer(int_c);
 end architecture rtl;
 
