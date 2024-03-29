@@ -13,10 +13,10 @@ First intermediate status check-list
 
 Please fill the check list and add-commit push it. If you are late on some tasks, please try to catch up.
 
-* [ ] Get a Zybo prototyping board
-* [ ] Fill the `zybo.md` file, add-commit-push it
-* [ ] Learn enough of `git` (e.g. by reading the [ProGit book]) for our needs in the labs
-* [ ] Learn enough of Markdown (e.g. on [Daring Fireball] or the [Markdown tutorial]) for our needs in the labs
+* [x] Get a Zybo prototyping board
+* [x] Fill the `zybo.md` file, add-commit-push it
+* [x] Learn enough of `git` (e.g. by reading the [ProGit book]) for our needs in the labs
+* [x] Learn enough of Markdown (e.g. on [Daring Fireball] or the [Markdown tutorial]) for our needs in the labs
 * [ ] Read the following parts of the [Free Range Factory] book:
    * [ ] Chapter 1
    * [ ] Chapter 2
@@ -40,18 +40,18 @@ Please fill the check list and add-commit push it. If you are late on some tasks
    * [ ] [Arithmetic: which types to use?]
    * [ ] [Entity instantiations]
    * [ ] [Resolution functions, unresolved and resolved types]
-* [ ] Complete [the continuity tester](vhdl/lab01)
-   * [ ] Write the VHDL model of the continuity tester for our jumper wires
-   * [ ] Write a simulation environment, simulate, debug, validate using GHDL or Siemens Modelsim
-   * [ ] Pass the automatic evaluation
-   * [ ] Synthesize
+* [x] Complete [the continuity tester](vhdl/lab01)
+   * [x] Write the VHDL model of the continuity tester for our jumper wires
+   * [x] Write a simulation environment, simulate, debug, validate using GHDL or Siemens Modelsim
+   * [x] Pass the automatic evaluation
+   * [x] Synthesize
    * [ ] Test on the Zybo board
-   * [ ] Write your report
+   * [x] Write your report
 * [ ] Complete [the shift register](vhdl/lab02)
-   * [ ] Write the VHDL model of the shift register
-   * [ ] Use the provided simulation environment to simulate, debug and validate using GHDL or Siemens Modelsim
-   * [ ] Pass the automatic evaluation
-   * [ ] Write your report
+   * [x] Write the VHDL model of the shift register
+   * [x] Use the provided simulation environment to simulate, debug and validate using GHDL or Siemens Modelsim
+   * [x] Pass the automatic evaluation
+   * [x] Write your report
 * [ ] Complete [the timer](vhdl/lab03)
    * [ ] Write the VHDL model of the timer
    * [ ] Use the provided simulation environment to simulate, debug and validate using GHDL or Siemens Modelsim
