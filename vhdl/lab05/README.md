@@ -80,6 +80,37 @@ vcom -2008 +acc $ds/vhdl/lab05/edge.vhd $ds/vhdl/lab05/edge_sim.vhd
 vsim -voptargs="+acc" edge_sim
 ```
 
+Or, if you use GNU `make` and `ghdl`:
+
+```bash
+cd $ds
+make edge_sim.sim SIM=ghdl GUI=yes DIR="$sim"
+```
+
+Or, if you use GNU `make` and Modelsim:
+
+```bash
+cd $ds
+make edge_sim.sim SIM=vsim GUI=yes DIR="$sim"
+```
+
+Note: you can edit the `local.mk` file at the root of the repository to change your preferences with GNU `make` and make the `SIM=ghdl GUI=yes DIR="$sim"` or `SIM=vsim GUI=yes DIR="$sim"` become the default.
+Then, you can simulate with just:
+
+
+```bash
+cd $ds
+make edge_sim.sim
+```
+
+and use the `SIM`, `GUI`, `DIR` variables only when they shall not be the default.
+Example: if you defined `GUI` as `yes` in `local.mk` but you exceptionally want to simulate without the GUI:
+
+```bash
+cd $ds
+make edge_sim.sim GUI=no
+```
+
 ## Peer review
 
 After the end of the challenge, compare your solution with your neighbours'.
