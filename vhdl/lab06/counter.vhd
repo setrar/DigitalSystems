@@ -13,7 +13,7 @@ entity counter is
         tz:       in  std_ulogic;  -- Timer control signal (assumed as start control)
         t:        out natural range 0 to max_us -- Timer value in microseconds
     );
-end entity timer;
+end entity counter;
 
 architecture rtl of counter is
 
