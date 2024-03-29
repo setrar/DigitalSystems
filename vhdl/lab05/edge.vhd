@@ -32,4 +32,3 @@ begin
     fe <= reg; -- Assign internal register to output
 end architecture rtl;
 
-
