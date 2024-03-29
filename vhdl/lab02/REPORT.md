@@ -44,6 +44,8 @@ GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
 
 # References
 
+- [ ] Eurecom Campus
+
 ```
 ghdl --version
 ```
@@ -57,4 +59,16 @@ Written by Tristan Gingold.
 Copyright (C) 2003 - 2021 Tristan Gingold.
 GHDL is free software, covered by the GNU General Public License.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+
+```
+lsb_release  -a
+```
+> Returns 
+```powershell
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 23.04
+Release:	23.04
+Codename:	lunar
 ```
