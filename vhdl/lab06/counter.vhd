@@ -17,4 +17,6 @@ end entity counter;
 
 architecture rtl of counter is
 
+begin
+
 end architecture rtl;
