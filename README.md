@@ -20,6 +20,12 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
+### For 2024-04-05
+
+- Complete all challenges, including synthesis and test on the Zybo
+- Read the [DHT11 sensor datasheet]
+- Edit the `/status1.md` file and fill the [first intermediate status check-list]
+
 ### For 2024-03-29
 
 - Read chapter 5 of the [Free Range Factory] VHDL book
