@@ -44,14 +44,3 @@ GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
 
 # References
 
-
-
-```
-gtkwave sr.vcd
-```
-
-<img src=images/gtkwave_output.png width='' height='' > </img>
-
-
-# References
-
