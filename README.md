@@ -28,7 +28,7 @@ Labs of DigitalSystems course
 
 ### For 2024-03-29
 
-- Read chapter 5 of the [Free Range Factory] VHDL book
+- Read chapter 5 and section 10.8 of the [Free Range Factory] VHDL book
 - If you didn't already, read the following parts of the documentation:
   * [Generic parameters]
   * [Aggregate notations]
@@ -62,7 +62,7 @@ Labs of DigitalSystems course
   Prepare questions.
 - Read the [VHDL simulation] section of the documentation.
   Prepare questions.
-- Read the first three chapters of the [Free Range Factory] VHDL book.
+- Read the first three chapters and section 10.4 of the [Free Range Factory] VHDL book.
 - Solve all technical issues; you should be able to:
   * If you use your own laptop, `ssh` to a EURECOM GNU/Linux computer in room 52 (for the syntheses).
   * Clone the GitLab project on your personal computer and/or a EURECOM GNU/Linux computer, work in your personal branch, add, commit and push your modifications ([GitLab and git set-up](#gitlab-and-git-set-up)).
