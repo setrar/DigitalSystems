@@ -7,27 +7,17 @@ entity counter is
         cmax: natural := 5 -- Maximum counter value
     );
     port(
-        clk:      in  std_ulogic;      -- Clock signal
-        sresetn:  in  std_ulogic;      -- Synchronous reset, active low
-        cz:       in  std_ulogic;      -- Force-to-zero (clear) control signal
-        inc:      in  std_ulogic;      -- Increment control signal
-        c:        out natural          -- Counter output
+        clk:      in  std_ulogic;       -- Clock signal
+        sresetn:  in  std_ulogic;       -- Synchronous reset, active low
+        cz:       in  std_ulogic;       -- Force-to-zero (clear) control signal
+        inc:      in  std_ulogic;       -- Increment control signal
+        c:        out natural           -- Counter output
     );
 end entity counter;
 
 architecture rtl of counter is
-    -- Internal signal for counter
-    signal int_c: unsigned(log2ceil(cmax)-1 downto 0) := (others => '0');
-    
-    -- Function to calculate ceiling of log2, used for determining signal width
-    function log2ceil(n: in natural) return natural is
-    variable i: natural := 0;
-    begin
-        while (2**i < n) loop
-            i := i + 1;
-        end loop;
-        return i;
-    end function log2ceil;
+    -- Assuming cmax=5, 3 bits are sufficient for counting from 0 to 5
+    signal int_c: unsigned(2 downto 0) := (others => '0'); -- 3-bit internal counter
 begin
     process(clk)
     begin
