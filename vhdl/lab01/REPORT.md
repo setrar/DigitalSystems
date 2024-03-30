@@ -84,3 +84,9 @@ ghdl run  hello_world
 > Hello world!
 
 - [ ] [ghdl: Quick Start Guide](https://ghdl-rad.readthedocs.io/en/doc-addition/examples/quick_start/README.html)
+
+GHDL is a compiler which translates VHDL files to machine code. Hence, the regular workflow is composed of three steps:
+
+- Analysis [-a]: convert design units (VHDL sources) to an internal representation.
+- Elaboration [-e]: generate executable machine code for a target module (top-level entity).
+- Run [-r]: execute the design to test the behaviour, generate output/waveforms, etc.
