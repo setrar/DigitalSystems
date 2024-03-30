@@ -82,3 +82,5 @@ ghdl elaborate  hello_world
 ghdl run  hello_world
 ```
 > Hello world!
+
+- [ ] [ghdl: Quick Start Guide](https://ghdl-rad.readthedocs.io/en/doc-addition/examples/quick_start/README.html)
