@@ -6,6 +6,13 @@
 . ~/Developer/ds/bin/source.sh
 ```
 
+- [ ] Change Environment
+
+```
+cd $sim
+```
+
+
 - [ ] Synthesizing
 
 * Analyzing (can also use -a parameter)
@@ -19,6 +26,7 @@ ghdl analyse --std=08 $ds/vhdl/lab01/ct_sim.vhd
 ```
 
 * Running (can also use -r parameter)
+Note: Alternatively, when running on other `ghdl` environments i.e. Raspberry Pi (arm)  use `elab-run`
 
 ```
 ghdl run --std=08 ct_sim --vcd=ct.vcd
