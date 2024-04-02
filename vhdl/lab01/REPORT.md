@@ -42,11 +42,14 @@ gtkwave ct.vcd
 <img src=images/gtkwave_output.png width='' height='' > </img>
 
 
+### Logic synthesis
+
 - [ ] Sourcing
 
 ```
 . ~/Developer/ds/bin/source.sh
 ```
+
 
 - [ ] Creating out of source environment
 
@@ -55,7 +58,9 @@ syn=/tmp/$USER/ds/ct
 mkdir -p $syn
 ```
 
-- [ ] Synthesizing
+
+- [ ] Synthesizing out of source tree
+
 
 ```
 cd $syn
