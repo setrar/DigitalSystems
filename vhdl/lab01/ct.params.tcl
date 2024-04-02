@@ -19,11 +19,12 @@ array set dus {
 
 # list of external ports: NAME { PIN IO_STANDARD }
 array set ios {
-	switch0  {}
-	wire_in  {}
-	wire_out {}
-	led[0]   {}
-	led[1]   {}
-	led[2]   {}
-	led[3]   {}
+	switch0  { G15 LVCMOS33 }
+	wire_in  { V12 LVCMOS33 }
+	wire_out { W16 LVCMOS33 }
+	led[0]   { M14 LVCMOS33 }
+	led[1]   { M15 LVCMOS33 }
+	led[2]   { G14 LVCMOS33 }
+	led[3]   { D18 LVCMOS33 }
 }
+
