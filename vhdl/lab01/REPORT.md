@@ -60,7 +60,7 @@ mkdir -p $syn
 
 - [ ] Mapping
 
-<img src=images/pmod-pinout.png width='' height='' > </img>
+<img src=images/pmod-pinout.png width='50%' height='50%' > </img>
 
 
 ```json
