@@ -41,7 +41,6 @@ gtkwave ct.vcd
 
 <img src=images/gtkwave_output.png width='' height='' > </img>
 
-
 ### Logic synthesis
 
 - [ ] Sourcing
@@ -60,6 +59,9 @@ mkdir -p $syn
 
 
 - [ ] Mapping
+
+<img src=images/images/pmod-pinout.png width='' height='' > </img>
+
 
 ```json
 # list of external ports: NAME { PIN IO_STANDARD }
