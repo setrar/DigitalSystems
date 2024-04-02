@@ -809,6 +809,23 @@ INFO: [Common 17-206] Exiting Vivado at Tue Apr  2 16:43:40 2024...
 ```
 
 
+```
+SDCARD=/media/robert/6F3B-6E41
+```
+
+
+```
+cd /packages/LabSoC/ds-files
+cp uImage devicetree.dtb uramdisk.image.gz $SDCARD
+```
+
+
+```
+cd $syn
+cp $syn/boot.bin $SDCARD
+```
+
+
 
 # References
 
