@@ -63,23 +63,6 @@ vivado -mode batch -source $ds/vhdl/lab01/ct.syn.tcl -notrace
 ```
 > Returns
 ```powershell
-
-****** Vivado v2023.2 (64-bit)
-  **** SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
-  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
-  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-
-source /vhdl/lab01/ct.syn.tcl -notrace
-couldn't read file "/vhdl/lab01/ct.syn.tcl": no such file or directory
-INFO: [Common 17-206] Exiting Vivado at Tue Apr  2 16:41:15 2024...
-0-matterhorn.eurecom.fr$ . ~/Developer/bin/labs-functions vivado.
-vivado.jou  vivado.log  
-0-matterhorn.eurecom.fr$ 
-0-matterhorn.eurecom.fr$ . ~/Developer/ds/bin/source.sh 
-0-matterhorn.eurecom.fr$ vivado -mode batch -source $ds/vhdl/lab01/ct.syn.tcl -notrace
-
 ****** Vivado v2023.2 (64-bit)
   **** SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
   **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
