@@ -866,3 +866,5 @@ GHDL is a compiler which translates VHDL files to machine code. Hence, the regul
 - Analysis [-a]: convert design units (VHDL sources) to an internal representation.
 - Elaboration [-e]: generate executable machine code for a target module (top-level entity).
 - Run [-r]: execute the design to test the behaviour, generate output/waveforms, etc.
+
+- [ ] [Digilent Pmod R2R Sine Wave Generator](https://www.instructables.com/Digilent-Pmod-R2R-Sine-Wave-Generator/)
