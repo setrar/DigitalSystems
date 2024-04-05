@@ -45,7 +45,7 @@ Please fill the check list and add-commit push it. If you are late on some tasks
    * [x] Write a simulation environment, simulate, debug, validate using GHDL or Siemens Modelsim
    * [x] Pass the automatic evaluation
    * [x] Synthesize
-   * [ ] Test on the Zybo board
+   * [x] Test on the Zybo board
    * [x] Write your report
 * [ ] Complete [the shift register](vhdl/lab02)
    * [x] Write the VHDL model of the shift register
