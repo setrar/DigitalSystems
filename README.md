@@ -20,6 +20,23 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
+### For 2023-04-12
+
+- Read chapters 6 to 7 of the [Free Range Factory] VHDL book
+- Read the following parts of the documentation:
+  * [Unconstrained types]
+  * [Recursivity]
+  * [Protected types]
+  * [Random numbers generation]
+- Complete all pending items in [first intermediate status check-list]
+- Design and code the DHT11 controller
+  * Block diagram
+  * State diagram
+  * VHDL coding
+  * Simulation, debugging, pass automatic evaluation
+  * Synthesis and test on the Zybo
+- Study the [AXI4 lite protocol specification]
+
 ### For 2024-04-05
 
 - Complete all challenges, including synthesis and test on the Zybo
