@@ -163,3 +163,7 @@ GHDL is a compiler which translates VHDL files to machine code. Hence, the regul
 - Run [-r]: execute the design to test the behaviour, generate output/waveforms, etc.
 
 - [ ] [Digilent Pmod R2R Sine Wave Generator](https://www.instructables.com/Digilent-Pmod-R2R-Sine-Wave-Generator/)
+
+#### [Rust on Zynq](https://www.reddit.com/r/rust/comments/127wsw8/rust_on_zynq)
+
+- [ ] [Bare-metal Rust on Zynq-7000](https://git.m-labs.hk/M-Labs/zynq-rs)
