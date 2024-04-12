@@ -99,12 +99,12 @@ begin
             t := now;
             wait until falling_edge(data_in) for warm_us * 2 us;
             t := now - t;
-            check_ref(t < warm_us * 2 us, "", "  WRONG WARM DURATION: EXPECTED AT MOST " & to_string(2 * warm_us) & " US, GOT " & to_string(t));
+            check_ref(t < warm_us * 2 us, "", "  WRONG WARM DURATION: EXPECTED LESS THAN " & to_string(2 * warm_us) & " US, GOT " & to_string(t));
             t := now;
             wait until rising_edge(data_in) for start_us * 2 us;
             t := now - t;
             check_ref(t >= start_us * 1 us, "", "  WRONG DURATION OF START COMMAND: EXPECTED AT LEAST " & to_string(start_us) & " US, GOT " & to_string(t));
-            check_ref(t < start_us * 2 us, "", "  WRONG DURATION OF START COMMAND: EXPECTED AT MOST " & to_string(2 * start_us) & " US, GOT " & to_string(t));
+            check_ref(t < start_us * 2 us, "", "  WRONG DURATION OF START COMMAND: EXPECTED LESS THAN " & to_string(2 * start_us) & " US, GOT " & to_string(t));
             data <= 'Z';
             cerr <= '0';
             dso  <= '0';
@@ -152,14 +152,14 @@ begin
         wait until data = '0';
         t := now;
         check_ref(t >= warm_us * 1 us, "", "  WRONG DURATION OF WARM-UP TIME: EXPECTED AT LEAST " & to_string(warm_us) & " US, GOT " & to_string(t));
-        check_ref(t < warm_us * 2 us, "", "  WRONG DURATION OF WARM-UP TIME: EXPECTED AT MOST " & to_string(2 * warm_us) & " US, GOT " & to_string(t));
+        check_ref(t < warm_us * 2 us, "", "  WRONG DURATION OF WARM-UP TIME: EXPECTED LESS THAN " & to_string(2 * warm_us) & " US, GOT " & to_string(t));
         loop
             wait until dso = '1';
             t := now;
             wait until data = '0';
             t := now - t;
             check_ref(t >= warm_us * 1 us, "", "  WRONG DURATION OF WARM-UP TIME: EXPECTED AT LEAST " & to_string(warm_us) & " US, GOT " & to_string(t));
-            check_ref(t < warm_us * 2 us, "", "  WRONG DURATION OF WARM-UP TIME: EXPECTED AT MOST " & to_string(2 * warm_us) & " US, GOT " & to_string(t));
+            check_ref(t < warm_us * 2 us, "", "  WRONG DURATION OF WARM-UP TIME: EXPECTED LESS THAN " & to_string(2 * warm_us) & " US, GOT " & to_string(t));
         end loop;
     end process;
 

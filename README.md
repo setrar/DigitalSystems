@@ -20,7 +20,26 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
-### For 2023-04-12
+### For 2024-04-19
+
+- Read chapters 8 to 9 of the [Free Range Factory] VHDL book
+- Read the following parts of the documentation:
+  * [Examining synthesis results]
+- Complete the DHT11 controller
+  * Block diagram
+  * State diagram
+  * VHDL coding
+  * Simulation, debugging, pass automatic evaluation
+  * Synthesis and test on the Zybo
+- Design and code the AXI4 lite wrapper for the `dht11_ctrl` controller:
+  * Block diagram
+  * State diagrams
+  * VHDL coding
+  * Simulation, debugging, pass automatic evaluation
+  * Synthesis and test on the Zybo
+- Edit the `/status2.md` file and fill the [second intermediate status check-list]
+
+### For 2024-04-12
 
 - Read chapters 6 to 7 of the [Free Range Factory] VHDL book
 - Read the following parts of the documentation:
