@@ -270,7 +270,7 @@ git branch
 If the leading star (`*`) is on front of your personal branch (like above), you are on your personal branch; else switch to your personal branch and check again:
 
 ```bash
-git checkout shelley
+git switch shelley
 ```
 
 ```escape

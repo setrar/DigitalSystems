@@ -191,7 +191,7 @@ Then, open a `bash` terminal and type the following commands.
 ```bash
 git clone git@gitlab.eurecom.fr:renaud.pacalet/ds.git ~/Documents/ds
 cd ~/Documents/ds
-git checkout shelley
+git switch shelley
 git pull
 git merge --no-edit origin/master
 git config user.name shelley
