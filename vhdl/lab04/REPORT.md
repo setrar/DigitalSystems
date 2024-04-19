@@ -14,10 +14,10 @@ ghdl -a --std=08 --work=common "$ds/vhdl/common/rnd_pkg.vhd"
 - [ ] Analyzing (can also use -a parameter)
 
 ```
-ghdl analyze --std=08 $ds/vhdl/lab02/sr.vhd &&
-                      $ds/vhdl/lab03/timer.vhd &&
-                      $ds/vhdl/lab04/lb.vhd &&
-                      $ds/vhdl/lab04/lb_sim.vhd
+ghdl analyze --std=08 $ds/vhdl/lab02/sr.vhd \
+                      $ds/vhdl/lab03/timer.vhd \
+                      $ds/vhdl/lab04/lb.vhd \
+                      $ds/vhdl/lab04/lb_sim.vhd 
 ```
 
 - [ ]  Running (can also use -r parameter)
