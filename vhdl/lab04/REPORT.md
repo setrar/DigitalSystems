@@ -8,7 +8,7 @@
 
 ```
 cd "$sim"
-ghdl -a --std=08 --work=common "$ds/vhdl/common/rnd_pkg.vhd"
+ghdl analyze --std=08 --work=common "$ds/vhdl/common/rnd_pkg.vhd"
 ```
 
 - [ ] Analyzing (can also use -a parameter)
