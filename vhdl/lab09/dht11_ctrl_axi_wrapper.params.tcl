@@ -28,15 +28,16 @@ array set dus {
 
 # list of external ports: NAME { PIN IO_STANDARD }
 array set ios {
-    data   {}
-    led[0] {}
-    led[1] {}
-    led[2] {}
-    led[3] {}
+    data   { V12 LVCMOS33 }
+    led[0] { M14 LVCMOS33 }
+    led[1] { M15 LVCMOS33 }
+    led[2] { G14 LVCMOS33 }
+    led[3] { D18 LVCMOS33 }
 }
 
 # other relevant parameters
-set start_us XXX
-set warm_us XXX
+set start_us 18000
+set warm_us 1000000
 
 # vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=0:
+
