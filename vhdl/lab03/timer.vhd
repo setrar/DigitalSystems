@@ -16,39 +16,29 @@ entity timer is
 end entity timer;
 
 architecture rtl of timer is
-    -- Calculate number of clock cycles per microsecond
-    constant cycles_per_us: natural := f_mhz; -- Since 1 MHz = 1 Microsecond per cycle
-    -- Calculate total number of cycles for max_us duration
-    constant total_cycles: natural := f_mhz * max_us;
-    signal cycle_count: natural := 0; -- Count cycles
-    signal us_count: natural range 0 to max_us := 0; -- Microsecond counter
+    -- Constraining integer ranges is important: out of range errors can be
+    -- raised during simulation (easier debugging) and logic synthesizers infer
+    -- less hardware (smaller, faster, more power efficient results).
+    signal cnt: natural range 0 to f_mhz - 1;
+
 begin
+    -- The synchronous process is a straightforward VHDL translation of the
+    -- natural language specification.
     process(clk)
     begin
         if rising_edge(clk) then
-            if sresetn = '0' then
-                -- Reset logic
-                cycle_count <= 0;
-                us_count <= 0;
-            elsif tz = '1' then
-                -- Increment cycle count
-                if cycle_count < total_cycles then
-                    cycle_count <= cycle_count + 1;
-                    -- Increment microsecond count after every cycles_per_us cycles
-                    if cycle_count mod cycles_per_us = 0 then
-                        if us_count < max_us then
-                            us_count <= us_count + 1;
-                        end if;
-                    end if;
+            if sresetn = '0' or tz = '1' then
+                cnt <= 0;
+                t   <= 0;
+            elsif t /= max_us then
+                if cnt = f_mhz - 1 then
+                    cnt <= 0;
+                    t   <= t + 1;
+                else
+                    cnt <= cnt + 1;
                 end if;
-            else
-                -- Optionally reset counters if tz is not active
-                cycle_count <= 0;
-                us_count <= 0;
             end if;
         end if;
     end process;
-
-    t <= us_count; -- Output the microseconds count
 end architecture rtl;
 
