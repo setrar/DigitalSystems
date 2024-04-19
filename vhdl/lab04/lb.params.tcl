@@ -33,6 +33,7 @@ array set ios {
 }
 
 # other parameters
+set f_mhz      125
 set delay_us 50000
 
 # vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=0:

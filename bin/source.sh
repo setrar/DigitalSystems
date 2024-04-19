@@ -5,4 +5,4 @@ export PATH=$PATH:/packages/LabSoC/Xilinx/bin
 
 export ds=~/Developer/ds
 export sim=/tmp/$USER/ds/ghdl
-export syn=/tmp/$USER/ds/ct
+export syn=/tmp/$USER/ds/syn
