@@ -20,16 +20,16 @@ Labs of DigitalSystems course
 
 ## Groups for the final project
 
-Algorithm   Rounds  Name 1         Name 2
------------ ------- -------------- --------------
-ARIA        12      André          Thomas
-CAMELLIA    18      Ahmed          Mohamed Radhi
-LEA         24      Guillaume      Pierre
-NOEKEON     16      Mariem         Tanguy
-SERPENT     32      Andrey         Florian
-SEED        16      Efrén          Jim
-SMS4        32      Brice          Maxime
-ZODIAC      16      Lili           Mohamed Aziz
+| Algorithm   | Rounds  | Name 1         | Name 2         |
+| ----------- | ------- | -------------- | -------------- |
+| ARIA        | 12      | André          | Thomas         |
+| CAMELLIA    | 18      | Ahmed          | Mohamed Radhi  |
+| LEA         | 24      | Guillaume      | Pierre         |
+| NOEKEON     | 16      | Mariem         | Tanguy         |
+| SERPENT     | 32      | Andrey         | Florian        |
+| SEED        | 16      | Efrén          | Jim            |
+| SMS4        | 32      | Brice          | Maxime         |
+| ZODIAC      | 16      | Lili           | Mohamed Aziz   |
 
 ## Homeworks
 
