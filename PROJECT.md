@@ -3,8 +3,8 @@
 SMS4 32 - 
 
 `Group6` with 
-    - Maxime Lance
-    - Brice Robert
+- Maxime Lance
+- Brice Robert
 
 SMS4 is a 32-round block cipher with a 128-bit block size and a 128-bit user key.
 
