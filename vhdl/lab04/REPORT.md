@@ -44,5 +44,15 @@ GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
 <img src=images/lb_sim.png width='' height='' > </img>
 
 
+- [ ] Synthesizing
+
+```
+ds=/homes/$USER/ds
+syn=/tmp/$USER/ds/syn
+mkdir -p "$syn"
+cd "$syn"
+vivado -mode batch -source "$ds/vhdl/lab04/lb.syn.tcl" -notrace
+```
+
 # References
 
