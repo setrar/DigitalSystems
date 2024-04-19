@@ -15,52 +15,59 @@ entity lb is
 end entity lb;
 
 architecture rtl of lb is
-    -- Signal declaration
-    signal sresetn     : std_ulogic_vector(1 downto 0);
-    signal timer       : unsigned(19 downto 0); -- 20-bit timer for the maximum delay
-    signal timer_tick  : std_ulogic;
-    signal shift_reg   : std_ulogic_vector(3 downto 0);
+
+    -- parallel output of reset resynchronizer
+    signal sync:          std_ulogic_vector(1 downto 0);
+    -- synchronous active low reset
+    alias  sresetn:       std_ulogic is sync(1);
+    -- timer output
+    signal t:             natural range 0 to delay_us;
+    -- set to '1' when timer reaches delay_us
+    signal t_eq_delay_us: std_ulogic;
+    -- serial input of 4-bits shift register
+    signal sr4_in:        std_ulogic;
 
 begin
 
-    -- 2-bit shift register for resynchronizing areset
-    process(clk,areset)
-    begin
-        if rising_edge(clk) then
-            sresetn <= sresetn(0 downto 0) & not areset; -- Resynchronize and invert areset
-        end if;
-    end process;
+    -- 2-stages resynchronizer for reset
+    sr2: entity work.sr(rtl)
+    generic map(n => 2)
+    port map(
+        clk     => clk,
+        sresetn => '1',
+        shift   => '1',
+        din     => not areset,
+        dout    => sync
+    );
 
-    -- Timer process
-    process(clk)
-    begin
-        if rising_edge(clk) then
-            if sresetn(1) = '0' then
-                timer <= (others => '0'); -- Reset the timer when sresetn is active low
-            elsif timer = delay_us * f_mhz - 1 then
-                timer <= (others => '0'); -- Reset timer when it reaches the set delay
-                timer_tick <= '1';
-            else
-                timer <= timer + 1;
-                timer_tick <= '0';
-            end if;
-        end if;
-    end process;
+    -- timer
+    timer0: entity work.timer(rtl)
+    generic map(
+        f_mhz  => f_mhz,
+        max_us => delay_us
+    )
+    port map(
+        clk     => clk,
+        sresetn => sresetn,
+        tz      => t_eq_delay_us,
+        t       => t
+    );
 
-    -- 4-bit shift register logic
-    process(clk)
-    begin
-        if rising_edge(clk) then
-            if sresetn(1) = '0' then
-                shift_reg <= (others => '0'); -- Clear the shift register on reset
-                shift_reg(0) <= '1'; -- Initialize the first bit after reset
-            elsif timer_tick = '1' then
-                shift_reg <= shift_reg(2 downto 0) & shift_reg(3); -- Rotate the register
-            end if;
-        end if;
-    end process;
+    -- delay_us detector
+    t_eq_delay_us <= '1' when t = delay_us else '0';
 
-    -- Output assignment
-    led <= shift_reg;
+    -- 2-inputs multiplexer
+    sr4_in <= led(3) when or led = '1' else '1';
+
+    -- 4-bits shift register
+    sr4: entity work.sr(rtl)
+    generic map(n => 4)
+    port map(
+        clk     => clk,
+        sresetn => sresetn,
+        shift   => t_eq_delay_us,
+        din     => sr4_in,
+        dout    => led
+    );
 
 end architecture rtl;

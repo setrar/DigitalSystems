@@ -11,6 +11,11 @@ cd "$sim"
 ghdl -a --std=08 --work=common "$ds/vhdl/common/rnd_pkg.vhd"
 ```
 
+```
+ghdl analyse --std=08 "$ds/vhdl/lab02/sr.vhd" "$ds/vhdl/lab02/sr_sim.vhd"
+ghdl analyse --std=08 "$ds/vhdl/lab03/timer.vhd" "$ds/vhdl/lab03/timer_sim.vhd"
+```
+
 - [ ] Synthesizing
 
 * Analyzing (can also use -a parameter)
