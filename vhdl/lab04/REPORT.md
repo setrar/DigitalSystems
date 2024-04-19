@@ -25,7 +25,7 @@ ghdl analyze --std=08 $ds/vhdl/lab02/sr.vhd \
 ```
 ghdl run --std=08 lb_sim --vcd=lb_sim.vcd
 ```
-> simulation finished @2019ns
+> simulation finished @102642857564fs
 
 - [ ] Visualizing
 
@@ -34,10 +34,11 @@ gtkwave lb_sim.vcd
 ```
 > Returns
 ```powershell
-GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
+
+GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
 
 [0] start time.
-[2018000000] end time.
+[102571429392] end time.
 ```
 
 <img src=images/lb_sim.png width='' height='' > </img>
