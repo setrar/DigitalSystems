@@ -20,6 +20,17 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
+### For 2024-04-26
+
+- Read chapters 10 to 11 of the [Free Range Factory] VHDL book
+- Complete the AXI4 lite wrapper for the `dht11_ctrl` controller:
+  * Block diagram
+  * State diagrams
+  * VHDL coding
+  * Simulation, debugging, pass automatic evaluation
+  * Synthesis and test on the Zybo
+- Read again the [AXI4 lite protocol specification] and imagine how a hardware accelerator could act as a master to directly access the memory of a computer system.
+
 ### For 2024-04-19
 
 - Read chapters 8 to 9 of the [Free Range Factory] VHDL book
