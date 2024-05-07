@@ -46,7 +46,7 @@ Labs of DigitalSystems course
    * Test on the Zybo board
    * Write your report
 - Complete the `crypto_pkg` package for your crypto algorithm and validate it against reliable test vectors.
-- Read again the specifications of the lite version of the [AXI4 lite protocol] and imagine how a hardware accelerator could act as a master to directly access the memory of a computer system.
+- Read again the of [AXI4 lite protocol specification] and imagine how a hardware accelerator could act as a master to directly access the memory of a computer system.
 - Edit the `/status3.md` file and fill the [third intermediate status check-list]
 
 ### For 2024-04-26
