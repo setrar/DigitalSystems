@@ -33,6 +33,22 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
+### For 2023-05-17
+
+- Finish reading the [Free Range Factory] VHDL book
+- Complete the lab on the [Linux device driver for the DHT11 controller](vhdl/lab10)
+   * Generate and compile the device tree
+   * Configure and compile the Linux kernel
+   * Understand and adapt the provided Linux driver and example software application
+   * Compile the Linux driver and the example software application.
+     I did not find time to fix the compilation of the Linux driver on EURECOM computers.
+     If there are errors when compiling the driver please use the provided binary: `/packages/LabSoC/ds-files/dht11_driver.ko`.
+   * Test on the Zybo board
+   * Write your report
+- Complete the `crypto_pkg` package for your crypto algorithm and validate it against reliable test vectors.
+- Read again the specifications of the lite version of the [AXI4 lite protocol] and imagine how a hardware accelerator could act as a master to directly access the memory of a computer system.
+- Edit the `/status3.md` file and fill the [third intermediate status check-list]
+
 ### For 2024-04-26
 
 - Read chapters 10 to 11 of the [Free Range Factory] VHDL book

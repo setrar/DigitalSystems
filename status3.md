@@ -24,8 +24,10 @@ Please fill the check list and add-commit push it. If you are late on some tasks
    * [ ] Configure and compile the Linux kernel
    * [ ] Understand and adapt the provided Linux driver and example software application
    * [ ] Compile the Linux driver and the example software application
+         If there are errors when compiling the driver on EURECOM computers please use the provided binary: `/packages/LabSoC/ds-files/dht11_driver.ko`.
    * [ ] Test on the Zybo board
    * [ ] Write your report
+* [ ] Complete the `crypto_pkg` package for your crypto algorithm and validate it against reliable test vectors.
 
 [Free Range Factory]: doc/data/free_range_vhdl.pdf
 
