@@ -72,3 +72,28 @@ Description:	Ubuntu 23.04
 Release:	23.04
 Codename:	lunar
 ```
+
+```
+sw_vers
+```
+> Returns:
+```powershell
+ProductName:		macOS
+ProductVersion:		14.4.1
+BuildVersion:		23E224
+```
+
+```
+ghdl --version
+```
+> Returns
+```powershell
+GHDL 4.0.0 (3.0.0.r912.gc0e7e1483) [Dunoon edition]
+ Compiled with GNAT Version: Community 2019 (20190517-83)
+ static elaboration, mcode code generator
+Written by Tristan Gingold.
+
+Copyright (C) 2003 - 2024 Tristan Gingold.
+GHDL is free software, covered by the GNU General Public License.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
