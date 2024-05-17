@@ -44,7 +44,7 @@ GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
 
 # References
 
-- [ ] Eurecom Campus
+- [ ] Eurecom Campus: Intel Linux
 
 ```
 ghdl --version
@@ -73,15 +73,7 @@ Release:	23.04
 Codename:	lunar
 ```
 
-```
-sw_vers
-```
-> Returns:
-```powershell
-ProductName:		macOS
-ProductVersion:		14.4.1
-BuildVersion:		23E224
-```
+- [ ] Personal Laptop: ARM MacOS (Sonoma)
 
 ```
 ghdl --version
@@ -97,3 +89,14 @@ Copyright (C) 2003 - 2024 Tristan Gingold.
 GHDL is free software, covered by the GNU General Public License.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
+
+```
+sw_vers
+```
+> Returns:
+```powershell
+ProductName:		macOS
+ProductVersion:		14.4.1
+BuildVersion:		23E224
+```
+
