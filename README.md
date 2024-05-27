@@ -33,6 +33,22 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
+### For 2023-05-31
+
+Complete the `crypto_engine` module and do your synthesis tests:
+
+- If you want to use my synthesis scripts (`vhdl/crypto/crypto_tests.syn.tcl`, `vhdl/crypto/crypto_tests.params.tcl`) and my VHDL wrapper (`vhdl/crypto/crypto_tests.vhd`), and they are not in the master branch of your repository, please let me know, I'll add them
+- Edit `vhdl/crypto/crypto_tests.params.tcl` and, if needed, adapt the list of source files (array variable `dus`)
+- Edit `vhdl/crypto/crypto_tests.params.tcl` and set a target clock frequency (variable `f_mhz`)
+- Synthesize, fix the errors if your VHDL code is not synthesizable, check that the `crypto_engine` module has no unwanted latches, has the right number of bits of register, and consumes a sensible amount of other resources
+- Synthesize for various target clock frequencies to find the maximum speed you can reach; for each attempt note the target clock frequency, the achieved clock frequency, and the resources usage
+- Redo the same for increasing number of rounds per clock cycle
+- Based on the results make a decision about how many rounds per clock cycle is the best for your algorithm
+- Modify your `crypto_engine` for your selected number of rounds per clock cycle
+- Design a simple simulation environment for your `crypto_engine`, with the same test vectors you used to validate `crypto_pkg`
+- Validate your `crypto_engine` with simulations
+- Start writing your final report with the results of your synthesis experiments and the explanations about your final decision
+
 ### For 2023-05-17
 
 - Finish reading the [Free Range Factory] VHDL book
