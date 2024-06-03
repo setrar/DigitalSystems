@@ -33,6 +33,33 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
+### For 2023-06-07
+
+- Complete the control AXI interface that contains all interface registers (see the specifications on the top `README.md` of your project git repository).
+  * Use a separate entity/architecture pair that you will put in a separate source file in `vhdl/crypto`.
+  * Be careful, some interface registers have special behavior (read-only bits, side effects, etc.)
+  * Add a 128 bits register after the `STATUS` register and store the computed ciphertext block in it when the `done` output of your `crypto_engine` indicates that it is available.
+    This way the computed ciphertext blocks can be read from the software that runs on the ARM processor.
+- Assemble the control AXI interface and your `crypto_engine` in the `vhdl/crypto/crypto.vhd` source file.
+  * Define the interface between the 2 blocks.
+  * Use the 4 bits inputs `sw` (user slide switches), `btn` (user press-buttons) and the 4 bits output `led` of `crypto` as you wish.
+    For instance you could use a LED to indicate if the crypto engine is busy or not...
+    Do not use them if you don't need them.
+  * Ignore the `irq` output of `crypto` for now (assign it to `'0`'); if we have time it will become an interrupt request line and we will use it to signal the end of a message encryption to the CPU.
+  * Ignore the `m0_axi` AXI interface of `crypto` for now (assign its outputs to `'0'` and don't use its inputs); later it will become the interface with the memory.
+  * Connect the ports of the `s0_axi` AXI interface to the instance of the entity of your control AXI interface.
+- Use the synthesis scripts (`vhdl/crypto/crypto.syn.tcl`, `vhdl/crypto/crypto.params.tcl`) to synthesize `crypto`.
+  I just added them in the master branch of your project git repository.
+  * Edit `vhdl/crypto/crypto.params.tcl` and, if needed, adapt the list of source files (array variable `dus`).
+  * Edit `vhdl/crypto/crypto.params.tcl` and set the target clock frequency (variable `f_mhz`) that you selected after your synthesis experiments with `crypto_tests`.
+- Synthesize, fix the errors if your VHDL code is not synthesizable, check that there are no unwanted latches, that your 2 modules have the right number of bits of register, and consume a sensible amount of other resources.
+- Map your design in the Zynq core of the Zybo and try to use your crypto hardware accelerator:
+  * With the `devmem` utility store a 128 bits secret key in register `K` (address `0x40000000` to `0x4000000f`) and a 128 bits block to encrypt in register `ICB` (address `0x40000010` to `0x4000001f`).
+  * Launch the encryption by writing any value in the `STATUS` register (address `0x40000030`).
+  * Read the 128 bits encrypted block from the new register you added (address `0x40000034` to `0x40000043`) and check that it is correct.
+  * Experiment with other keys or input blocks, play with the `CTRL` and `STATUS` registers...
+- Continue writing your final report.
+
 ### For 2023-05-31
 
 Complete the `crypto_engine` module and do your synthesis tests:
