@@ -23,8 +23,8 @@ Please fill the check list and add-commit push it. If you are late on some tasks
    * [X] Chapter 3
    * [X] Chapter 4
    * [X] Chapter 5
-   * [ ] Section 10.4
-   * [ ] Section 10.8
+   * [ ] Section 10.4 -- I can't find these section in Chapter 10
+   * [ ] Section 10.8 -- I can't find these section in Chapter 10
 * [ ] Read the following parts of the documentation:
    * [ ] [Digital hardware design using VHDL in a nutshell]
    * [ ] [Getting started with VHDL]
