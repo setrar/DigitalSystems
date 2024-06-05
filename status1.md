@@ -18,13 +18,13 @@ Please fill the check list and add-commit push it. If you are late on some tasks
 * [x] Learn enough of `git` (e.g. by reading the [ProGit book]) for our needs in the labs
 * [x] Learn enough of Markdown (e.g. on [Daring Fireball] or the [Markdown tutorial]) for our needs in the labs
 * [ ] Read the following parts of the [Free Range Factory] book:
-   * [ ] Chapter 1
-   * [ ] Chapter 2
-   * [ ] Chapter 3
-   * [ ] Chapter 4
-   * [ ] Chapter 5
-   * [ ] Section 10.4
-   * [ ] Section 10.8
+   * [x] Chapter 1
+   * [X] Chapter 2
+   * [X] Chapter 3
+   * [X] Chapter 4
+   * [X] Chapter 5
+   * [ ] Section 10.4 -- I can't find these section in Chapter 10
+   * [ ] Section 10.8 -- I can't find these section in Chapter 10
 * [ ] Read the following parts of the documentation:
    * [ ] [Digital hardware design using VHDL in a nutshell]
    * [ ] [Getting started with VHDL]
