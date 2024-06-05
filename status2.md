@@ -14,10 +14,10 @@ Second intermediate status check-list
 Please fill the check list and add-commit push it. If you are late on some tasks, please try to catch up.
 
 * [ ] Read the following parts of the [Free Range Factory] book:
-   * [ ] Chapter 6
-   * [ ] Chapter 7
-   * [ ] Chapter 8
-   * [ ] Chapter 9
+   * [x] Chapter 6
+   * [x] Chapter 7
+   * [x] Chapter 8
+   * [x] Chapter 9
 * [ ] Read the following parts of the documentation:
    * [ ] [Unconstrained types]
    * [ ] [Recursivity]

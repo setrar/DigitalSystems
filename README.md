@@ -18,7 +18,90 @@ Labs of DigitalSystems course
 
 ---
 
+## Groups for the final project
+
+| Algorithm   | Rounds  | Name 1         | Name 2         |
+| ----------- | ------- | -------------- | -------------- |
+| ARIA        | 12      | André          | Thomas         |
+| CAMELLIA    | 18      | Ahmed          | Mohamed Radhi  |
+| LEA         | 24      | Guillaume      | Pierre         |
+| NOEKEON     | 16      | Mariem         | Tanguy         |
+| SERPENT     | 32      | Andrey         | Florian        |
+| SEED        | 16      | Efrén          | Jim            |
+| SMS4        | 32      | Brice          | Maxime         |
+| ZODIAC      | 16      | Lili           | Mohamed Aziz   |
+
 ## Homeworks
+
+### For 2023-06-07
+
+- Complete the control AXI interface that contains all interface registers (see the specifications on the top `README.md` of your project git repository).
+  * Use a separate entity/architecture pair that you will put in a separate source file in `vhdl/crypto`.
+  * Be careful, some interface registers have special behavior (read-only bits, side effects, etc.)
+  * Add a 128 bits register after the `STATUS` register and store the computed ciphertext block in it when the `done` output of your `crypto_engine` indicates that it is available.
+    This way the computed ciphertext blocks can be read from the software that runs on the ARM processor.
+- Assemble the control AXI interface and your `crypto_engine` in the `vhdl/crypto/crypto.vhd` source file.
+  * Define the interface between the 2 blocks.
+  * Use the 4 bits inputs `sw` (user slide switches), `btn` (user press-buttons) and the 4 bits output `led` of `crypto` as you wish.
+    For instance you could use a LED to indicate if the crypto engine is busy or not...
+    Do not use them if you don't need them.
+  * Ignore the `irq` output of `crypto` for now (assign it to `'0`'); if we have time it will become an interrupt request line and we will use it to signal the end of a message encryption to the CPU.
+  * Ignore the `m0_axi` AXI interface of `crypto` for now (assign its outputs to `'0'` and don't use its inputs); later it will become the interface with the memory.
+  * Connect the ports of the `s0_axi` AXI interface to the instance of the entity of your control AXI interface.
+- Use the synthesis scripts (`vhdl/crypto/crypto.syn.tcl`, `vhdl/crypto/crypto.params.tcl`) to synthesize `crypto`.
+  I just added them in the master branch of your project git repository.
+  * Edit `vhdl/crypto/crypto.params.tcl` and, if needed, adapt the list of source files (array variable `dus`).
+  * Edit `vhdl/crypto/crypto.params.tcl` and set the target clock frequency (variable `f_mhz`) that you selected after your synthesis experiments with `crypto_tests`.
+- Synthesize, fix the errors if your VHDL code is not synthesizable, check that there are no unwanted latches, that your 2 modules have the right number of bits of register, and consume a sensible amount of other resources.
+- Map your design in the Zynq core of the Zybo and try to use your crypto hardware accelerator:
+  * With the `devmem` utility store a 128 bits secret key in register `K` (address `0x40000000` to `0x4000000f`) and a 128 bits block to encrypt in register `ICB` (address `0x40000010` to `0x4000001f`).
+  * Launch the encryption by writing any value in the `STATUS` register (address `0x40000030`).
+  * Read the 128 bits encrypted block from the new register you added (address `0x40000034` to `0x40000043`) and check that it is correct.
+  * Experiment with other keys or input blocks, play with the `CTRL` and `STATUS` registers...
+- Continue writing your final report.
+
+### For 2023-05-31
+
+Complete the `crypto_engine` module and do your synthesis tests:
+
+- If you want to use my synthesis scripts (`vhdl/crypto/crypto_tests.syn.tcl`, `vhdl/crypto/crypto_tests.params.tcl`) and my VHDL wrapper (`vhdl/crypto/crypto_tests.vhd`), and they are not in the master branch of your repository, please let me know, I'll add them
+- Edit `vhdl/crypto/crypto_tests.params.tcl` and, if needed, adapt the list of source files (array variable `dus`)
+- Edit `vhdl/crypto/crypto_tests.params.tcl` and set a target clock frequency (variable `f_mhz`)
+- Synthesize, fix the errors if your VHDL code is not synthesizable, check that the `crypto_engine` module has no unwanted latches, has the right number of bits of register, and consumes a sensible amount of other resources
+- Synthesize for various target clock frequencies to find the maximum speed you can reach; for each attempt note the target clock frequency, the achieved clock frequency, and the resources usage
+- Redo the same for increasing number of rounds per clock cycle
+- Based on the results make a decision about how many rounds per clock cycle is the best for your algorithm
+- Modify your `crypto_engine` for your selected number of rounds per clock cycle
+- Design a simple simulation environment for your `crypto_engine`, with the same test vectors you used to validate `crypto_pkg`
+- Validate your `crypto_engine` with simulations
+- Start writing your final report with the results of your synthesis experiments and the explanations about your final decision
+
+### For 2023-05-17
+
+- Finish reading the [Free Range Factory] VHDL book
+- Complete the lab on the [Linux device driver for the DHT11 controller](vhdl/lab10)
+   * Generate and compile the device tree
+   * Configure and compile the Linux kernel
+   * Understand and adapt the provided Linux driver and example software application
+   * Compile the Linux driver and the example software application.
+     I did not find time to fix the compilation of the Linux driver on EURECOM computers.
+     If there are errors when compiling the driver please use the provided binary: `/packages/LabSoC/ds-files/dht11_driver.ko`.
+   * Test on the Zybo board
+   * Write your report
+- Complete the `crypto_pkg` package for your crypto algorithm and validate it against reliable test vectors.
+- Read again the of [AXI4 lite protocol specification] and imagine how a hardware accelerator could act as a master to directly access the memory of a computer system.
+- Edit the `/status3.md` file and fill the [third intermediate status check-list]
+
+### For 2024-04-26
+
+- Read chapters 10 to 11 of the [Free Range Factory] VHDL book
+- Complete the AXI4 lite wrapper for the `dht11_ctrl` controller:
+  * Block diagram
+  * State diagrams
+  * VHDL coding
+  * Simulation, debugging, pass automatic evaluation
+  * Synthesis and test on the Zybo
+- Read again the [AXI4 lite protocol specification] and imagine how a hardware accelerator could act as a master to directly access the memory of a computer system.
 
 ### For 2024-04-19
 
@@ -270,7 +353,7 @@ git branch
 If the leading star (`*`) is on front of your personal branch (like above), you are on your personal branch; else switch to your personal branch and check again:
 
 ```bash
-git checkout shelley
+git switch shelley
 ```
 
 ```escape

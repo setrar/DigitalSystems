@@ -11,13 +11,13 @@
 
 axi_memory-lib		:= common
 axi_memory_sim-lib	:= common
-axi_pkg-lib			:= common
+axi_pkg-lib		:= common
 axi_sim_pkg-lib		:= common
-dht11-lib			:= common
-fifo-lib			:= common
+dht11-lib		:= common
+fifo-lib		:= common
 fifo_pkg-lib		:= common
 fifo_sim-lib		:= common
-rnd_pkg-lib			:= common
+rnd_pkg-lib		:= common
 soft_fifo_pkg-lib	:= common
 utils_pkg-lib		:= common
 
@@ -25,6 +25,6 @@ axi_memory: axi_pkg
 axi_memory_sim: utils_pkg axi_pkg axi_memory
 axi_sim_pkg: axi_pkg
 dht11: rnd_pkg utils_pkg
-fifo_sim: rnd_pkg utils_pkg fifo_pkg
+fifo_sim: rnd_pkg utils_pkg fifo_pkg fifo
 
 # vim: set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab textwidth=0:
