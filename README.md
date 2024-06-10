@@ -33,7 +33,32 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
-### For 2023-06-07
+### For 2024-06-14
+
+- Complete the design, synthesis and tests on the Zybo board of the "simple" `crypto` version without the AXI memory interface:
+
+  ![The "simple" version of `crypto`](images/crypto_simple_in_environment-fig.png)
+
+  Of course, if it helps, you can modify the interface between the AXI control interface and your crypto engine.
+  But the overall specification shall be the same as for the complete design, except that:
+  * it is only the `ICB` that the crypto engine encrypts,
+  * the result is written back in the `C` 128 bits register that you will add after the `STATUS` register in the AXI control interface.
+
+- Once the simple version is complete, synthesized and tested on the Zybo, git add-commit-push.
+  In order to be able to restore this version easily, also add a tag named `simple` and push it:
+
+    ```
+    git tag -a -m 'simple version of crypto' simple
+    git push origin tag simple
+    ```
+
+- Start designing the AXI memory interface as a separate entity/architecture pair.
+  * Its AXI interface is the same as the `m0_axi` part of `vhdl/crypto/crypto.vhd`.
+  * It is your responsibility to specify its other interfaces (with the crypto engine and with the AXI control interface), according to your specific needs and constraints.
+
+- Continue writing your final report.
+
+### For 2024-06-07
 
 - Complete the control AXI interface that contains all interface registers (see the specifications on the top `README.md` of your project git repository).
   * Use a separate entity/architecture pair that you will put in a separate source file in `vhdl/crypto`.
@@ -60,7 +85,7 @@ Labs of DigitalSystems course
   * Experiment with other keys or input blocks, play with the `CTRL` and `STATUS` registers...
 - Continue writing your final report.
 
-### For 2023-05-31
+### For 2024-05-31
 
 Complete the `crypto_engine` module and do your synthesis tests:
 
@@ -76,7 +101,7 @@ Complete the `crypto_engine` module and do your synthesis tests:
 - Validate your `crypto_engine` with simulations
 - Start writing your final report with the results of your synthesis experiments and the explanations about your final decision
 
-### For 2023-05-17
+### For 2024-05-17
 
 - Finish reading the [Free Range Factory] VHDL book
 - Complete the lab on the [Linux device driver for the DHT11 controller](vhdl/lab10)
