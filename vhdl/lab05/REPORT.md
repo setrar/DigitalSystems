@@ -45,7 +45,7 @@ GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
 [2018000000] end time.
 ```
 
-<img src=images/sr_sim.png width='' height='' > </img>
+<img src=images/edge_sim.png width='' height='' > </img>
 
 
 # References
