@@ -26,6 +26,12 @@ ghdl run --std=08 edge_sim --vcd=edge_sim.vcd
 ```
 > simulation finished @2019ns
 
+### Using Makefile
+
+```
+make edge SIM=ghdl
+```
+
 - [ ] Visualizing
 
 ```
