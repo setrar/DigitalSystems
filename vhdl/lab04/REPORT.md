@@ -44,15 +44,113 @@ GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
 <img src=images/lb_sim.png width='' height='' > </img>
 
 
-- [ ] Synthesizing
+### Synthesizing
+
+- [ ] Making sure the `lb.syn.tcl` file is update accordingly
 
 ```
-ds=/homes/$USER/ds
+$ds/vhdl/lab04/lb.syn.tcl
+```
+
+- [ ] Prepare the `synth` environment
+
+```
+ds=/homes/$USER/Developer/ds
 syn=/tmp/$USER/ds/syn
 mkdir -p "$syn"
+```
+
+- [ ] Synthesize using the `lab` equipment
+
+- Allowing to make sure that all `binaries` and appropriate `licences` are available
+
+```
 cd "$syn"
 vivado -mode batch -source "$ds/vhdl/lab04/lb.syn.tcl" -notrace
 ```
 
+- [ ] Copy the first (fsbl.elf) and second (u-boot.elf) stage software boot loaders
+
+```
+cd $syn
+cp /packages/LabSoC/ds-files/fsbl.elf .
+cp /packages/LabSoC/ds-files/u-boot.elf .
+```
+
+- [ ] Use `bootgen` utility and the `$ds/vhdl/lab01/boot.bif` provided configuration script:
+
+```
+bootgen -w -image $ds/vhdl/lab04/boot.bif -o boot.bin
+```
+
 # References
 
+- [ ] Synthesizing though `SSH` gateway
+
+- add the `ssh-key` to the `ssh-agent` list
+
+```
+ssh-add ~/.ssh/me_myself@eurecom.fr
+```
+> Returns
+```powershell
+Identity added: /Users/valiha/.ssh/me_myself@eurecom.fr (me_myself@saipal.eurecom.fr)
+valiha@ankarana ~ % ssh me_myself@ssh.eurecom.fr       
+(me_myself@ssh.eurecom.fr) Duo two-factor login for me_myself
+
+Enter a passcode or select one of the following options:
+
+ 1. Duo Push to +XX X XX XX X4 83
+
+Passcode or option (1-1): 1
+Success. Logging you in...
+Success. Logging you in...
+|-----------------------------------------------------------------|
+| This system is for the use of authorized users only.            |
+| Individuals using this computer system without authority, or in |
+| excess of their authority, are subject to having all of their   |
+| activities on this system monitored and recorded by system      |
+| personnel.                                                      |
+|                                                                 |
+| In the course of monitoring individuals improperly using this   |
+| system, or in the course of system maintenance, the activities  |
+| of authorized users may also be monitored.                      |
+|                                                                 |
+| Anyone using this system expressly consents to such monitoring  |
+| and is advised that if such monitoring reveals possible         |
+| evidence of criminal activity, system personnel may provide the |
+| evidence of such monitoring to law enforcement officials.       |
+|-----------------------------------------------------------------|
+
+Register this system with Red Hat Insights: insights-client --register
+Create an account or view all your systems at https://red.ht/insights-dashboard
+SSH host key: SHA256:mlRUiVNONONONONONONONONONONONONDCkJR7bu48JQ boogie.eurecom.fr (RSA)
+SSH host key: SHA256:35jGdANONONONONONONONONONNONONONONONObFm9cM boogie.eurecom.fr (ECDSA)
+SSH host key: SHA256:QINONONONONONONONONONNOeBrNs1/hqOR0plP+xhng boogie.eurecom.fr (ED25519)
+
+VMware, Inc. VMware Virtual Platform [VMware7,1]
+
+Last login: Fri Mar 29 19:55:00 2024 from 10.0.0.106
+```
+
+- [ ] connect to any Ubuntu Boxes having `vivavo` installed on through the jumphost `boogie.eurecom.fr`
+
+```
+ssh me_myself@saipal.eurecom.fr
+```
+> Returns
+```powershell
+Welcome to Ubuntu 23.04 (GNU/Linux 6.2.0-39-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+6 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+
+1 updates could not be installed automatically. For more details,
+see /var/log/unattended-upgrades/unattended-upgrades.log
+Last login: Thu Jun  6 11:54:01 2024 from 10.10.20.74
+```
