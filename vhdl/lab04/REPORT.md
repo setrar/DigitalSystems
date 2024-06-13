@@ -103,6 +103,9 @@ cp "$syn/boot.bin" "$SDCARD"
 sync
 ```
 
+##### Running
+
+<img src=images/lab04.png width='' height='' ></img>
 
 
 # References
