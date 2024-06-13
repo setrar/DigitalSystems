@@ -102,7 +102,15 @@ SSH host key: SHA256:QINONONONONONONONONONNOeBrNs1/hqOR0plP+xhng boogie.eurecom.
 VMware, Inc. VMware Virtual Platform [VMware7,1]
 
 Last login: Fri Mar 29 19:55:00 2024 from 10.0.0.106
-0-boogie.eurecom.fr$ ssh me_myself@saipal.eurecom.fr
+```
+
+- [ ] connect to any Ubuntu Boxes having `vivavo` installed on through the jumphost `boogie.eurecom.fr`
+
+```
+ssh me_myself@saipal.eurecom.fr
+```
+> Returns
+```powershell
 Welcome to Ubuntu 23.04 (GNU/Linux 6.2.0-39-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
