@@ -105,9 +105,9 @@ sync
 
 ##### Running
 
-| | |
+| $\sigma$ | $\lambda$ |
 |-|-|
-| <img src=images/lab04.png width='' height='' ></img> | <img src=images/lab04.png width='' height='' ></img> |
+| <img src=images/lab04.png width='' height='' ></img> | <img src=images/lab04_closeup.png width='' height='' ></img> |
 
 
 # References
