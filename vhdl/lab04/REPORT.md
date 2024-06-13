@@ -181,3 +181,98 @@ To see these additional updates run: apt list --upgradable
 see /var/log/unattended-upgrades/unattended-upgrades.log
 Last login: Thu Jun  6 11:54:01 2024 from 10.10.20.74
 ```
+
+##### Remote copy 
+
+- [ ] Prepare the files to be copied
+
+```
+mkdir scopy
+cp /packages/LabSoC/ds-files/*mage* scopy
+cp /packages/LabSoC/ds-files/devicetree.dtb scopy
+cp "$syn/boot.bin" scopy
+```
+
+- [ ] Compress the files
+
+```
+tar zcvf scopy.tar.gz scopy
+```
+> Returns
+```
+scopy/
+scopy/devicetree.dtb
+scopy/uramdisk.image.gz
+scopy/uImage
+scopy/boot.bin
+```
+
+- [ ] Logout and return to jumphost
+
+```
+^D
+```
+> Returns
+```
+logout
+Connection to megantic.eurecom.fr closed.
+```
+
+- [ ] copy file from `megantic` to jumphost
+
+```
+scp robert@megantic.eurecom.fr:/tmp/robert/ds/syn/scopy.tar.gz .
+```
+> scopy.tar.gz                                                                                       100%   21MB 106.7MB/s   
+
+- [ ] Logout from jumphost
+
+```
+^D
+```
+> Returns
+```
+logout
+Connection to ssh.eurecom.fr closed.
+```
+
+- [ ] copy file from jumphost
+
+```
+scp robert@ssh.eurecom.fr:scopy.tar.gz .
+```
+> Returns
+```powershell
+(robert@ssh.eurecom.fr) Duo two-factor login for robert
+
+Enter a passcode or select one of the following options:
+
+ 1. Duo Push to +XX X XX XX X4 83
+
+Passcode or option (1-1): 1
+Success. Logging you in...
+scopy.tar.gz                                                                                       100%   21MB  20.2MB/s   00:01
+```
+
+- [ ] decompress files
+
+```
+tar zxvf scopy.tar.gz 
+```
+> Returns
+```powershell
+x scopy/
+x scopy/devicetree.dtb
+x scopy/uramdisk.image.gz
+x scopy/uImage
+x scopy/boot.bin
+```
+
+- [ ] Copy files to `NO NAME` MicroSD
+
+```
+cp scopy/* /Volumes/NO\ NAME
+```
+
+
+<img src=images/scopy.png width='' height='' > </img>
