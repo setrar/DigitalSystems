@@ -82,6 +82,17 @@ cp /packages/LabSoC/ds-files/u-boot.elf .
 ```
 bootgen -w -image $ds/vhdl/lab04/boot.bif -o boot.bin
 ```
+> 
+```powershell
+****** Bootgen v2023.2
+  **** Build date : Oct 11 2023-12:50:27
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+
+[INFO]   : Bootimage generated successfully
+```
+
 
 # References
 
