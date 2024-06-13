@@ -47,7 +47,7 @@ GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
 - [ ] Synthesizing
 
 ```
-ds=/homes/$USER/ds
+ds=/homes/$USER/Developer/ds
 syn=/tmp/$USER/ds/syn
 mkdir -p "$syn"
 cd "$syn"
