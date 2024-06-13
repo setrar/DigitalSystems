@@ -44,14 +44,43 @@ GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
 <img src=images/lb_sim.png width='' height='' > </img>
 
 
-- [ ] Synthesizing
+### Synthesizing
+
+- [ ] Making sure the `lb.syn.tcl` file is update accordingly
+
+```
+$ds/vhdl/lab04/lb.syn.tcl
+```
+
+- [ ] Prepare the `synth` environment
 
 ```
 ds=/homes/$USER/Developer/ds
 syn=/tmp/$USER/ds/syn
 mkdir -p "$syn"
+```
+
+- [ ] Synthesize using the `lab` equipment
+
+- Allowing to make sure that all `binaries` and appropriate `licences` are available
+
+```
 cd "$syn"
 vivado -mode batch -source "$ds/vhdl/lab04/lb.syn.tcl" -notrace
+```
+
+- [ ] Copy the first (fsbl.elf) and second (u-boot.elf) stage software boot loaders
+
+```
+cd $syn
+cp /packages/LabSoC/ds-files/fsbl.elf .
+cp /packages/LabSoC/ds-files/u-boot.elf .
+```
+
+- [ ] Use `bootgen` utility and the `$ds/vhdl/lab01/boot.bif` provided configuration script:
+
+```
+bootgen -w -image $ds/vhdl/lab04/boot.bif -o boot.bin
 ```
 
 # References
