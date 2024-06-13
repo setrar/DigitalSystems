@@ -105,7 +105,7 @@ sync
 
 ##### Running
 
-<img src=images/lab04.png width='' height='' ></img>
+<img src=images/lab04.png width='75%' height='75%' ></img>
 
 
 # References
