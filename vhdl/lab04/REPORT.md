@@ -275,4 +275,4 @@ cp scopy/* /Volumes/NO\ NAME
 ```
 
 
-<img src=images/scopy-mac.png width='75%' height='75%' > </img>
+<img src=images/scopy-mac.png width='' height='' > </img>
