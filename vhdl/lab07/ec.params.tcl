@@ -26,12 +26,12 @@ array set dus {
 # list of external ports: NAME { PIN IO_STANDARD }
 array set ios {
     clk    { L16 LVCMOS33 }
-    areset {}
-    btn    {}
-    led[0] {}
-    led[1] {}
-    led[2] {}
-    led[3] {}
+    areset { R18 LVCMOS33 }
+    btn    { Y16 LVCMOS33 }
+    led[0] { M14 LVCMOS33 }
+    led[1] { M15 LVCMOS33 }
+    led[2] { G14 LVCMOS33 }
+    led[3] { D18 LVCMOS33 }
 }
 
 # vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=0:

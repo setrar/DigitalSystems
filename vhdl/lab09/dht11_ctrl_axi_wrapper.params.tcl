@@ -40,4 +40,3 @@ set start_us 18000
 set warm_us 1000000
 
 # vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=0:
-
