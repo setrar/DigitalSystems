@@ -26,6 +26,47 @@ Labs of DigitalSystems course
 
 ## Homeworks
 
+### For 2024-06-24
+
+- Complete the design, synthesis and tests on the Zybo board of the full `crypto` version with the AXI memory interface.
+- In order to test it on the zybo board you will have to decide where to store in memory the input and output messages.
+  As large portions of the memory are already used by the running OS and applications you cannot pick base addresses randomly; altering currently used memory locations could crash the software stack.
+  Fortunately there is a 256 k-bytes memory region that is used only during the boot sequence, between addresses `0xFFFC0000` and `0xFFFFFFFF`.
+  So, for your tests, you can prepare some data to encrypt somewhere in this region, say 64 k-bytes between `0xFFFC0000` and `0xFFFCFFFF`, configure your crypto accelerator with:
+
+  * `IBA = 0xFFFC0000`
+  * `OBA = 0xFFFD0000`
+  * `MBL = 0x00010000`
+
+  and after encryption read the result between `0xFFFD0000` and `0xFFFDFFFF` to verify.
+- Finish writing your final report.
+
+Remember please that the deadline for submitting your source codes and reports is the day **before** the written exam at 23:59.
+After this deadline the git repository will become read-only and there will be no way to modify it.
+
+When you will have finished your coding and your report, add-commit-push and prepare for the final add-commit-push:
+
+- Create a new branch named `final` and switch to it: `git switch -c final`.
+- Do some cleaning; if you have files that are unfinished, like intermediate non-working versions, delete them from this branch: `git rm useless_stuff.foo`.
+  Leave only what you want to be considered for evaluation.
+- Add commit push:
+
+    ```bash
+    $ git commit -m 'final version'
+    $ git push --set-upstream origin final
+    ```
+
+- If your full version with the AXI memory interface is not complete and you want the "simple" version to be evaluated too, do the same for the "simple" version:
+  * Check out the `simple` tag to restore it: `git checkout simple`.
+  * Create a branch named `final_simple`, clean it and push it:
+
+    ```bash
+    $ git checkout simple
+    $ git switch -c final_simple
+    <cleaning>
+    $ git push --set-upstream origin final_simple
+    ```
+
 ### For 2024-06-14
 
 - Complete the design, synthesis and tests on the Zybo board of the "simple" `crypto` version without the AXI memory interface:
