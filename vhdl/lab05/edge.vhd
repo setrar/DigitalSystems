@@ -1,54 +1,49 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+-- MASTER-ONLY: DO NOT MODIFY THIS FILE
+--
+-- Copyright © Telecom Paris
+-- Copyright © Renaud Pacalet (renaud.pacalet@telecom-paris.fr)
+-- 
+-- This file must be used under the terms of the CeCILL. This source
+-- file is licensed as described in the file COPYING, which you should
+-- have received as part of this distribution. The terms are also
+-- available at:
+-- https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
+--
+
+library ieee;
+use ieee.std_logic_1164.all;
 
 entity edge is
     port(
-        clk      : in  std_ulogic;          -- Master clock
-        sresetn  : in  std_ulogic;          -- Synchronous reset, active low
-        data_in  : in  std_ulogic;          -- Data input from another clock domain
-        re       : out std_ulogic;          -- Rising edge detect signal
-        fe       : out std_ulogic           -- Falling edge detect signal
+        clk:      in  std_ulogic;
+        sresetn:  in  std_ulogic;
+        data_in:  in  std_ulogic;
+        re:       out std_ulogic;
+        fe:       out std_ulogic
     );
 end entity edge;
 
 architecture rtl of edge is
-    signal sync_reg : std_ulogic_vector(2 downto 0); -- 3-bit shift register for input synchronization
+
+    signal sync: std_ulogic_vector(2 downto 0);
+
 begin
-    -- Shift register process for resynchronizing data_in
-    process(clk)
-    begin
-        if rising_edge(clk) then
-            if sresetn = '0' then
-                sync_reg <= (others => '0'); -- Reset the shift register
-            else
-                sync_reg <= sync_reg(1 downto 0) & data_in; -- Shift left and input new data
-            end if;
-        end if;
-    end process;
 
-    -- Edge detection logic
-    process(clk)
-    begin
-        if rising_edge(clk) then
-            if sresetn = '0' then
-                re <= '0';  -- Reset the rising edge detect signal
-                fe <= '0';  -- Reset the falling edge detect signal
-            else
-                -- Detect rising edge
-                if sync_reg(1) = '0' and sync_reg(2) = '1' then
-                    re <= '1';
-                else
-                    re <= '0';
-                end if;
+    sr0: entity work.sr(rtl)
+    generic map(
+        n => 3
+    )
+    port map(
+        clk     => clk,
+        sresetn => sresetn,
+        shift   => '1',
+        din     => data_in,
+        dout    => sync
+    );
 
-                -- Detect falling edge
-                if sync_reg(1) = '1' and sync_reg(2) = '0' then
-                    fe <= '1';
-                else
-                    fe <= '0';
-                end if;
-            end if;
-        end if;
-    end process;
+    re <= sync(1) and (not sync(2));
+    fe <= (not sync(1)) and sync(2);
 
 end architecture rtl;
+
+-- vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=0:

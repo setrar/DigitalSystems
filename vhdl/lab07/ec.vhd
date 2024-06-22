@@ -1,45 +1,85 @@
+-- MASTER-ONLY: DO NOT MODIFY THIS FILE
+--
+-- Copyright © Telecom Paris
+-- Copyright © Renaud Pacalet (renaud.pacalet@telecom-paris.fr)
+-- 
+-- This file must be used under the terms of the CeCILL. This source
+-- file is licensed as described in the file COPYING, which you should
+-- have received as part of this distribution. The terms are also
+-- available at:
+-- https://cecill.info/licences/Licence_CeCILL_V2.1-en.html
+--
+
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all; -- For using unsigned arithmetic
+use ieee.numeric_std.all;
 
 entity ec is
     port(
-        clk:      in  std_ulogic;         -- Clock signal
-        areset:   in  std_ulogic;         -- Asynchronous reset, active low
-        btn:      in  std_ulogic;         -- Button signal
-        led:      out std_ulogic_vector(3 downto 0)  -- 4-bit LED output
+        clk:      in  std_ulogic;
+        areset:   in  std_ulogic;
+        btn:      in  std_ulogic;
+        led:      out std_ulogic_vector(3 downto 0)
     );
 end entity ec;
 
 architecture rtl of ec is
-    -- Internal signal declarations
-    signal shift_reg: std_ulogic_vector(1 downto 0) := (others => '0'); -- Shift register for edge detection
-    signal counter: unsigned(3 downto 0) := (others => '0'); -- 4-bit counter
+
+    -- max counter value
+    constant cmax: natural := 15;
+
+    -- parallel output of reset resynchronizer
+    signal sync:          std_ulogic_vector(1 downto 0);
+    -- synchronous active low reset
+    alias  sresetn:       std_ulogic is sync(1);
+    -- counter value
+    signal c:             natural range 0 to cmax;
+    -- counter force-to-zero
+    signal cz:            std_ulogic;
+    -- edge detector outputs
+    signal re:            std_ulogic;
+    signal fe:            std_ulogic;
+
 begin
-    -- Shift register process for button signal resynchronization and edge detection
-    shift_register_process: process(clk, areset)
-    begin
-        if areset = '0' then
-            shift_reg <= (others => '0');
-        elsif rising_edge(clk) then
-            shift_reg <= shift_reg(0) & btn; -- Shift left and input new btn value
-        end if;
-    end process;
 
-    -- Edge detection and counter increment process
-    counter_process: process(clk, areset)
-    begin
-        if areset = '0' then
-            counter <= (others => '0');
-        elsif rising_edge(clk) then
-            -- Check for rising edge (01 pattern in shift register)
-            if shift_reg = "01" then
-                -- Increment counter, with rollover
-                counter <= (counter + 1) mod 16; -- Rollover after 15
-            end if;
-        end if;
-    end process;
+    -- 2-stages resynchronizer for reset
+    sr2: entity work.sr(rtl)
+    generic map(n => 2)
+    port map(
+        clk     => clk,
+        sresetn => '1',
+        shift   => '1',
+        din     => not areset,
+        dout    => sync
+    );
 
-    -- Map the counter value to the LED output
-    led <= std_ulogic_vector(counter);
+    -- edge
+    edge0: entity work.edge(rtl)
+    port map(
+        clk     => clk,
+        sresetn => sresetn,
+        data_in => btn,
+        re      => re,
+        fe      => fe
+    );
+
+    -- counter zero
+    cz <= '1' when c = cmax and (re = '1' or fe = '1') else '0';
+
+    counter0: entity work.counter(rtl)
+    generic map(
+        cmax => cmax
+    )
+    port map(
+        clk     => clk,
+        sresetn => sresetn,
+        cz      => cz,
+        inc     => re or fe,
+        c       => c
+    );
+
+    led <= std_ulogic_vector(to_unsigned(c, 4));
+
 end architecture rtl;
+
+-- vim: set tabstop=4 softtabstop=4 shiftwidth=4 expandtab textwidth=0:

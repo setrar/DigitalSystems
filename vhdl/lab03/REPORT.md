@@ -1,5 +1,9 @@
 # REPORT
 
+- [ ] Desctiption
+
+This VHDL code defines a timer entity that uses a counter to increment an output signal `t` based on a clock input `clk`. The timer includes a synchronous reset (`sresetn`) and a control signal (`tz`). The counting logic ensures that `cnt` increments until it reaches `f_mhz - 1`, at which point it resets and increments `t`. The output `t` is constrained to range from `0` to `max_us`. The generics `f_mhz` and `max_us` allow for flexible configuration of the timer's parameters.
+
 - [ ] Source binaries
 
 ```
