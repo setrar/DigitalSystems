@@ -122,7 +122,13 @@ ssh-add ~/.ssh/me_myself@eurecom.fr
 > Returns
 ```powershell
 Identity added: /Users/valiha/.ssh/me_myself@eurecom.fr (me_myself@saipal.eurecom.fr)
-valiha@ankarana ~ % ssh me_myself@ssh.eurecom.fr       
+```
+
+```
+ssh me_myself@ssh.eurecom.fr
+```
+> Returns
+```powershell
 (me_myself@ssh.eurecom.fr) Duo two-factor login for me_myself
 
 Enter a passcode or select one of the following options:
